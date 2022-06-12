@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { StatusBar, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ConvectorScreen } from '../../modules/ConvectorScreen';
-import { CurrencyListScreen } from '../../modules/CurrencyListScreen';
+import { CurrencyListScreen } from '../../modules/currencies/ui/CurrencyListScreen';
 import { SettingsScreen } from '../../modules/SettingsScreen';
 import { useUiContext } from '../UIProvider';
 import { InformationScreen } from '../../modules/InformationScreen';
+import { ConvectorScreen } from '../../modules/currencies/ui/ConvectorScreen';
 
 const Stack = createStackNavigator();
 

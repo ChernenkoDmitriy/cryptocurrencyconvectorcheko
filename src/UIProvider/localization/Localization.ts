@@ -3,7 +3,7 @@ import { translations } from './Translation';
 import { ILocalization } from './ILocalization';
 import { IRepository } from '../../store/IRepository';
 import { MobXRepository } from '../../store/MobXRepository';
-import { IStorage, storage } from '../../libraries/storage';
+import { IStorage, storage } from '../../../libraries/storage';
 
 class Localization implements ILocalization {
     constructor(private localizationStore: IRepository<string>, private storage: IStorage) {

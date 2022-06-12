@@ -416,7 +416,7 @@ export const translations = {
     infoAnswerContactUs: "If you have any questions or suggestions regarding the application, feel free to contact us at isktrend@gmail.com",
     toastTitle: "No internet connection!",
     toastSubTitle: "Turn on the internet and try again.",
-    AED: 'United Arab Emirates Dirham',
+    AED: 'United Arab EmIRateListItems Dirham',
     AFN: 'Afghan Afghani',
     ALL: 'Albanian Lek',
     AMD: 'Armenian Dram',

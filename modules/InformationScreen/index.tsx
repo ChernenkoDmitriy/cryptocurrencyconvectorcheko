@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useUiContext } from '../../src/UIProvider';
-import { Header } from '../components/header';
-import { InfoBlock } from '../components/infoBlock';
+import { Header } from '../shared/ui/header';
+import { InfoBlock } from './components/infoBlock';
 import { getStyle } from './styles';
 
 export const InformationScreen: FC = ({ }) => {

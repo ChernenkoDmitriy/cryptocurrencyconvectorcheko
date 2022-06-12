@@ -1,7 +1,7 @@
 import { MobXRepository } from "../../store/MobXRepository";
 import { allColors } from './AllColors';
 import { IColors, IColorsController } from "./IColorsController";
-import { IStorage, storage } from "../../libraries/storage";
+import { IStorage, storage } from "../../../libraries/storage";
 import { IRepository } from "../../store/IRepository";
 
 class ColorsController implements IColorsController {
