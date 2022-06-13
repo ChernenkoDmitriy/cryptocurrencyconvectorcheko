@@ -35,20 +35,28 @@ export const HeaderMain: FC = memo(() => {
         isConnected ? onRefreshRates() : showToast()
     }
 
+    const onPressNotifications = useCallback(() => {
+        navigation.navigate('NOTIFICATIONS');
+    }, []);
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={onPressSettings}>
                 <SettingsIcon color={colors.iconColor} />
             </TouchableOpacity>
             <RateUpdateInfo />
-            {
-                <TouchableOpacity disabled={isRateLoading} style={styles.button} onPress={onRefresh}>
-                    {isRateLoading
-                        ? <ActivityIndicator size={'small'} color={colors.iconColor} />
-                        : <UpdateIcon color={colors.iconColor} />}
+            <View style={styles.buttonsWrapper}>
+                {
+                    <TouchableOpacity disabled={isRateLoading} style={styles.button} onPress={onRefresh}>
+                        {isRateLoading
+                            ? <ActivityIndicator size={'small'} color={colors.iconColor} />
+                            : <UpdateIcon color={colors.iconColor} />}
+                    </TouchableOpacity>
+                }
+                <TouchableOpacity style={styles.button} onPress={onPressNotifications}>
+                    <UpdateIcon color={colors.iconColor} />
                 </TouchableOpacity>
-            }
-
+            </View>
         </View >
     );
 });
