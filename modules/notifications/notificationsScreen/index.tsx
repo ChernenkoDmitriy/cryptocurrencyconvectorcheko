@@ -6,7 +6,7 @@ import { useUiContext } from '../../../src/UIProvider';
 import { Header } from '../../shared/ui/header';
 import { AddNotificationButton } from './components/addNotificationButton';
 import { NotificationsListItem } from './components/notificationsListItem';
-import { INotificationMock, notificationsMock } from './notificationsMock';
+import { INotification, notificationsMock } from './notificationsMock';
 import { getStyle } from './styles';
 
 interface IProps {
@@ -17,7 +17,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
 
-    const renderItem = ({ item }: { item: INotificationMock }) => (
+    const renderItem = ({ item }: { item: INotification }) => (
         <NotificationsListItem item={item} />
     );
 

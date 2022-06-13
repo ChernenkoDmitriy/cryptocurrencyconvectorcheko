@@ -2,11 +2,11 @@ import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
 import { useUiContext } from '../../../../../src/UIProvider';
 import { Text, View } from 'react-native'
-import { INotificationMock } from '../../notificationsMock';
+import { INotification } from '../../notificationsMock';
 import { getStyle } from './styles';
 
 interface IProps {
-    item: INotificationMock;
+    item: INotification;
 }
 
 export const NotificationsListItem: FC<IProps> = observer(({ item }) => {

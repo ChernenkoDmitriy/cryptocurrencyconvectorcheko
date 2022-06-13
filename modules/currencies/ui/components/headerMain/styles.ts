@@ -18,6 +18,9 @@ export const getStyle = (colors: IColors) => {
             width: scaleVertical(50),
             justifyContent: 'center',
             alignItems: 'center',
+        },
+        buttonsWrapper: {
+            flexDirection: 'row'
         }
     });
     return styles;

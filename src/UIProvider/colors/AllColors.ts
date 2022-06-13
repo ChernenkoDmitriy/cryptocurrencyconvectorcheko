@@ -11,7 +11,7 @@ export const allColors = {
         subText: '#7C7C7C',
         buttonNumber: '#E68C01',
         activeColor: '#00cc66',
-        unActiveColor: '#e6005c'
+        unActiveColor: '#cc0000'
     },
     dark: {
         accentText: '#16BFBF',

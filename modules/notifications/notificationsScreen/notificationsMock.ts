@@ -1,4 +1,4 @@
-export interface INotificationMock {
+export interface INotification {
     id: string;
     coin: string;
     priceUp: number | null;
