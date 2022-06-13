@@ -1,19 +1,18 @@
 import { IStorage, storage } from "../../../../libraries/storage";
 import { MobXRepository } from "../../../../src/store/MobXRepository";
+import { ICoin } from "./ICoin";
 import { IRateListItem } from "./IRateListItem";
 
 export interface IRateListItemsModel {
-    lastUpdate: number;
     ratesList: IRateListItem[];
-    firstRate: IRateListItem;
-    secondRate: IRateListItem;
+    firstRate: ICoin;
+    secondRate: ICoin;
     rate: number;
 }
 
 class RatesModel implements IRateListItemsModel {
-    private lastUpdateStore = new MobXRepository<number>(Date.now());
-    private firstRateStore = new MobXRepository<IRateListItem>();
-    private secondRateStore = new MobXRepository<IRateListItem>();
+    private firstRateStore = new MobXRepository<ICoin>();
+    private secondRateStore = new MobXRepository<ICoin>();
     private ratesListStore = new MobXRepository<IRateListItem[]>();
 
     constructor(private storage: IStorage) {
@@ -24,15 +23,11 @@ class RatesModel implements IRateListItemsModel {
         Array.isArray(data) && this.storage.set('RATE_LIST', data);
     }
 
-    private persistLastUpdate = (data: number) => {
-        this.storage.set('LAST_UPDATE', data);
-    }
-
-    private persistFirstCurrency = (data: IRateListItem) => {
+    private persistFirstCurrency = (data: ICoin) => {
         this.storage.set('FIRST_CURRENCY', data);
     }
 
-    private persistSecondCurrency = (data: IRateListItem) => {
+    private persistSecondCurrency = (data: ICoin) => {
         this.storage.set('SECOND_CURRENCY', data);
     }
 
@@ -40,9 +35,6 @@ class RatesModel implements IRateListItemsModel {
         this.storage.get('RATE_LIST')
             .then(data => { data && this.ratesListStore.save(data); })
             .catch(error => console.warn('RatesModel -> RATE_LIST: ', error));
-        this.storage.get('LAST_UPDATE')
-            .then(data => { data && this.lastUpdateStore.save(data); })
-            .catch(error => console.warn('RatesModel -> LAST_UPDATE: ', error));
         this.storage.get('FIRST_CURRENCY')
             .then(data => { data && this.firstRateStore.save(data); })
             .catch(error => console.warn('RatesModel -> FIRST_CURRENCY: ', error));
@@ -51,29 +43,20 @@ class RatesModel implements IRateListItemsModel {
             .catch(error => console.warn('RatesModel -> SECOND_CURRENCY: ', error));
     }
 
-    get lastUpdate() {
-        return this.lastUpdateStore.data as number;
-    }
-
-    set lastUpdate(data: number) {
-        this.lastUpdateStore.save(data);
-        this.persistLastUpdate(data);
-    }
-
     get firstRate() {
-        return this.firstRateStore.data || {} as IRateListItem;
+        return this.firstRateStore.data || {} as ICoin;
     }
 
-    set firstRate(data: IRateListItem) {
+    set firstRate(data: ICoin) {
         this.firstRateStore.save(data);
         this.persistFirstCurrency(data)
     }
 
     get secondRate() {
-        return this.secondRateStore.data || {} as IRateListItem;
+        return this.secondRateStore.data || {} as ICoin;
     }
 
-    set secondRate(data: IRateListItem) {
+    set secondRate(data: ICoin) {
         this.secondRateStore.save(data);
         this.persistSecondCurrency(data)
     }
@@ -88,8 +71,8 @@ class RatesModel implements IRateListItemsModel {
     }
 
     get rate() {
-        const rate = this.firstRate?.current_price / this.secondRate?.current_price || 0;
-        return Math.ceil(rate * 10000000) / 10000000;
+        const rate = this.firstRate?.market_data?.current_price[this.secondRate.symbol] || 0;
+        return rate;
     }
 
 }

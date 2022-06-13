@@ -14,12 +14,14 @@ import { ListBottomLoader } from '../components/listBottomLoader';
 export const CurrencyListScreen: FC = observer(() => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
-    const { rates, onEndReached } = useCurrencyList();
-    const { searchText, setSearchText, onChoseCurrency } = useChoseCurrency();
+    const { rates, loading, searchRates, searchText, setSearchText, onEndReached } = useCurrencyList();
+    const { onChoseCurrency } = useChoseCurrency();
 
     const renderItem = ({ item }: any) => <CurrencyListItem item={item} onPress={onChoseCurrency} />;
 
     const keyExtractor = useCallback((item: IRateListItem) => item.id + item.name, []);
+
+    const data = searchText ? searchRates : rates;
 
     return (
         <SafeAreaView style={styles.container}>
@@ -27,11 +29,11 @@ export const CurrencyListScreen: FC = observer(() => {
             <Search value={searchText} onChangeText={setSearchText} />
             <FlatList
                 initialNumToRender={20}
-                data={rates}
+                data={data}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 onEndReached={onEndReached}
-                ListFooterComponent={<ListBottomLoader />}
+                ListFooterComponent={loading ? <ListBottomLoader /> : null}
             />
         </SafeAreaView>
     );

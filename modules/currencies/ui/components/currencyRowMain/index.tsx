@@ -4,10 +4,10 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { calculatorModel } from '../../../../shared/entities/calculator/Calculator';
 import { useUiContext } from '../../../../../src/UIProvider';
 import { getStyle } from './styles';
-import { IRateListItem } from '../../../../shared/entities/rates/IRateListItem';
+import { ICoin } from '../../../../shared/entities/rates/ICoin';
 
 interface IProps {
-    rate: IRateListItem;
+    rate: ICoin;
     isShowCalculation?: boolean;
     amount: string;
     onPress: () => void;
@@ -20,8 +20,8 @@ export const CurrencyRowMain: FC<IProps> = observer(({ rate, amount, onPress, is
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.containerLogo}>
-                <Image source={{ uri: rate?.image }} style={styles.logo} resizeMode='stretch' />
-                <Text style={styles.symbol}>{rate.symbol}</Text>
+                {!!rate?.image?.small && <Image source={{ uri: rate?.image?.small }} style={styles.logo} resizeMode='stretch' />}
+                <Text style={styles.symbol}>{rate.symbol?.toUpperCase()}</Text>
             </View>
             <View style={styles.textWrapper}>
                 <Text numberOfLines={1} style={styles.calculationText}>

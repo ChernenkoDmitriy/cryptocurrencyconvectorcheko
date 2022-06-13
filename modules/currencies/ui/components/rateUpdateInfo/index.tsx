@@ -9,7 +9,7 @@ import { getStyle } from './styles';
 export const RateUpdateInfo: FC = observer(() => {
     const { colors } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
-    const updateDate = moment(ratesModel.lastUpdate).format('DD.MM.YYYY HH:mm');
+    const updateDate = moment(ratesModel.firstRate?.last_updated).format('DD.MM.YYYY HH:mm');
 
     const rate = Math.trunc(ratesModel.rate * 1000) / 1000
 
@@ -18,10 +18,10 @@ export const RateUpdateInfo: FC = observer(() => {
             <Text style={styles.timeText}>{updateDate}</Text>
             <View style={styles.rowWrapper}>
                 <Text style={styles.rateText}>1</Text>
-                <Text style={styles.rateText}>{ratesModel.firstRate.name}</Text>
+                <Text style={styles.rateText}>{ratesModel.firstRate?.name}</Text>
                 <Text style={styles.rateText}>=</Text>
                 <Text style={styles.rateText}>{rate}</Text>
-                <Text style={styles.rateText}>{ratesModel.secondRate.name}</Text>
+                <Text style={styles.rateText}>{ratesModel.secondRate?.symbol?.toUpperCase()}</Text>
             </View>
         </View >
     );

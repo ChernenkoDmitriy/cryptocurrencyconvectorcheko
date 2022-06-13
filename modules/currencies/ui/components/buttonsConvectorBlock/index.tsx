@@ -16,7 +16,6 @@ import { PlusIcon } from '../../../../../assets/plusIcon';
 
 export const ButtonsConvectorBlock: FC = memo(() => {
     const { colors } = useUiContext();
-    const { onChoseOppositeCurrency } = useChoseCurrency();
     const styles = useMemo(() => getStyle(colors), [colors])
 
     const onPressNumber = (value: string) => {
@@ -51,7 +50,7 @@ export const ButtonsConvectorBlock: FC = memo(() => {
     const BUTTONS = useMemo(() => [
         { color: colors.buttonNumber, icon: <ResetCalculateIcon color={colors.buttonNumber} />, text: 'C', onPress: onPressClear },
         { color: colors.buttonNumber, icon: <BackspaceIcon color={colors.buttonNumber} />, text: '<', onPress: onPressDelete },
-        { color: colors.buttonNumber, icon: <ExchangeIcon color={colors.buttonNumber} />, text: '||', onPress: onChoseOppositeCurrency },
+        { color: colors.buttonNumber, icon: <ExchangeIcon color={colors.buttonNumber} />, text: '||', onPress: () => { } },
         { color: colors.buttonNumber, icon: <DivideIcon color={colors.buttonNumber} />, text: '/', onPress: onPressOperator },
         { text: '7', onPress: onPressNumber },
         { text: '8', onPress: onPressNumber },

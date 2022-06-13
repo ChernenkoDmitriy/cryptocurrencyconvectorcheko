@@ -21,8 +21,12 @@ export const ConvectorScreen: FC<IProps> = observer(({ navigation }) => {
 
     useInitCurrency();
 
-    const goToCurrencyList = (isFirst?: boolean) => {
-        navigation.navigate('CURRENCY_LIST', { isFirst });
+    const goToCurrencyList = () => {
+        navigation.navigate('CURRENCY_LIST');
+    }
+
+    const goToSecondCurrencyList = () => {
+        navigation.navigate('SECOND_CURRENCY_LIST');
     }
 
     return (
@@ -32,11 +36,11 @@ export const ConvectorScreen: FC<IProps> = observer(({ navigation }) => {
                 rate={ratesModel.firstRate}
                 isShowCalculation
                 amount={calculatorModel.firstRateRow}
-                onPress={() => goToCurrencyList(true)} />
+                onPress={goToCurrencyList} />
             <CurrencyRowMain
                 rate={ratesModel.secondRate}
                 amount={calculatorModel.secondRateRow}
-                onPress={() => goToCurrencyList(false)} />
+                onPress={goToSecondCurrencyList} />
             <ButtonsConvectorBlock />
         </SafeAreaView>
     );
