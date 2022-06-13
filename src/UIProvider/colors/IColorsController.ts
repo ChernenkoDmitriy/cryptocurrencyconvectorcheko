@@ -9,6 +9,8 @@ export type IColors = {
     borderCurrency: string;
     subText: string;
     iconColor: string;
+    activeColor: string;
+    unActiveColor: string;
 }
 
 export interface IColorsController {

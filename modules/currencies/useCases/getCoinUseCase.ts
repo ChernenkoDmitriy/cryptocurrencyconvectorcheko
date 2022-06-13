@@ -23,6 +23,7 @@ export const getCoinUseCase = async (coinId: string): Promise<ICoin | null> => {
     try {
         const response = await fetchCoin(coinId);
         const result = precessingResponse(response);
+        console.log(coinId)
         return result;
     } catch (error) {
         console.error('getCoinUseCase ', error)
