@@ -4,6 +4,8 @@ import { useUiContext } from '../../../../../src/UIProvider';
 import { Text, View } from 'react-native'
 import { INotification } from '../../notificationsMock';
 import { getStyle } from './styles';
+import { ArrowDown } from '../../../../../assets/arrowDown/arrowDown';
+import { ArrowUp } from '../../../../../assets/arrowUp/arrowUp';
 
 interface IProps {
     item: INotification;
@@ -26,14 +28,14 @@ export const NotificationsListItem: FC<IProps> = observer(({ item }) => {
             <View style={styles.expectedPriceContainer}>
                 {item.priceUp ?
                     <View style={styles.expectedPriceWrapper}>
-                        <Text style={styles.expectedPriceArrow}>|</Text>
+                        <ArrowUp />
                         <Text style={styles.expectedPriceText}>price: ${item.priceUp}</Text>
                     </View>
                     : null
                 }
                 {item.priceDown ?
                     <View style={styles.expectedPriceWrapper}>
-                        <Text style={styles.expectedPriceArrow}>|</Text>
+                        <ArrowDown />
                         <Text style={styles.expectedPriceText}>price: ${item.priceDown}</Text>
                     </View>
                     : null

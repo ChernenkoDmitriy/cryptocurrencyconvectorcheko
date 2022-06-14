@@ -2,7 +2,7 @@ import { Dimensions, PixelRatio } from "react-native";
 
 const idealWidth: number = 375;
 const idealHeight: number = 812;
-const _size: { width: number, height: number } = Dimensions.get('window');
+export const _size: { width: number, height: number } = Dimensions.get('window');
 const _ratio: number = PixelRatio.getFontScale();
 
 export const scaleHorizontal = (inWidth: number = 1): number => {
