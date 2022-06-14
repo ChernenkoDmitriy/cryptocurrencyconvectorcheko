@@ -10,7 +10,7 @@ export const NotificationSaveButton: FC = observer(() => {
 
     return (
         <TouchableOpacity style={styles.container}>
-            <Text style={styles.title}>Save</Text>
+            <Text style={styles.title}>{t('save')}</Text>
         </TouchableOpacity>
     );
 });
