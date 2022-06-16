@@ -32,12 +32,14 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
             color: isActive ? colors.activeColor : colors.unActiveColor
         },
         expectedPriceWrapper: {
-            flexDirection: 'row'
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center'
         },
         expectedPriceContainer: {
             flexDirection: 'row',
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
         },
         rateCodeText: {
             fontSize: scaleFontSize(16),
@@ -52,7 +54,8 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
         expectedPriceText: {
             fontSize: scaleFontSize(14),
             color: colors.regularText,
-            fontFamily: 'Roboto-Regular'
+            fontFamily: 'Roboto-Regular',
+            marginLeft: 5
         },
         expectedPriceArrow: {
             marginRight: 5

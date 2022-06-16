@@ -3,10 +3,11 @@ import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
 import { FlatList, SafeAreaView } from 'react-native'
 import { useUiContext } from '../../../src/UIProvider';
+import { INotificationsListItem } from '../../shared/entities/notifications/INotificationsListItem';
+import { notificationsModel } from '../../shared/entities/notifications/Notifications';
 import { Header } from '../../shared/ui/header';
 import { AddNotificationButton } from './components/addNotificationButton';
 import { NotificationsListItem } from './components/notificationsListItem';
-import { INotification, notificationsMock } from './notificationsMock';
 import { getStyle } from './styles';
 
 interface IProps {
@@ -17,7 +18,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
 
-    const renderItem = ({ item }: { item: INotification }) => (
+    const renderItem = ({ item }: { item: INotificationsListItem }) => (
         <NotificationsListItem item={item} />
     );
 
@@ -25,9 +26,9 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <Header title={t('notifications')} />
             <FlatList
-                data={notificationsMock}
+                data={notificationsModel.notificationsList}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => String(index)}
                 style={styles.list}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainerStyle}

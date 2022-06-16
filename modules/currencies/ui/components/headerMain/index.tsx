@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import { SettingsIcon } from '../../../../../assets/settingsIcon';
 import { UpdateIcon } from '../../../../../assets/updateIcon';
 import { useUiContext } from '../../../../../src/UIProvider';
+import { notificationsModel } from '../../../../shared/entities/notifications/Notifications';
 import { useChoseCurrency } from '../../../presenter/useChoseCurrency';
 import { RateUpdateInfo } from '../rateUpdateInfo';
 import { getStyle } from './styles';
@@ -36,7 +37,11 @@ export const HeaderMain: FC = memo(() => {
     }
 
     const onPressNotifications = useCallback(() => {
-        navigation.navigate('NOTIFICATIONS');
+        if (notificationsModel.notificationsList.length === 0) {
+            navigation.navigate('ADD_NOTIFICATIONS');
+        } else {
+            navigation.navigate('NOTIFICATIONS');
+        }
     }, []);
 
     return (
