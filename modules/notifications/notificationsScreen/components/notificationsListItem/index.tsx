@@ -1,24 +1,26 @@
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
 import { useUiContext } from '../../../../../src/UIProvider';
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { getStyle } from './styles';
 import { ArrowDown } from '../../../../../assets/arrowDown/arrowDown';
 import { ArrowUp } from '../../../../../assets/arrowUp/arrowUp';
 import { INotificationsListItem } from '../../../../shared/entities/notifications/INotificationsListItem';
 import { ICoin } from '../../../../shared/entities/rates/ICoin';
+import { TrashIcon } from '../../../../../assets/trashIcon';
 
 interface IProps {
     item: INotificationsListItem;
-    coin: ICoin | undefined
+    coin: ICoin | undefined;
+    onPress: () => void;
 }
 
-export const NotificationsListItem: FC<IProps> = observer(({ item, coin }) => {
+export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPress }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors, item.isActive), [colors, item.isActive]);
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <View style={styles.rowWrapper}>
                 <Image source={{ uri: String(coin?.image) }} style={styles.logo} resizeMode='stretch' />
                 <View style={styles.rateWrapper}>
@@ -26,6 +28,9 @@ export const NotificationsListItem: FC<IProps> = observer(({ item, coin }) => {
                     <Text style={styles.ratePriceText}>${coin?.current_price}</Text>
                 </View>
                 <Text style={styles.isActiveText}>{t('active')}</Text>
+                <TouchableOpacity onPress={onPress}>
+                    <TrashIcon color={colors.iconColor} />
+                </TouchableOpacity>
             </View>
             <View style={styles.expectedPriceContainer}>
                 {item.priceUp ?
@@ -43,6 +48,6 @@ export const NotificationsListItem: FC<IProps> = observer(({ item, coin }) => {
                     : null
                 }
             </View>
-        </View>
+        </TouchableOpacity>
     );
 });

@@ -19,8 +19,8 @@ interface IProps {
 }
 
 export const AddNotificationsScreen: FC<IProps> = observer(({ navigation }) => {
-    const [upNumber, onUpNumber] = useState('');
-    const [downNumber, onDownNumber] = useState('');
+    const [upNumber, setUpNumber] = useState('');
+    const [downNumber, setDownNumber] = useState('');
     const [isEnabled, setIsEnabled] = useState(false);
 
     const { colors, t } = useUiContext();
@@ -42,8 +42,8 @@ export const AddNotificationsScreen: FC<IProps> = observer(({ navigation }) => {
             <View style={styles.formContainer}>
                 <View>
                     <NotificationCurrencyRow rate={ratesModel.firstRate} onPress={goToCurrencyList} />
-                    <CurrencyPriceInput icon={<ArrowUp />} number={upNumber} setNumber={onUpNumber} />
-                    <CurrencyPriceInput icon={<ArrowDown />} number={downNumber} setNumber={onDownNumber} />
+                    <CurrencyPriceInput icon={<ArrowUp />} number={upNumber} setNumber={setUpNumber} />
+                    <CurrencyPriceInput icon={<ArrowDown />} number={downNumber} setNumber={setDownNumber} />
                     <NotificationActiveSwitch isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
                 </View>
                 <NotificationSaveButton onPress={onPressSave} />

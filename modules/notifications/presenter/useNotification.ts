@@ -13,20 +13,28 @@ export const useNotification = () => {
             .then(list => {
                 setCoinsList(list)
             })
-    }, [])
+    }, [notificationsModel.notificationsList])
 
     const saveNotification = (upNumber: string, downNumber: string, isActive: boolean) => {
-        const notificationsList = [...notificationsModel.notificationsList, {
+        const notificationsList = [{
             coin: ratesModel.firstRate.id,
             priceUp: upNumber || null,
             priceDown: downNumber || null,
             isActive: isActive
-        }]
-        notificationsModel.notificationsList = notificationsList
-        navigation.goBack()
+        }, ...notificationsModel.notificationsList];
+        notificationsModel.notificationsList = notificationsList;
+        navigation.goBack();
     }
 
+    const deleteNotification = (index: number) => {
+        const notificationsList = [...notificationsModel.notificationsList];
+        notificationsList.splice(index, 1);
+        notificationsModel.notificationsList = notificationsList;
+    }
 
-    return { saveNotification, coinsList };
+    const editNotification = () => {
 
+    }
+
+    return { saveNotification, coinsList, deleteNotification };
 }

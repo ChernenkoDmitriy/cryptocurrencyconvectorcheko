@@ -29,7 +29,8 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
         },
         isActiveText: {
             fontFamily: 'Roboto-Regular',
-            color: isActive ? colors.activeColor : colors.unActiveColor
+            color: isActive ? colors.activeColor : colors.unActiveColor,
+            marginBottom: 3
         },
         expectedPriceWrapper: {
             flexDirection: 'row',
@@ -73,6 +74,10 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
             alignItems: 'center',
             borderRadius: 4,
         },
+        activeWrapper: {
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
     });
     return styles;
 }

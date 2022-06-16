@@ -4,6 +4,7 @@ import React, { FC, memo, useCallback, useMemo } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
+import { BellIcon } from '../../../../../assets/bellIcon';
 import { SettingsIcon } from '../../../../../assets/settingsIcon';
 import { UpdateIcon } from '../../../../../assets/updateIcon';
 import { useUiContext } from '../../../../../src/UIProvider';
@@ -59,7 +60,7 @@ export const HeaderMain: FC = memo(() => {
                     </TouchableOpacity>
                 }
                 <TouchableOpacity style={styles.button} onPress={onPressNotifications}>
-                    <UpdateIcon color={colors.iconColor} />
+                    <BellIcon color={colors.iconColor} />
                 </TouchableOpacity>
             </View>
         </View >

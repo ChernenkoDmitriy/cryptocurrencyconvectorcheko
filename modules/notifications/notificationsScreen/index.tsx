@@ -19,12 +19,17 @@ interface IProps {
 export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
-    const { coinsList } = useNotification()
+    const { coinsList, deleteNotification } = useNotification()
 
 
-    const renderItem = ({ item }: { item: INotificationsListItem }) => {
+    const renderItem = ({ item, index }: { item: INotificationsListItem, index: number }) => {
         const coin = coinsList.find((coin: ICoin) => coin?.id === item.coin)
-        return <NotificationsListItem item={item} coin={coin} />
+
+        const onPressDelete = () => {
+            deleteNotification(index)
+        }
+
+        return <NotificationsListItem item={item} coin={coin} onPress={onPressDelete} />
     };
 
     return (
