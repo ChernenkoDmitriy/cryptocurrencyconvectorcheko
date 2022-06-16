@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../../src/UIProvider/colors/IColorsController';
-import { scaleFontSize } from '../../../../../src/utils';
+import { scaleFontSize, scaleVertical } from '../../../../../src/utils';
 
 export const getStyle = (colors: IColors, isActive: boolean) => {
     const styles = StyleSheet.create({
@@ -59,7 +59,20 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
         },
         expectedPriceArrow: {
             marginRight: 5
-        }
+        },
+        containerLogo: {
+            paddingVertical: 4,
+            width: 25,
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        logo: {
+            width: scaleVertical(35),
+            height: scaleVertical(35),
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 4,
+        },
     });
     return styles;
 }

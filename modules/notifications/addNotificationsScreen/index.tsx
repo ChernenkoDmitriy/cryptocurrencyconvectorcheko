@@ -12,8 +12,7 @@ import { NotificationActiveSwitch } from './components/notificationActiveSwitch'
 import { NotificationSaveButton } from './components/notificationSaveButton';
 import { ratesModel } from '../../shared/entities/rates/Rates';
 import { NotificationCurrencyRow } from './components/notificationCurrencyRow';
-import { saveNotification, useNotification } from './presenter/useNotification';
-import { notificationsModel } from '../../shared/entities/notifications/Notifications';
+import { useNotification } from '../presenter/useNotification';
 
 interface IProps {
     navigation: StackNavigationProp<any>;
