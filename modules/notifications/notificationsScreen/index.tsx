@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useMemo } from 'react';
 import { FlatList, SafeAreaView } from 'react-native'
 import { useUiContext } from '../../../src/UIProvider';
 import { INotificationsListItem } from '../../shared/entities/notifications/INotificationsListItem';
