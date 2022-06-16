@@ -14,7 +14,7 @@ export const AddNotificationButton: FC<IProps> = ({ navigation }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     const onPress = () => {
-        navigation.navigate('ADDNOTIFICATIONS')
+        navigation.navigate('ADD_NOTIFICATIONS')
     }
 
     return (

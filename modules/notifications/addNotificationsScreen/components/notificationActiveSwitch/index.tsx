@@ -1,11 +1,15 @@
 import { observer } from 'mobx-react';
-import React, { FC, useMemo, useState } from 'react';
+import React, { Dispatch, FC, SetStateAction, useMemo } from 'react';
 import { Text, View, Switch } from 'react-native'
 import { getStyle } from './styles';
 import { useUiContext } from '../../../../../src/UIProvider';
 
-export const NotificationActiveSwitch: FC = observer(() => {
-    const [isEnabled, setIsEnabled] = useState(false);
+interface IProps {
+    isEnabled: boolean;
+    setIsEnabled: Dispatch<SetStateAction<boolean>>
+}
+
+export const NotificationActiveSwitch: FC<IProps> = observer(({ isEnabled, setIsEnabled }) => {
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     const { colors, t } = useUiContext();
@@ -15,8 +19,8 @@ export const NotificationActiveSwitch: FC = observer(() => {
         <View style={styles.container}>
             <Text style={styles.title}>{t('active')}</Text>
             <Switch
-                trackColor={{ false: "#767577", true: "#767577" }}
-                thumbColor={isEnabled ? colors.activeColor : "#f4f3f4"}
+                trackColor={{ false: colors.inputBackground, true: colors.inputBackground }}
+                thumbColor={isEnabled ? colors.activeColor : colors.regularText}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled} />

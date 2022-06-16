@@ -25,7 +25,7 @@ export const AppNavigator: FC = () => {
                     <Stack.Screen name="CURRENCY_LIST" component={CurrencyListScreen} />
                     <Stack.Screen name="SECOND_CURRENCY_LIST" component={SecondCurrencyListScreen} />
                     <Stack.Screen name="NOTIFICATIONS" component={NotificationsScreen} />
-                    <Stack.Screen name="ADDNOTIFICATIONS" component={AddNotificationsScreen} />
+                    <Stack.Screen name="ADD_NOTIFICATIONS" component={AddNotificationsScreen} />
                     <Stack.Screen name="SETTINGS" component={SettingsScreen} />
                     <Stack.Screen name="INFORMATION" component={InformationScreen} />
                 </Stack.Navigator>

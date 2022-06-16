@@ -2,13 +2,13 @@ import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
 import { useUiContext } from '../../../../../src/UIProvider';
 import { Text, View } from 'react-native'
-import { INotification } from '../../notificationsMock';
 import { getStyle } from './styles';
 import { ArrowDown } from '../../../../../assets/arrowDown/arrowDown';
 import { ArrowUp } from '../../../../../assets/arrowUp/arrowUp';
+import { INotificationsListItem } from '../../../../shared/entities/notifications/INotificationsListItem';
 
 interface IProps {
-    item: INotification;
+    item: INotificationsListItem;
 }
 
 export const NotificationsListItem: FC<IProps> = observer(({ item }) => {
@@ -23,7 +23,7 @@ export const NotificationsListItem: FC<IProps> = observer(({ item }) => {
                     <Text style={styles.rateCodeText}>BTC/USD</Text>
                     <Text style={styles.ratePriceText}>$23.5566</Text>
                 </View>
-                <Text style={styles.isActiveText}>Active</Text>
+                <Text style={styles.isActiveText}>{t('active')}</Text>
             </View>
             <View style={styles.expectedPriceContainer}>
                 {item.priceUp ?

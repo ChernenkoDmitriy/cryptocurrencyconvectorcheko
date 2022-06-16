@@ -4,12 +4,16 @@ import { Text, TouchableOpacity } from 'react-native'
 import { getStyle } from './styles';
 import { useUiContext } from '../../../../../src/UIProvider';
 
-export const NotificationSaveButton: FC = observer(() => {
+interface IProps {
+    onPress: () => void
+}
+
+export const NotificationSaveButton: FC<IProps> = observer(({ onPress }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <Text style={styles.title}>{t('save')}</Text>
         </TouchableOpacity>
     );

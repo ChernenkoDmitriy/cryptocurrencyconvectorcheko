@@ -1,24 +1,23 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react';
-import React, { FC, ReactComponentElement, useMemo, useState } from 'react';
+import React, { Dispatch, FC, ReactComponentElement, SetStateAction, useMemo } from 'react';
 import { TextInput, View } from 'react-native'
 import { getStyle } from './styles';
 import { useUiContext } from '../../../../../src/UIProvider';
 
 interface IProps {
-    icon: ReactComponentElement<any>
+    icon: ReactComponentElement<any>;
+    number: string;
+    setNumber: Dispatch<SetStateAction<string>>
 }
 
-export const CurrencyPriceInput: FC<IProps> = observer(({ icon }) => {
-    const { colors, t } = useUiContext();
+export const CurrencyPriceInput: FC<IProps> = observer(({ icon, number, setNumber }) => {
+    const { colors } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
-    const [number, onChangeNumber] = useState();
 
     return (
         <View style={styles.container}>
             <TextInput
-                //@ts-ignore
-                onChangeText={onChangeNumber}
+                onChangeText={setNumber}
                 value={number}
                 placeholder="USD"
                 keyboardType="numeric"
