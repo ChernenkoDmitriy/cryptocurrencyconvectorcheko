@@ -25,5 +25,13 @@ export const useValidation = () => {
         }
     }
 
-    return { validateButtonDisabled, validateInputs };
+    const validateNumbers = (number: string) => {
+        if (number[number.length - 1] === '.') {
+            return number.slice(0, -1)
+        } else {
+            return number
+        }
+    }
+
+    return { validateButtonDisabled, validateInputs, validateNumbers };
 }

@@ -23,7 +23,7 @@ export const CurrencyPriceInput: FC<IProps> = observer(({ icon, number, setNumbe
                 placeholder="USD"
                 keyboardType="numeric"
                 style={styles.input}
-                placeholderTextColor={colors.subText}
+                placeholderTextColor={colors.inactiveText}
             />
             <View style={styles.icon}>
                 {icon}

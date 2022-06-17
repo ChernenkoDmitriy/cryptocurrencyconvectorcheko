@@ -6,10 +6,12 @@ import { notificationsModel } from "../../shared/entities/notifications/Notifica
 import { ICoin } from "../../shared/entities/rates/ICoin"
 import { ratesModel } from "../../shared/entities/rates/Rates"
 import { fetchNotificationsCoins } from "../useCases/getCoinsUseCase"
+import { useValidation } from "./useValidation"
 
 export const useNotification = () => {
     const navigation = useNavigation<any>();
     const [coinsList, setCoinsList] = useState([])
+    const { validateNumbers } = useValidation()
 
     useEffect(() => {
         fetchNotificationsCoins()
@@ -28,8 +30,8 @@ export const useNotification = () => {
                     ? {
                         ...notification,
                         coin: ratesModel.firstRate.id,
-                        priceUp: upNumber || null,
-                        priceDown: downNumber || null,
+                        priceUp: validateNumbers(upNumber) || null,
+                        priceDown: validateNumbers(downNumber) || null,
                         isActive: isActive
                     } : notification
             ))
@@ -38,8 +40,8 @@ export const useNotification = () => {
             const notificationsList = [{
                 id: notificationsModel.chosenNotification.id,
                 coin: ratesModel.firstRate.id,
-                priceUp: upNumber || null,
-                priceDown: downNumber || null,
+                priceUp: validateNumbers(upNumber) || null,
+                priceDown: validateNumbers(downNumber) || null,
                 isActive: isActive
             }, ...notificationsModel.notificationsList];
             notificationsModel.notificationsList = notificationsList;
