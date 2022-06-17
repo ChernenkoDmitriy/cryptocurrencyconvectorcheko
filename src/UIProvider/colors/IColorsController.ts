@@ -1,16 +1,26 @@
 export type IColors = {
-    accentText: string;
-    inputBackground: string;
-    accentColorLight: string;
-    background: string;
-    border: string;
-    regularText: string;
+    positiveRate: string;
+    negativeRate: string;
     buttonNumber: string;
-    borderCurrency: string;
-    subText: string;
-    iconColor: string;
-    activeColor: string;
-    unActiveColor: string;
+    inputBackground: string;
+    lightButton: string;
+    accentText: string;
+    textAccentButton: string;
+    modalBackground: string;
+    icon: string;
+    error: string;
+    low: string;
+    medium: string;
+    high: string;
+    shadow: string;
+    background: string;
+    card: string;
+    buttonText: string;
+    regularText: string;
+    titleText: string;
+    inactiveText: string;
+    accentColorLight: string;
+    accentColorDark: string;
 }
 
 export interface IColorsController {

@@ -48,9 +48,9 @@ export const ButtonsConvectorBlock: FC = memo(() => {
     }
 
     const BUTTONS = useMemo(() => [
-        { color: colors.buttonNumber, icon: <ResetCalculateIcon color={colors.buttonNumber} />, text: 'C', onPress: onPressClear },
+        { doubleWidth: true, color: colors.accentText, icon: <ResetCalculateIcon color={colors.buttonNumber} />, text: 'C', onPress: onPressClear },
         { color: colors.buttonNumber, icon: <BackspaceIcon color={colors.buttonNumber} />, text: '<', onPress: onPressDelete },
-        { color: colors.buttonNumber, icon: <ExchangeIcon color={colors.buttonNumber} />, text: '||', onPress: () => { } },
+        // { color: colors.buttonNumber, icon: <ExchangeIcon color={colors.buttonNumber} />, text: '||', onPress: () => { } },
         { color: colors.buttonNumber, icon: <DivideIcon color={colors.buttonNumber} />, text: '/', onPress: onPressOperator },
         { text: '7', onPress: onPressNumber },
         { text: '8', onPress: onPressNumber },

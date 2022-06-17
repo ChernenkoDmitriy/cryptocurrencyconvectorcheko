@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import React, { FC, useCallback, useMemo } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { useUiContext } from '../../../../src/UIProvider';
-import { Header } from '../../../shared/ui/header';
+import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { Search } from '../components/search';
 import { getStyle } from './styles';
 import { SecondCurrencyListItem } from '../components/secondCurrencyListItem';
@@ -19,7 +19,7 @@ export const SecondCurrencyListScreen: FC = observer(() => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={t('currency')} />
+            <HeaderWithBackButton title={t('currency')} />
             <Search value={searchText} onChangeText={setSearchText} />
             <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />
         </SafeAreaView>

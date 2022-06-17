@@ -4,7 +4,7 @@ import { useUiContext } from '../../../../../src/UIProvider';
 import { getStyle } from './styles';
 
 interface IProps {
-    item: { symbol: string; rate: number; };
+    item: { symbol: string; rate: number; name: string; };
     onPress: (value: string) => void;
 }
 

@@ -10,6 +10,7 @@ import { ConvectorScreen } from '../../modules/currencies/ui/ConvectorScreen';
 import { SecondCurrencyListScreen } from '../../modules/currencies/ui/SecondCurrencyList';
 import { NotificationsScreen } from '../../modules/notifications/notificationsScreen';
 import { AddNotificationsScreen } from '../../modules/notifications/addNotificationsScreen';
+import { ChartScreen } from '../../modules/chart/ui';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ export const AppNavigator: FC = () => {
                     <Stack.Screen name="CONVECTOR" component={ConvectorScreen} />
                     <Stack.Screen name="CURRENCY_LIST" component={CurrencyListScreen} />
                     <Stack.Screen name="SECOND_CURRENCY_LIST" component={SecondCurrencyListScreen} />
+                    <Stack.Screen name="CHART" component={ChartScreen} />
                     <Stack.Screen name="NOTIFICATIONS" component={NotificationsScreen} />
                     <Stack.Screen name="ADD_NOTIFICATIONS" component={AddNotificationsScreen} />
                     <Stack.Screen name="SETTINGS" component={SettingsScreen} />

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useMemo, useState } from "react";
 import { calculatorModel } from "../../shared/entities/calculator/Calculator";
-import { ICoin } from "../../shared/entities/rates/ICoin";
+import { ICoinMarket } from "../../shared/entities/rates/ICoinMarket";
 import { ratesModel } from "../../shared/entities/rates/Rates";
 
 export const useChoseSecondCurrency = () => {
@@ -10,7 +10,7 @@ export const useChoseSecondCurrency = () => {
 
     const onChoseCurrency = (value: string) => {
         calculatorModel.calculateClear();
-        ratesModel.secondRate = { symbol: value } as ICoin;
+        ratesModel.secondRate = { symbol: value } as ICoinMarket;
         navigation.goBack();
     }
 
@@ -19,10 +19,10 @@ export const useChoseSecondCurrency = () => {
             if (searchText) {
                 return Object.entries(ratesModel.firstRate.market_data.current_price)
                     .filter(item => item[0].toLowerCase().includes(searchText.toLowerCase()))
-                    .map(item => ({ symbol: item[0], rate: item[1] }));
+                    .map(item => ({ symbol: item[0], rate: item[1], name: ratesModel.coinsList[item[0]]?.name }));
             } else {
                 return Object.entries(ratesModel.firstRate.market_data.current_price)
-                    .map(item => ({ symbol: item[0], rate: item[1] }));
+                    .map(item => ({ symbol: item[0], rate: item[1], name: ratesModel.coinsList[item[0]]?.name }));
             }
         } catch (error) {
             return [];

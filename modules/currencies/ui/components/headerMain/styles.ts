@@ -5,13 +5,21 @@ import { scaleVertical } from '../../../../../src/utils';
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         container: {
-            height: scaleVertical(70),
             width: '100%',
-            borderBottomColor: colors.border,
-            borderBottomWidth: 1,
+            height: 70,
             flexDirection: 'row',
+            alignItems: 'center',
+            borderBottomColor: colors.shadow,
+            backgroundColor: colors.card,
+            paddingRight: 20,
+            shadowColor: colors.shadow,
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.1,
+            elevation: 5,
             justifyContent: 'space-between',
-            alignItems: 'center'
         },
         button: {
             height: scaleVertical(50),

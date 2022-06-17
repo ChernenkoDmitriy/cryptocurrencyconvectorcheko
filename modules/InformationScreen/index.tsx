@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useUiContext } from '../../src/UIProvider';
-import { Header } from '../shared/ui/header';
+import { HeaderWithBackButton } from '../shared/ui/headerWithBackButton';
 import { InfoBlock } from './components/infoBlock';
 import { getStyle } from './styles';
 
@@ -11,7 +11,7 @@ export const InformationScreen: FC = ({ }) => {
 
     return (
         <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-            <Header title={t('information')} />
+            <HeaderWithBackButton title={t('information')} />
             <InfoBlock question={t('infoQuestionLink')} answer={t('infoAnswerLink')} />
             <InfoBlock question={t('infoQuestionAutonom')} answer={t('infoAnswerAutonom')} />
             <InfoBlock question={t('infoQuestionUpdate')} answer={t('infoAnswerUpdate')} />

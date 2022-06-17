@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { SafeAreaView, View } from 'react-native'
 import { useUiContext } from '../../../src/UIProvider';
-import { Header } from '../../shared/ui/header';
+import { HeaderWithBackButton } from '../../shared/ui/headerWithBackButton';
 import { getStyle } from './styles';
 import { CurrencyPriceInput } from './components/currencyPriceInput';
 import { ArrowUp } from '../../../assets/arrowUp/arrowUp';
@@ -53,7 +53,7 @@ export const AddNotificationsScreen: FC<IProps> = observer(({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={t('notifications')} />
+            <HeaderWithBackButton title={t('notifications')} />
             <View style={styles.formContainer}>
                 <View>
                     <NotificationCurrencyRow rate={ratesModel.firstRate} onPress={goToCurrencyList} />

@@ -3,7 +3,7 @@ import React, { FC, useCallback, useMemo } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { useUiContext } from '../../../../src/UIProvider';
 import { CurrencyListItem } from '../components/currencyListItem';
-import { Header } from '../../../shared/ui/header';
+import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { Search } from '../components/search';
 import { useChoseCurrency } from '../../presenter/useChoseCurrency';
 import { getStyle } from './styles';
@@ -25,7 +25,7 @@ export const CurrencyListScreen: FC = observer(() => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={t('currency')} />
+            <HeaderWithBackButton title={t('currency')} />
             <Search value={searchText} onChangeText={setSearchText} />
             <FlatList
                 initialNumToRender={20}

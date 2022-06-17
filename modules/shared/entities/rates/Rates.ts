@@ -1,19 +1,22 @@
-import { IStorage, storage } from "../../../../libraries/storage";
-import { MobXRepository } from "../../../../src/store/MobXRepository";
-import { ICoin } from "./ICoin";
-import { IRateListItem } from "./IRateListItem";
+import { IStorage, storage } from '../../../../libraries/storage';
+import { MobXRepository } from '../../../../src/store/MobXRepository';
+import { ICoinListItem } from './ICoinListItem';
+import { ICoinMarket } from './ICoinMarket';
+import { IRateListItem } from './IRateListItem';
 
 export interface IRateListItemsModel {
     ratesList: IRateListItem[];
-    firstRate: ICoin;
-    secondRate: ICoin;
+    firstRate: ICoinMarket;
+    secondRate: ICoinMarket;
     rate: number;
+    coinsList: { [key: string]: ICoinListItem };
 }
 
 class RatesModel implements IRateListItemsModel {
-    private firstRateStore = new MobXRepository<ICoin>();
-    private secondRateStore = new MobXRepository<ICoin>();
+    private firstRateStore = new MobXRepository<ICoinMarket>();
+    private secondRateStore = new MobXRepository<ICoinMarket>();
     private ratesListStore = new MobXRepository<IRateListItem[]>();
+    private coinsListStore = new MobXRepository<{ [key: string]: ICoinListItem }>();
 
     constructor(private storage: IStorage) {
         this.load();
@@ -21,44 +24,61 @@ class RatesModel implements IRateListItemsModel {
 
     private persistRatesList = (data: IRateListItem[]) => {
         Array.isArray(data) && this.storage.set('RATE_LIST', data);
-    }
+    };
 
-    private persistFirstCurrency = (data: ICoin) => {
+    private persistFirstCurrency = (data: ICoinMarket) => {
         this.storage.set('FIRST_CURRENCY', data);
-    }
+    };
 
-    private persistSecondCurrency = (data: ICoin) => {
+    private persistSecondCurrency = (data: ICoinMarket) => {
         this.storage.set('SECOND_CURRENCY', data);
-    }
+    };
 
     private load = () => {
-        this.storage.get('RATE_LIST')
-            .then(data => { data && this.ratesListStore.save(data); })
+        this.storage
+            .get('RATE_LIST')
+            .then(data => {
+                data && this.ratesListStore.save(data);
+            })
             .catch(error => console.warn('RatesModel -> RATE_LIST: ', error));
-        this.storage.get('FIRST_CURRENCY')
-            .then(data => { data && this.firstRateStore.save(data); })
+        this.storage
+            .get('FIRST_CURRENCY')
+            .then(data => {
+                data && this.firstRateStore.save(data);
+            })
             .catch(error => console.warn('RatesModel -> FIRST_CURRENCY: ', error));
-        this.storage.get('SECOND_CURRENCY')
-            .then(data => { data && this.secondRateStore.save(data); })
+        this.storage
+            .get('SECOND_CURRENCY')
+            .then(data => {
+                data && this.secondRateStore.save(data);
+            })
             .catch(error => console.warn('RatesModel -> SECOND_CURRENCY: ', error));
+    };
+
+    get coinsList() {
+        return this.coinsListStore.data || {} as { [key: string]: ICoinListItem };
+    }
+
+    set coinsList(data: { [key: string]: ICoinListItem }) {
+        this.coinsListStore.save(data);
     }
 
     get firstRate() {
-        return this.firstRateStore.data || {} as ICoin;
+        return this.firstRateStore.data || ({} as ICoinMarket);
     }
 
-    set firstRate(data: ICoin) {
+    set firstRate(data: ICoinMarket) {
         this.firstRateStore.save(data);
-        this.persistFirstCurrency(data)
+        this.persistFirstCurrency(data);
     }
 
     get secondRate() {
-        return this.secondRateStore.data || {} as ICoin;
+        return this.secondRateStore.data || ({} as ICoinMarket);
     }
 
-    set secondRate(data: ICoin) {
+    set secondRate(data: ICoinMarket) {
         this.secondRateStore.save(data);
-        this.persistSecondCurrency(data)
+        this.persistSecondCurrency(data);
     }
 
     get ratesList() {
@@ -71,10 +91,10 @@ class RatesModel implements IRateListItemsModel {
     }
 
     get rate() {
-        const rate = this.firstRate?.market_data?.current_price[this.secondRate.symbol] || 0;
+        const rate =
+            this.firstRate?.market_data?.current_price[this.secondRate.symbol] || 0;
         return rate;
     }
-
 }
 
 export const ratesModel = new RatesModel(storage);
