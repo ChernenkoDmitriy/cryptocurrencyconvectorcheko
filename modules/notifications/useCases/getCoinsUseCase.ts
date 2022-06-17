@@ -1,6 +1,5 @@
 import { requester } from "../../../libraries/requester"
 import { notificationsModel } from "../../shared/entities/notifications/Notifications"
-import { ICoin } from "../../shared/entities/rates/ICoin"
 
 const getCoinsString = () => {
     const coins: string[] = []

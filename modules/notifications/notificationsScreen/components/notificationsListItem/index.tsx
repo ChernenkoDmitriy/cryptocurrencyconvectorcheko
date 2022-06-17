@@ -12,15 +12,16 @@ import { TrashIcon } from '../../../../../assets/trashIcon';
 interface IProps {
     item: INotificationsListItem;
     coin: ICoin | undefined;
-    onPress: () => void;
+    onPressDelete: () => void;
+    onPressEdit: () => void;
 }
 
-export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPress }) => {
+export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPressDelete, onPressEdit }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors, item.isActive), [colors, item.isActive]);
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPressEdit}>
             <View style={styles.rowWrapper}>
                 <Image source={{ uri: String(coin?.image) }} style={styles.logo} resizeMode='stretch' />
                 <View style={styles.rateWrapper}>
@@ -28,7 +29,7 @@ export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPress
                     <Text style={styles.ratePriceText}>${coin?.current_price}</Text>
                 </View>
                 <Text style={styles.isActiveText}>{t('active')}</Text>
-                <TouchableOpacity onPress={onPress}>
+                <TouchableOpacity onPress={onPressDelete}>
                     <TrashIcon color={colors.iconColor} />
                 </TouchableOpacity>
             </View>

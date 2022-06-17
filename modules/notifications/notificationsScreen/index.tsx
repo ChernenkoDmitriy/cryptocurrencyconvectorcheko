@@ -22,14 +22,19 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const { coinsList, deleteNotification } = useNotification()
 
 
-    const renderItem = ({ item, index }: { item: INotificationsListItem, index: number }) => {
+    const renderItem = ({ item }: { item: INotificationsListItem }) => {
         const coin = coinsList.find((coin: ICoin) => coin?.id === item.coin)
 
         const onPressDelete = () => {
-            deleteNotification(index)
+            deleteNotification(item.id)
         }
 
-        return <NotificationsListItem item={item} coin={coin} onPress={onPressDelete} />
+        const onPressEdit = () => {
+            notificationsModel.chosenNotification = item
+            navigation.navigate('ADD_NOTIFICATIONS')
+        }
+
+        return <NotificationsListItem item={item} coin={coin} onPressDelete={onPressDelete} onPressEdit={onPressEdit} />
     };
 
     return (
@@ -38,7 +43,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
             <FlatList
                 data={notificationsModel.notificationsList}
                 renderItem={renderItem}
-                keyExtractor={(item, index) => String(index)}
+                keyExtractor={(item) => item.id}
                 style={styles.list}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainerStyle}
