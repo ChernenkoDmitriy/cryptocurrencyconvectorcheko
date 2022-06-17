@@ -8,6 +8,7 @@ export interface INotificationsModel {
 
 class NotificationsModel implements INotificationsModel {
     private notificationsStore = new MobXRepository<INotificationsListItem[]>();
+    private chosenNotificationStore = new MobXRepository<INotificationsListItem>();
 
     constructor(private storage: IStorage) {
         this.load();
@@ -26,6 +27,14 @@ class NotificationsModel implements INotificationsModel {
 
     get notificationsList() {
         return this.notificationsStore.data ?? [];
+    }
+
+    set chosenNotification(notification: INotificationsListItem) {
+        this.chosenNotificationStore.save(notification);
+    }
+
+    get chosenNotification() {
+        return this.chosenNotificationStore.data ?? { id: 'emptyid', coin: 'bitcoin', priceUp: '', priceDown: '', isActive: false };
     }
 
 }

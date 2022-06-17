@@ -5,7 +5,9 @@ import { FlatList, SafeAreaView } from 'react-native'
 import { useUiContext } from '../../../src/UIProvider';
 import { INotificationsListItem } from '../../shared/entities/notifications/INotificationsListItem';
 import { notificationsModel } from '../../shared/entities/notifications/Notifications';
+import { ICoin } from '../../shared/entities/rates/ICoin';
 import { Header } from '../../shared/ui/header';
+import { useNotification } from '../presenter/useNotification';
 import { AddNotificationButton } from './components/addNotificationButton';
 import { NotificationsListItem } from './components/notificationsListItem';
 import { getStyle } from './styles';
@@ -17,10 +19,23 @@ interface IProps {
 export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
+    const { coinsList, deleteNotification } = useNotification()
 
-    const renderItem = ({ item }: { item: INotificationsListItem }) => (
-        <NotificationsListItem item={item} />
-    );
+
+    const renderItem = ({ item }: { item: INotificationsListItem }) => {
+        const coin = coinsList.find((coin: ICoin) => coin?.id === item.coin)
+
+        const onPressDelete = () => {
+            deleteNotification(item.id)
+        }
+
+        const onPressEdit = () => {
+            notificationsModel.chosenNotification = item
+            navigation.navigate('ADD_NOTIFICATIONS')
+        }
+
+        return <NotificationsListItem item={item} coin={coin} onPressDelete={onPressDelete} onPressEdit={onPressEdit} />
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -28,7 +43,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
             <FlatList
                 data={notificationsModel.notificationsList}
                 renderItem={renderItem}
-                keyExtractor={(item, index) => String(index)}
+                keyExtractor={(item) => item.id}
                 style={styles.list}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainerStyle}

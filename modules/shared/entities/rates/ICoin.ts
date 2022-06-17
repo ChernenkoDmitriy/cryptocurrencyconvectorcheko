@@ -5,6 +5,7 @@ export interface ICoin {
     categories: string[];
     coingecko_rank: number;
     coingecko_score: number;
+    current_price: number,
     community_score: number;
     country_origin: string;
     description: {};

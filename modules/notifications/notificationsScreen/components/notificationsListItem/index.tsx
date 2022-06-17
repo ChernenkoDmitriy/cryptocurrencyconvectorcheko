@@ -1,29 +1,37 @@
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
 import { useUiContext } from '../../../../../src/UIProvider';
-import { Text, View } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import { getStyle } from './styles';
 import { ArrowDown } from '../../../../../assets/arrowDown/arrowDown';
 import { ArrowUp } from '../../../../../assets/arrowUp/arrowUp';
 import { INotificationsListItem } from '../../../../shared/entities/notifications/INotificationsListItem';
+import { ICoin } from '../../../../shared/entities/rates/ICoin';
+import { TrashIcon } from '../../../../../assets/trashIcon';
 
 interface IProps {
     item: INotificationsListItem;
+    coin: ICoin | undefined;
+    onPressDelete: () => void;
+    onPressEdit: () => void;
 }
 
-export const NotificationsListItem: FC<IProps> = observer(({ item }) => {
+export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPressDelete, onPressEdit }) => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors, item.isActive), [colors, item.isActive]);
 
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPressEdit}>
             <View style={styles.rowWrapper}>
-                <View style={styles.coinImage} />
+                <Image source={{ uri: String(coin?.image) }} style={styles.logo} resizeMode='stretch' />
                 <View style={styles.rateWrapper}>
-                    <Text style={styles.rateCodeText}>BTC/USD</Text>
-                    <Text style={styles.ratePriceText}>$23.5566</Text>
+                    <Text style={styles.rateCodeText}>{coin?.symbol.toUpperCase()}/USD</Text>
+                    <Text style={styles.ratePriceText}>${coin?.current_price}</Text>
                 </View>
                 <Text style={styles.isActiveText}>{t('active')}</Text>
+                <TouchableOpacity onPress={onPressDelete}>
+                    <TrashIcon color={colors.iconColor} />
+                </TouchableOpacity>
             </View>
             <View style={styles.expectedPriceContainer}>
                 {item.priceUp ?
@@ -41,6 +49,6 @@ export const NotificationsListItem: FC<IProps> = observer(({ item }) => {
                     : null
                 }
             </View>
-        </View>
+        </TouchableOpacity>
     );
 });
