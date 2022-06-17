@@ -4,8 +4,7 @@ import { TouchableOpacity } from 'react-native'
 import { getStyle } from './styles';
 import { PlusIcon } from '../../../../../assets/plusIcon';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { notificationsModel } from '../../../../shared/entities/notifications/Notifications';
-import { ratesModel } from '../../../../shared/entities/rates/Rates';
+import { setEmptyNotification } from '../../../useCases/getCoinsUseCase';
 
 interface IProps {
     navigation: StackNavigationProp<any>;
@@ -16,8 +15,7 @@ export const AddNotificationButton: FC<IProps> = ({ navigation }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     const onPress = () => {
-        const randomId = String(Date.now())
-        notificationsModel.chosenNotification = { id: randomId, coin: ratesModel.firstRate.id, priceUp: '', priceDown: '', isActive: false }
+        setEmptyNotification()
         navigation.navigate('ADD_NOTIFICATIONS')
     }
 

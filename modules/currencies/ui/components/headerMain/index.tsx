@@ -8,6 +8,7 @@ import { BellIcon } from '../../../../../assets/bellIcon';
 import { SettingsIcon } from '../../../../../assets/settingsIcon';
 import { UpdateIcon } from '../../../../../assets/updateIcon';
 import { useUiContext } from '../../../../../src/UIProvider';
+import { setEmptyNotification } from '../../../../notifications/useCases/getCoinsUseCase';
 import { notificationsModel } from '../../../../shared/entities/notifications/Notifications';
 import { useChoseCurrency } from '../../../presenter/useChoseCurrency';
 import { RateUpdateInfo } from '../rateUpdateInfo';
@@ -38,6 +39,7 @@ export const HeaderMain: FC = memo(() => {
     }
 
     const onPressNotifications = useCallback(() => {
+        setEmptyNotification()
         if (notificationsModel.notificationsList.length === 0) {
             navigation.navigate('ADD_NOTIFICATIONS');
         } else {
