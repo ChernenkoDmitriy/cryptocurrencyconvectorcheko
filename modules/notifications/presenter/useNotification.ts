@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { getCoinUseCase } from "../../currencies/useCases/getCoinUseCase"
 import { INotificationsListItem } from "../../shared/entities/notifications/INotificationsListItem"
 import { notificationsModel } from "../../shared/entities/notifications/Notifications"
@@ -62,5 +62,13 @@ export const useNotification = () => {
             });
     }
 
-    return { saveNotification, coinsList, deleteNotification, changeNotificationCurrency };
+    const validateButtonDisabled = (upNumber: string, downNumber: string, setDisabled: Dispatch<SetStateAction<boolean>>) => {
+        if (upNumber === '' && downNumber === '') {
+            setDisabled(false)
+        } else {
+            setDisabled(true)
+        }
+    }
+
+    return { saveNotification, coinsList, deleteNotification, changeNotificationCurrency, validateButtonDisabled };
 }

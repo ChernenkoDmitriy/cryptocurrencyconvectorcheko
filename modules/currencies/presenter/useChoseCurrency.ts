@@ -1,15 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { calculatorModel } from "../../shared/entities/calculator/Calculator";
 import { ICoin } from "../../shared/entities/rates/ICoin";
 import { IRateListItem } from "../../shared/entities/rates/IRateListItem";
 import { ratesModel } from "../../shared/entities/rates/Rates";
-import { useDebounce } from "../../shared/hooks/useDebounce";
 import { getCoinUseCase } from "../useCases/getCoinUseCase";
-import { searchCoinUseCase } from "../useCases/searchCoinUseCase";
 
 export const useChoseCurrency = () => {
-    const [isRateLoading, setIsRateLoading] = useState(false);
+    const [isRateLoading, setIsRateLoading] = useState(false)
     const navigation = useNavigation<any>();
 
     const onRefreshRates = async () => {
