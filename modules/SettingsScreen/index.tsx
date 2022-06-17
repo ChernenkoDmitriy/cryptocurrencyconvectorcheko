@@ -8,7 +8,7 @@ import { ShareIcon } from '../../assets/shareIcon';
 import { VibrationIcon } from '../../assets/vibrationIcon';
 import { settingsModel } from '../shared/entities/settings/Settings';
 import { useUiContext } from '../../src/UIProvider';
-import { Header } from '../shared/ui/header';
+import { HeaderWithBackButton } from '../shared/ui/headerWithBackButton';
 import { ChoseLanguage } from './components/choseLanguage';
 import { SettingButton } from './components/settingButton';
 import { SettingButtonSwitch } from './components/settingButtonSwitch';
@@ -45,12 +45,12 @@ export const SettingsScreen: FC<IProps> = observer(({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={t('settings')} />
-            <SettingButtonSwitch icon={<ColorThemeIcon color={colors.iconColor} />} value={theme === 'dark'} title={t('colorTheme')} description={theme} onPress={onChangeTheme} />
-            <SettingButtonSwitch icon={<VibrationIcon color={colors.iconColor} />} value={settingsModel.vibration} title={t('vibration')} description={theme} onPress={onChangeVibration} />
+            <HeaderWithBackButton title={t('settings')} />
+            <SettingButtonSwitch icon={<ColorThemeIcon color={colors.icon} />} value={theme === 'dark'} title={t('colorTheme')} description={theme} onPress={onChangeTheme} />
+            <SettingButtonSwitch icon={<VibrationIcon color={colors.icon} />} value={settingsModel.vibration} title={t('vibration')} description={theme} onPress={onChangeVibration} />
             <ChoseLanguage onChangeLanguage={onChangeLanguage} />
-            <SettingButton icon={<ShareIcon color={colors.iconColor} />} title={t('share')} onPress={onShare} />
-            <SettingButton icon={<InformationIcon color={colors.iconColor} />} title={t('information')} onPress={onPressInformation} />
+            <SettingButton icon={<ShareIcon color={colors.icon} />} title={t('share')} onPress={onShare} />
+            <SettingButton icon={<InformationIcon color={colors.icon} />} title={t('information')} onPress={onPressInformation} />
         </SafeAreaView>
     );
 });

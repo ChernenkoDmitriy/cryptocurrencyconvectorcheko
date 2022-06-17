@@ -50,19 +50,12 @@ export const HeaderMain: FC = memo(() => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={onPressSettings}>
-                <SettingsIcon color={colors.iconColor} />
+                <SettingsIcon color={colors.icon} />
             </TouchableOpacity>
             <RateUpdateInfo />
             <View style={styles.buttonsWrapper}>
-                {
-                    <TouchableOpacity disabled={isRateLoading} style={styles.button} onPress={onRefresh}>
-                        {isRateLoading
-                            ? <ActivityIndicator size={'small'} color={colors.iconColor} />
-                            : <UpdateIcon color={colors.iconColor} />}
-                    </TouchableOpacity>
-                }
                 <TouchableOpacity style={styles.button} onPress={onPressNotifications}>
-                    <BellIcon color={colors.iconColor} />
+                    <BellIcon color={colors.icon} />
                 </TouchableOpacity>
             </View>
         </View >

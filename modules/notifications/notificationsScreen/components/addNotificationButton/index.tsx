@@ -21,7 +21,7 @@ export const AddNotificationButton: FC<IProps> = ({ navigation }) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
-            <PlusIcon color={colors.iconColor} />
+            <PlusIcon color={colors.icon} />
         </TouchableOpacity>
     );
 };

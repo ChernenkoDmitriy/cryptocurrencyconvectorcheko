@@ -30,7 +30,7 @@ export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPress
                 </View>
                 <Text style={styles.isActiveText}>{t('active')}</Text>
                 <TouchableOpacity onPress={onPressDelete}>
-                    <TrashIcon color={colors.iconColor} />
+                    <TrashIcon color={colors.icon} />
                 </TouchableOpacity>
             </View>
             <View style={styles.expectedPriceContainer}>

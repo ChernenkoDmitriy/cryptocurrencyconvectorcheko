@@ -12,32 +12,37 @@ export const getStyle = (colors: IColors) => {
             alignItems: 'center',
             paddingHorizontal: 10,
         },
-        containerLogo: {
-            paddingVertical: 4,
+        chartButton: {
+            justifyContent: 'center',
+            alignItems: 'center',
             height: '100%',
+        },
+        containerLogo: {
+            marginTop: scaleVertical(12),
+            paddingVertical: 4,
             width: 70,
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'space-around',
+            flexDirection: 'row',
         },
         logo: {
-            width: scaleVertical(32),
-            height: scaleVertical(32),
+            width: scaleVertical(18),
+            height: scaleVertical(18),
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 4,
         },
         symbol: {
-            marginTop: scaleVertical(15),
-            color: colors.regularText,
-            fontSize: scaleFontSize(18),
-            lineHeight: scaleFontSize(22),
+            color: colors.titleText,
+            fontSize: scaleFontSize(14),
+            lineHeight: scaleFontSize(18),
         },
         textWrapper: {
             flex: 1,
             alignItems: 'flex-end',
         },
         amountText: {
-            color: colors.regularText,
+            color: colors.titleText,
             fontSize: scaleFontSize(30),
             lineHeight: scaleFontSize(34),
         },

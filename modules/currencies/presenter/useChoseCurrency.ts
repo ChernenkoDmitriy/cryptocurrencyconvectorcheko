@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { calculatorModel } from "../../shared/entities/calculator/Calculator";
-import { ICoin } from "../../shared/entities/rates/ICoin";
+import { ICoinMarket } from "../../shared/entities/rates/ICoinMarket";
 import { IRateListItem } from "../../shared/entities/rates/IRateListItem";
 import { ratesModel } from "../../shared/entities/rates/Rates";
 import { useDebounce } from "../../shared/hooks/useDebounce";
@@ -29,7 +29,7 @@ export const useChoseCurrency = () => {
             .then(coin => {
                 if (coin) {
                     ratesModel.firstRate = coin;
-                    ratesModel.secondRate = { symbol: 'usd' } as ICoin;
+                    ratesModel.secondRate = { symbol: 'usd' } as ICoinMarket;
                 }
             });
         navigation.goBack();

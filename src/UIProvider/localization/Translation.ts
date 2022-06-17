@@ -1,5 +1,9 @@
 export const translations = {
   ru: {
+    h: 'ч',
+    d: 'д',
+    m: 'м',
+    y: 'г',
     colorTheme: 'Цветовая схема',
     vibration: 'Вибрация',
     ru: 'Русский',
@@ -198,6 +202,10 @@ export const translations = {
     IMP: "Мэнский фунт"
   },
   ua: {
+    h: 'г',
+    d: 'д',
+    m: 'м',
+    y: 'р',
     colorTheme: 'Схема кольорів',
     vibration: 'Вібрація',
     ru: 'Русский',
@@ -396,6 +404,10 @@ export const translations = {
     IMP: "Менський фунт"
   },
   en: {
+    h: 'h',
+    d: 'd',
+    m: 'm',
+    y: 'y',
     colorTheme: 'Color theme',
     vibration: 'Vibration',
     ru: 'Русский',

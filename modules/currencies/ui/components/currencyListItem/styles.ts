@@ -32,12 +32,12 @@ export const getStyle = (colors: IColors) => {
         },
         name: {
             marginLeft: 10,
-            color: colors.regularText,
+            color: colors.titleText,
             fontSize: 18,
             lineHeight: 22,
         },
         price: {
-            color: colors.subText,
+            color: colors.regularText,
             fontSize: 20,
             lineHeight: 24,
         },

@@ -33,7 +33,7 @@ export const ChoseLanguage: FC<IProps> = memo(({ onChangeLanguage }) => {
 
     return (
         <>
-            <SettingButton icon={<LanguageIcon color={colors.iconColor} />} title={t('language')} description={t(locale)} onPress={onOpenModal} />
+            <SettingButton icon={<LanguageIcon color={colors.icon} />} title={t('language')} description={t(locale)} onPress={onOpenModal} />
             <ReactNativeModal
                 backdropOpacity={0.5}
                 swipeDirection={'down'}

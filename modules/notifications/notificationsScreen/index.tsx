@@ -6,7 +6,7 @@ import { useUiContext } from '../../../src/UIProvider';
 import { INotificationsListItem } from '../../shared/entities/notifications/INotificationsListItem';
 import { notificationsModel } from '../../shared/entities/notifications/Notifications';
 import { ICoin } from '../../shared/entities/rates/ICoin';
-import { Header } from '../../shared/ui/header';
+import { HeaderWithBackButton } from '../../shared/ui/headerWithBackButton';
 import { useNotification } from '../presenter/useNotification';
 import { AddNotificationButton } from './components/addNotificationButton';
 import { NotificationsListItem } from './components/notificationsListItem';
@@ -39,7 +39,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header title={t('notifications')} />
+            <HeaderWithBackButton title={t('notifications')} />
             <FlatList
                 data={notificationsModel.notificationsList}
                 renderItem={renderItem}

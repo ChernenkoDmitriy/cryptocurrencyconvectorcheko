@@ -1,9 +1,9 @@
 import { requester } from '../../../libraries/requester';
-import { ICoin } from '../../shared/entities/rates/ICoin';
+import { ICoinMarket } from '../../shared/entities/rates/ICoinMarket';
 
 const fetchCoin = async (coinId: string) => {
     try {
-        const url = 'https://api.coingecko.com/api/v3/coins/' + coinId + '?tickers=false&community_data=false&developer_data=false&sparkline=false';
+        const url = 'https://api.coingecko.com/api/v3/coins/' + coinId + '?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false';
         const response = await requester.get(url);
         return response;
     } catch (error) {
@@ -11,15 +11,15 @@ const fetchCoin = async (coinId: string) => {
     }
 }
 
-const precessingResponse = (response: any): ICoin | null => {
-    let ratesList: ICoin | null = null;
+const precessingResponse = (response: any): ICoinMarket | null => {
+    let ratesList: ICoinMarket | null = null;
     if (response?.id) {
         ratesList = response;
     }
     return ratesList;
 }
 
-export const getCoinUseCase = async (coinId: string): Promise<ICoin | null> => {
+export const getCoinUseCase = async (coinId: string): Promise<ICoinMarket | null> => {
     try {
         const response = await fetchCoin(coinId);
         const result = precessingResponse(response);
