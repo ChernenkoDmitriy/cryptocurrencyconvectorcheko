@@ -35,8 +35,6 @@ export const CoinLineChart: FC<IProps> = observer(({ chartPeriod, chartData }) =
         }
     }, [chartData, chartPeriod]);
 
-    console.log('valueFormatter ', valueFormatter)
-
     return (
         <LineChart
             style={styles.chart}

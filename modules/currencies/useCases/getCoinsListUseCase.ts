@@ -19,7 +19,6 @@ const precessingResponse = (response: ICoinListItem[]) => {
             result[item.symbol] = item;
         })
     }
-    console.log(result)
     return result;
 }
 
