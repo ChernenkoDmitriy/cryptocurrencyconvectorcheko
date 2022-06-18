@@ -46,8 +46,8 @@ export const SettingsScreen: FC<IProps> = observer(({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <HeaderWithBackButton title={t('settings')} />
-            <SettingButtonSwitch icon={<ColorThemeIcon color={colors.icon} />} value={theme === 'dark'} title={t('colorTheme')} description={theme} onPress={onChangeTheme} />
-            <SettingButtonSwitch icon={<VibrationIcon color={colors.icon} />} value={settingsModel.vibration} title={t('vibration')} description={theme} onPress={onChangeVibration} />
+            <SettingButtonSwitch icon={<ColorThemeIcon color={colors.icon} />} value={theme === 'dark'} title={t('colorTheme')} description={t(theme)} onPress={onChangeTheme} />
+            <SettingButtonSwitch icon={<VibrationIcon color={colors.icon} />} value={settingsModel.vibration} title={t('vibration')} onPress={onChangeVibration} />
             <ChoseLanguage onChangeLanguage={onChangeLanguage} />
             <SettingButton icon={<ShareIcon color={colors.icon} />} title={t('share')} onPress={onShare} />
             <SettingButton icon={<InformationIcon color={colors.icon} />} title={t('information')} onPress={onPressInformation} />

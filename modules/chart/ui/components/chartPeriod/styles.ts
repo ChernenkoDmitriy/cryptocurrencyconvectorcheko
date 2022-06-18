@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../../src/UIProvider/colors/IColorsController';
-import { scaleHorizontal, scaleVertical } from '../../../../../src/utils';
+import { scaleFontSize, scaleHorizontal, scaleVertical } from '../../../../../src/utils';
 
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
@@ -23,8 +23,9 @@ export const getStyle = (colors: IColors) => {
             backgroundColor: colors.shadow
         },
         periodText: {
+            bottom: 2,
             color: colors.titleText,
-            fontSize: 15,
+            fontSize: scaleFontSize(15),
             fontFamily: 'Roboto-Regular'
         }
     });

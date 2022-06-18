@@ -18,7 +18,7 @@ export const getStyle = (colors: IColors) => {
             borderTopRightRadius: 16,
         },
         modalIndicator: {
-            backgroundColor: colors.subText,
+            backgroundColor: colors.shadow,
             width: scaleHorizontal(50),
             height: scaleVertical(4),
             borderRadius: 8,
@@ -26,12 +26,13 @@ export const getStyle = (colors: IColors) => {
             marginVertical: scaleVertical(8)
         },
         title: {
-            marginVertical: 8,
             fontSize: 18,
             lineHeight: 22,
+            color: colors.titleText,
+            fontFamily:'Roboto-Regular',
+            marginVertical: 8, 
             fontWeight: '500',
-            color: colors.regularText,
-            alignSelf: 'center',
+             alignSelf: 'center',
         }
     });
     return styles;

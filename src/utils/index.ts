@@ -1,9 +1,11 @@
-import { Dimensions, PixelRatio } from "react-native";
+import { Dimensions, PixelRatio, Platform } from "react-native";
 
 const idealWidth: number = 375;
 const idealHeight: number = 812;
 export const _size: { width: number, height: number } = Dimensions.get('window');
 const _ratio: number = PixelRatio.getFontScale();
+
+export const isIOS: boolean = Platform.OS === 'ios';
 
 export const scaleHorizontal = (inWidth: number = 1): number => {
     const delimiter: number = idealWidth / inWidth;

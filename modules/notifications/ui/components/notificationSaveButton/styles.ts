@@ -1,18 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../../src/UIProvider/colors/IColorsController';
 
-export const getStyle = (colors: IColors) => {
+export const getStyle = (colors: IColors, isDisable: boolean) => {
     const styles = StyleSheet.create({
         container: {
-            width: '100%',
-            height: 40,
+            marginBottom: 20,
+            marginHorizontal: 16,
+            height: 48,
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 7,
-            backgroundColor: colors.accentText
+            backgroundColor: colors.accentColorDark,
+            opacity: isDisable ? 1 : 0.6
         },
         title: {
-            color: colors.regularText,
+            color: colors.titleText,
             fontFamily: 'Roboto-Regular',
             fontSize: 16
         }

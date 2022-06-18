@@ -18,8 +18,8 @@ export const getStyle = (colors: IColors) => {
         title: {
             fontSize: 18,
             lineHeight: 22,
-            fontWeight: '500',
-            color: colors.regularText,
+            color: colors.titleText,
+            fontFamily:'Roboto-Regular'
         },
         description: {
             textTransform: 'capitalize',

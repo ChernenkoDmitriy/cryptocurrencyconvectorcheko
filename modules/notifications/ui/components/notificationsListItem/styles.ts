@@ -29,7 +29,7 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
         },
         isActiveText: {
             fontFamily: 'Roboto-Regular',
-            color: isActive ? colors.activeColor : colors.unActiveColor,
+            color: isActive ? colors.positiveRate : colors.negativeRate,
             marginBottom: 3
         },
         expectedPriceWrapper: {
@@ -49,7 +49,7 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
         },
         ratePriceText: {
             fontSize: scaleFontSize(14),
-            color: colors.subText,
+            color: colors.titleText,
             fontFamily: 'Roboto-Regular'
         },
         expectedPriceText: {

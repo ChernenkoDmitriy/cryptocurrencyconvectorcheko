@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../../src/UIProvider/colors/IColorsController';
-import { scaleVertical } from '../../../../../src/utils';
+import { scaleHorizontal, scaleVertical } from '../../../../../src/utils';
 
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ export const getStyle = (colors: IColors) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingHorizontal: 10,
+            paddingHorizontal: scaleHorizontal(10),
             backgroundColor: colors.inputBackground,
             height: 50,
             borderRadius: 7,
@@ -23,8 +23,8 @@ export const getStyle = (colors: IColors) => {
             justifyContent: 'center'
         },
         logo: {
-            width: scaleVertical(42),
-            height: scaleVertical(42),
+            width: scaleVertical(40),
+            height: scaleVertical(40),
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 4,

@@ -1,5 +1,9 @@
 export const translations = {
   ru: {
+    light: 'Светлая',
+    dark: 'Тёмная',
+    maxNotificationAmount: 'Уведомить меня, если цена будет выше',
+    minNotificationAmount: 'Уведомить меня, если цена будет ниже',
     h: 'ч',
     d: 'д',
     m: 'м',

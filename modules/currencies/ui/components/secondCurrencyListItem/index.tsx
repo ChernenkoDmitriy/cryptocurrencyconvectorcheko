@@ -19,7 +19,7 @@ export const SecondCurrencyListItem: FC<IProps> = memo(({ item, onPress }) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onHandlePress}>
             <Text numberOfLines={1} style={styles.name}>{item.symbol?.toUpperCase()}</Text>
-            <Text numberOfLines={1} style={styles.price}>{item.rate}</Text>
+            <Text numberOfLines={1} style={styles.price}>$ {item.rate}</Text>
         </TouchableOpacity>
     );
 });

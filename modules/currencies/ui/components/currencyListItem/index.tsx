@@ -23,7 +23,7 @@ export const CurrencyListItem: FC<IProps> = memo(({ item, onPress }) => {
             {!!item.image && <FastImage source={{ uri: item.image }} style={styles.logo} resizeMode='stretch' />}
             <Text numberOfLines={1} style={styles.name}>{item.name}</Text>
             <View style={styles.textWrapper}>
-                <Text numberOfLines={1} style={styles.price}>{item.current_price}</Text>
+                <Text numberOfLines={1} style={styles.price}>$ {item.current_price}</Text>
             </View>
         </TouchableOpacity>
     );
