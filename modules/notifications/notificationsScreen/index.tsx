@@ -26,11 +26,11 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
         const coin = coinsList.find((coin: ICoin) => coin?.id === item.coin)
 
         const onPressDelete = () => {
-            deleteNotification(item.id)
+            deleteNotification(item.id);
         }
 
         const onPressEdit = () => {
-            notificationsModel.chosenNotification = item
+            notificationsModel.chosenNotification = item;
             navigation.navigate('ADD_NOTIFICATIONS')
         }
 
@@ -41,6 +41,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <HeaderWithBackButton title={t('notifications')} />
             <FlatList
+                keyboardDismissMode='interactive'
                 data={notificationsModel.notificationsList}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
