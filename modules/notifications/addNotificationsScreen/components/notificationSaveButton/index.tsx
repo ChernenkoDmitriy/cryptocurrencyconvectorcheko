@@ -5,15 +5,16 @@ import { getStyle } from './styles';
 import { useUiContext } from '../../../../../src/UIProvider';
 
 interface IProps {
-    onPress: () => void
+    onPress: () => void;
+    isDisable: boolean
 }
 
-export const NotificationSaveButton: FC<IProps> = observer(({ onPress }) => {
+export const NotificationSaveButton: FC<IProps> = observer(({ onPress, isDisable }) => {
     const { colors, t } = useUiContext();
-    const styles = useMemo(() => getStyle(colors), [colors]);
+    const styles = useMemo(() => getStyle(colors, isDisable), [colors, isDisable]);
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={onPress} disabled={!isDisable}>
             <Text style={styles.title}>{t('save')}</Text>
         </TouchableOpacity>
     );

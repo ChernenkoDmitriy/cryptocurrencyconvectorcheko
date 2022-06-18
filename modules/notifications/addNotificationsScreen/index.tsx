@@ -14,6 +14,7 @@ import { ratesModel } from '../../shared/entities/rates/Rates';
 import { NotificationCurrencyRow } from './components/notificationCurrencyRow';
 import { useNotification } from '../presenter/useNotification';
 import { notificationsModel } from '../../shared/entities/notifications/Notifications';
+import { useValidation } from '../presenter/useValidation';
 
 interface IProps {
     navigation: StackNavigationProp<any>;
@@ -23,11 +24,13 @@ export const AddNotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const [upNumber, setUpNumber] = useState('');
     const [downNumber, setDownNumber] = useState('');
     const [isEnabled, setIsEnabled] = useState(false);
+    const [isSaveDisabled, setIsSaveDisabled] = useState(false);
 
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     const { saveNotification, changeNotificationCurrency } = useNotification()
+    const { validateButtonDisabled, validateInputs } = useValidation()
 
     useEffect(() => {
         changeNotificationCurrency(notificationsModel.chosenNotification || ratesModel.firstRate);
@@ -35,6 +38,10 @@ export const AddNotificationsScreen: FC<IProps> = observer(({ navigation }) => {
         setDownNumber(notificationsModel.chosenNotification.priceDown || '');
         setIsEnabled(notificationsModel.chosenNotification.isActive || false);
     }, [])
+
+    useEffect(() => {
+        validateButtonDisabled(upNumber, downNumber, setIsSaveDisabled)
+    }, [upNumber, downNumber])
 
     const goToCurrencyList = () => {
         navigation.navigate('CURRENCY_LIST');
@@ -50,11 +57,11 @@ export const AddNotificationsScreen: FC<IProps> = observer(({ navigation }) => {
             <View style={styles.formContainer}>
                 <View>
                     <NotificationCurrencyRow rate={ratesModel.firstRate} onPress={goToCurrencyList} />
-                    <CurrencyPriceInput icon={<ArrowUp />} number={upNumber} setNumber={setUpNumber} />
-                    <CurrencyPriceInput icon={<ArrowDown />} number={downNumber} setNumber={setDownNumber} />
+                    <CurrencyPriceInput icon={<ArrowUp />} number={upNumber} setNumber={setUpNumber} validateInput={validateInputs} />
+                    <CurrencyPriceInput icon={<ArrowDown />} number={downNumber} setNumber={setDownNumber} validateInput={validateInputs} />
                     <NotificationActiveSwitch isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
                 </View>
-                <NotificationSaveButton onPress={onPressSave} />
+                <NotificationSaveButton onPress={onPressSave} isDisable={isSaveDisabled} />
             </View>
         </SafeAreaView >
     );
