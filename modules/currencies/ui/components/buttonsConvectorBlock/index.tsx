@@ -4,19 +4,23 @@ import { BackspaceIcon } from '../../../../../assets/backspaceIcon';
 import { DivideIcon } from '../../../../../assets/divideIcon';
 import { EqualIcon } from '../../../../../assets/equalIcon';
 import { MinusIcon } from '../../../../../assets/MinusIcon';
-import { ExchangeIcon } from '../../../../../assets/exchangeIcon';
 import { MultiplyIcon } from '../../../../../assets/multiplyIcon';
 import { ResetCalculateIcon } from '../../../../../assets/resetCalculateIcon';
 import { calculatorModel } from '../../../../shared/entities/calculator/Calculator';
 import { useUiContext } from '../../../../../src/UIProvider';
-import { useChoseCurrency } from '../../../presenter/useChoseCurrency';
 import { ButtonsConvector } from '../buttonConvector';
 import { getStyle } from './styles';
 import { PlusIcon } from '../../../../../assets/plusIcon';
+import { ChartIcon } from '../../../../../assets/svg/chartIcon';
+import { useNavigation } from '@react-navigation/native';
+import FastImage from 'react-native-fast-image';
+import { ratesModel } from '../../../../shared/entities/rates/Rates';
+import { observer } from 'mobx-react';
 
-export const ButtonsConvectorBlock: FC = memo(() => {
+export const ButtonsConvectorBlock: FC = observer(() => {
     const { colors } = useUiContext();
-    const styles = useMemo(() => getStyle(colors), [colors])
+    const styles = useMemo(() => getStyle(colors), [colors]);
+    const navigation = useNavigation<any>();
 
     const onPressNumber = (value: string) => {
         if (calculatorModel.firstRateRow.length < 14) {
@@ -47,8 +51,20 @@ export const ButtonsConvectorBlock: FC = memo(() => {
         calculatorModel.calculateDelete();
     }
 
-    const BUTTONS = useMemo(() => [
-        { doubleWidth: true, color: colors.accentText, icon: <ResetCalculateIcon color={colors.buttonNumber} />, text: 'C', onPress: onPressClear },
+    const goToChart = () => {
+        ratesModel.firstRate && navigation.navigate('CHART');
+    }
+
+    const BUTTONS = [
+        {
+            color: colors.accentText, icon:
+                <View style={styles.chartIcon}>
+                    {!!ratesModel.firstRate?.image?.small && <FastImage source={{ uri: ratesModel.firstRate?.image?.small }} style={styles.logo} resizeMode='stretch' />}
+                    <ChartIcon color={colors.buttonNumber} />
+                </View>
+            , text: 'chart', onPress: goToChart
+        },
+        { color: colors.accentText, icon: <ResetCalculateIcon color={colors.buttonNumber} />, text: 'C', onPress: onPressClear },
         { color: colors.buttonNumber, icon: <BackspaceIcon color={colors.buttonNumber} />, text: '<', onPress: onPressDelete },
         // { color: colors.buttonNumber, icon: <ExchangeIcon color={colors.buttonNumber} />, text: '||', onPress: () => { } },
         { color: colors.buttonNumber, icon: <DivideIcon color={colors.buttonNumber} />, text: '/', onPress: onPressOperator },
@@ -67,7 +83,7 @@ export const ButtonsConvectorBlock: FC = memo(() => {
         { text: '0', doubleWidth: true, onPress: onPressNumber },
         { text: '.', onPress: onPressNumber },
         { color: colors.buttonNumber, icon: <EqualIcon color={colors.buttonNumber} />, text: '=', onPress: onPressResult },
-    ], [colors]);
+    ];
 
     return (
         <View style={styles.container}>

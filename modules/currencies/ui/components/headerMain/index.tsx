@@ -1,16 +1,13 @@
-import { useNetInfo } from '@react-native-community/netinfo';
 import { useNavigation } from '@react-navigation/native';
 import React, { FC, memo, useCallback, useMemo } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 import { BellIcon } from '../../../../../assets/bellIcon';
 import { SettingsIcon } from '../../../../../assets/settingsIcon';
-import { UpdateIcon } from '../../../../../assets/updateIcon';
 import { useUiContext } from '../../../../../src/UIProvider';
 import { setEmptyNotification } from '../../../../notifications/useCases/getCoinsUseCase';
 import { notificationsModel } from '../../../../shared/entities/notifications/Notifications';
-import { useChoseCurrency } from '../../../presenter/useChoseCurrency';
 import { RateUpdateInfo } from '../rateUpdateInfo';
 import { getStyle } from './styles';
 
@@ -18,8 +15,6 @@ export const HeaderMain: FC = memo(() => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
     const navigation = useNavigation<any>();
-    const { onRefreshRates, isRateLoading } = useChoseCurrency();
-    const { isConnected } = useNetInfo();
 
     const onPressSettings = useCallback(() => {
         navigation.navigate('SETTINGS');
@@ -32,10 +27,6 @@ export const HeaderMain: FC = memo(() => {
             text2: t('toastSubTitle'),
             props: { colors }
         });
-    }
-
-    const onRefresh = () => {
-        isConnected ? onRefreshRates() : showToast()
     }
 
     const onPressNotifications = useCallback(() => {

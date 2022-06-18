@@ -13,7 +13,7 @@ interface IProps {
     onPress: (value: string) => void;
 }
 
-export const ButtonsConvector: FC<IProps> = memo(({ icon, text, doubleWidth, color, onPress }) => {
+export const ButtonsConvector: FC<IProps> = ({ icon, text, doubleWidth, color, onPress }) => {
     const { colors } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
 
@@ -38,4 +38,4 @@ export const ButtonsConvector: FC<IProps> = memo(({ icon, text, doubleWidth, col
             }
         </TouchableOpacity>
     );
-});
+};

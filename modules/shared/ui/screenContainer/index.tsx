@@ -18,7 +18,7 @@ export const ScreenContainer: FC<IProps> = ({ children, scrollEnabled = false, k
         <SafeAreaView style={styles.container} >
             {scrollEnabled
                 ? <ScrollView
-                    scrollEnabled={!scrollEnabled}
+                    scrollEnabled={scrollEnabled}
                     bounces={false}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.contentContainerStyle}
