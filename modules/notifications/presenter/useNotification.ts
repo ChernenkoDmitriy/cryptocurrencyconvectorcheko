@@ -1,13 +1,14 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect } from "react"
 import { getCoinUseCase } from "../../currencies/useCases/getCoinUseCase"
 import { INotificationsListItem } from "../../shared/entities/notifications/INotificationsListItem"
 import { notificationsModel } from "../../shared/entities/notifications/Notifications"
 import { ICoin } from "../../shared/entities/rates/ICoin"
 import { ratesModel } from "../../shared/entities/rates/Rates"
+import { useSafeState } from "../../shared/hooks/useSafeState"
 import { fetchNotificationsCoins } from "../useCases/getCoinsUseCase"
 
 export const useNotification = () => {
-    const [coinsList, setCoinsList] = useState([]);
+    const [coinsList, setCoinsList] = useSafeState([]);
 
     useEffect(() => {
         fetchNotificationsCoins()

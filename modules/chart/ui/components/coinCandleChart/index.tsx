@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
-import { processColor, View } from 'react-native';
+import { processColor } from 'react-native';
 import { useUiContext } from '../../../../../src/UIProvider';
 import { getStyle } from './styles';
 import { CandleStickChart } from 'react-native-charts-wrapper';
@@ -13,7 +13,6 @@ interface IProps {
 
 const increaseColor = processColor('#357F2E');
 const decreaseColor = processColor('#C72300');
-const axisColor = processColor('#263845');
 
 export const CoinCandleChart: FC<IProps> = observer(({ chartPeriod, chartData }) => {
     const { colors, t } = useUiContext();
@@ -57,11 +56,11 @@ export const CoinCandleChart: FC<IProps> = observer(({ chartPeriod, chartData })
                 drawGridLines: false,
                 position: 'BOTTOM',
                 yOffset: 5,
-                textColor: axisColor,
-                valueFormatter
+                valueFormatter,
+                textColor: processColor(colors.regularText),
             }}
             yAxis={{
-                right: { drawGridLines: true, enabled: true, textColor: axisColor, },
+                right: { drawGridLines: true, enabled: true, textColor: processColor(colors.regularText), },
                 left: { drawGridLines: false, enabled: false, drawLabels: false, },
             }}
             autoScaleMinMaxEnabled={true}

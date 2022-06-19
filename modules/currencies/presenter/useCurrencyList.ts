@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
 import { IRateListItem } from "../../shared/entities/rates/IRateListItem";
 import { useDebounce } from "../../shared/hooks/useDebounce";
+import { useSafeState } from "../../shared/hooks/useSafeState";
 import { getCurrencyList } from "../useCases/getCurrencyList";
 import { searchCoinUseCase } from "../useCases/searchCoinUseCase";
 
 export const useCurrencyList = () => {
-    const [rates, setRates] = useState<IRateListItem[]>([]);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const [searchRates, setSearchRates] = useState<any[]>([]);
-    const [searchText, setSearchText] = useState('');
+    const [rates, setRates] = useSafeState<IRateListItem[]>([]);
+    const [page, setPage] = useSafeState(1);
+    const [loading, setLoading] = useSafeState(true);
+    const [searchRates, setSearchRates] = useSafeState<any[]>([]);
+    const [searchText, setSearchText] = useSafeState('');
 
     const onSearch = (text: string) => {
         setLoading(true);

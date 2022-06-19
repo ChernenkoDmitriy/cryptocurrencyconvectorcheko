@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getCoinUseCase } from "../../currencies/useCases/getCoinUseCase";
 import { ratesModel } from "../../shared/entities/rates/Rates";
+import { useSafeState } from "../../shared/hooks/useSafeState";
 import { getChartUseCase } from "../useCases/getChartUseCase";
 
 export const useChart = () => {
-    const [chartPeriod, setChartPeriod] = useState('7');
-    const [chartType, setChartType] = useState<'candle' | 'line'>('line');
-    const [chartData, setChartData] = useState<any[]>([]);
+    const [chartPeriod, setChartPeriod] = useSafeState('7');
+    const [chartType, setChartType] = useSafeState<'candle' | 'line'>('line');
+    const [chartData, setChartData] = useSafeState<any[]>([]);
 
     useEffect(() => {
         getChartUseCase(ratesModel.firstRate.id, chartPeriod)

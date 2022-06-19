@@ -7,6 +7,9 @@ export const getStyle = (colors: IColors) => {
             flex: 1,
             backgroundColor: colors.background,
         },
+        scroll: {
+            paddingBottom: 30,
+        },
     });
     return styles;
 }

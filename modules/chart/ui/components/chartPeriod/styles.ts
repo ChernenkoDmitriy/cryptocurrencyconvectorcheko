@@ -5,8 +5,10 @@ import { scaleFontSize, scaleHorizontal, scaleVertical } from '../../../../../sr
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         container: {
+            marginHorizontal: scaleHorizontal(16),
+            marginVertical: scaleVertical(12),
             flexDirection: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'space-between',
             alignItems: 'center',
             height: scaleVertical(50),
         },

@@ -33,15 +33,15 @@ class RatesModel implements IRateListItemsModel {
             .then(data => {
                 if (data) {
                     this.firstRateStore.save(data);
-                } else {
-                    getCoinUseCase('bitcoin')
-                        .then(coin => {
-                            if (coin) {
-                                ratesModel.firstRate = coin;
-                                ratesModel.secondRate = { symbol: 'usd' } as ICoinMarket;
-                            }
-                        });
                 }
+                getCoinUseCase(this.firstRate?.id || 'bitcoin')
+                    .then(coin => {
+                        if (coin) {
+                            ratesModel.firstRate = coin;
+                            ratesModel.secondRate = { symbol: 'usd' } as ICoinMarket;
+                        }
+                    });
+
             })
             .catch(error => console.warn('RatesModel -> FIRST_CURRENCY: ', error));
         this.storage

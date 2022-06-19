@@ -1,13 +1,15 @@
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
-import { SafeAreaView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { useUiContext } from '../../../src/UIProvider';
 import { ratesModel } from '../../shared/entities/rates/Rates';
 import { HeaderWithBackButton } from '../../shared/ui/headerWithBackButton';
+import { ScreenContainer } from '../../shared/ui/screenContainer';
 import { useChart } from '../presenters/useChart';
 import { ChartPeriod } from './components/chartPeriod';
 import { ChartPriceHeader } from './components/chartPriceHeader';
 import { CoinCandleChart } from './components/coinCandleChart';
+import { CoinInfo } from './components/coinInfo';
 import { CoinLineChart } from './components/coinLineChart';
 import { getStyle } from './styles';
 
@@ -17,15 +19,18 @@ export const ChartScreen: FC = observer(() => {
     const { chartData, chartPeriod, chartType, onChangeChartType, onChangeChartPeriod } = useChart();
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScreenContainer >
             <HeaderWithBackButton title={ratesModel.firstRate.name} />
-            <ChartPriceHeader />
-            {
-                chartType === 'line'
-                    ? <CoinLineChart chartData={chartData} chartPeriod={chartPeriod} />
-                    : <CoinCandleChart chartData={chartData} chartPeriod={chartPeriod} />
-            }
-            <ChartPeriod {...{ chartPeriod, onChangeChartPeriod, chartType, onChangeChartType, }} />
-        </SafeAreaView>
+            <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+                <ChartPriceHeader />
+                {
+                    chartType === 'line'
+                        ? <CoinLineChart chartData={chartData} chartPeriod={chartPeriod} />
+                        : <CoinCandleChart chartData={chartData} chartPeriod={chartPeriod} />
+                }
+                <ChartPeriod {...{ chartPeriod, onChangeChartPeriod, chartType, onChangeChartType, }} />
+                <CoinInfo />
+            </ScrollView>
+        </ScreenContainer>
     );
 });

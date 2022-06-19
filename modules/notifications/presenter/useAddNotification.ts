@@ -1,17 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getCoinUseCase } from "../../currencies/useCases/getCoinUseCase";
 import { notificationsModel } from "../../shared/entities/notifications/Notifications";
 import { ICoin } from "../../shared/entities/rates/ICoin";
 import { ratesModel } from "../../shared/entities/rates/Rates";
+import { useSafeState } from "../../shared/hooks/useSafeState";
 import { useValidation } from "./useValidation";
 
 export const useAddNotification = () => {
     const navigation = useNavigation<any>();
     const { chosenNotification } = notificationsModel;
-    const [upNumber, setUpNumber] = useState(chosenNotification?.priceUp || '');
-    const [downNumber, setDownNumber] = useState(chosenNotification.priceDown || '');
-    const [isEnabled, setIsEnabled] = useState(chosenNotification?.isActive || false);
+    const [upNumber, setUpNumber] = useSafeState(chosenNotification?.priceUp || '');
+    const [downNumber, setDownNumber] = useSafeState(chosenNotification.priceDown || '');
+    const [isEnabled, setIsEnabled] = useSafeState(chosenNotification?.isActive || false);
     const { validateCurrency } = useValidation();
 
     useEffect(() => {

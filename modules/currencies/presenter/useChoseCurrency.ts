@@ -1,13 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
 import { calculatorModel } from "../../shared/entities/calculator/Calculator";
 import { ICoinMarket } from "../../shared/entities/rates/ICoinMarket";
 import { IRateListItem } from "../../shared/entities/rates/IRateListItem";
 import { ratesModel } from "../../shared/entities/rates/Rates";
+import { useSafeState } from "../../shared/hooks/useSafeState";
 import { getCoinUseCase } from "../useCases/getCoinUseCase";
 
 export const useChoseCurrency = () => {
-    const [isRateLoading, setIsRateLoading] = useState(false)
+    const [isRateLoading, setIsRateLoading] = useSafeState(false)
     const navigation = useNavigation<any>();
 
     const onRefreshRates = async () => {

@@ -1,5 +1,12 @@
 export const translations = {
   ru: {
+    high24H: 'Макс. за 24 часа',
+    low24H: 'Мин. за 24 часа',
+    maxSupply: 'Максимальный запас',
+    totalSupply: 'Общий объем',
+    fullyDilutedValuation: 'Полностью разводненная оценка',
+    marketCapRank: 'Рейтинг рыночной капитализации',
+    marketCap: 'Рын. кап-ция',
     light: 'Светлая',
     dark: 'Тёмная',
     maxNotificationAmount: 'Уведомить меня, если цена будет выше',
@@ -206,6 +213,17 @@ export const translations = {
     IMP: "Мэнский фунт"
   },
   ua: {
+    high24H: 'Макс. за 24 години',
+    low24H: 'Мін. за 24 години',
+    maxSupply: 'Максимальний запас',
+    totalSupply: 'Загальний обсяг',
+    fullyDilutedValuation: 'Повністю розбавлена оцінка',
+    marketCapRank: 'Рейтинг ринкової капіталізації',
+    marketCap: "Ринкова капіталізація",
+    світло: "Світло",
+    темний: "Темний",
+    maxNotificationAmount: "Повідомити мене, якщо ціна зросте",
+    minNotificationAmount: "Повідомити мене, якщо ціна впаде",
     h: 'г',
     d: 'д',
     m: 'м',
@@ -408,6 +426,17 @@ export const translations = {
     IMP: "Менський фунт"
   },
   en: {
+    high24H: '24H high',
+    low24H: '24H low',
+    maxSupply: 'Max supply',
+    totalSupply: 'Total supply',
+    fullyDilutedValuation: 'Fully diluted valuation',
+    marketCapRank: 'Market cap rank',
+    marketCap: 'Market cap',
+    light: 'Light',
+    dark: 'Dark',
+    maxNotificationAmount: 'Notify me if price goes up',
+    minNotificationAmount: 'Notify me if the price drops',
     h: 'h',
     d: 'd',
     m: 'm',

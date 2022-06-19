@@ -27,16 +27,20 @@ export const scaleLineHeight = (lineHeight: number = 1): number => {
     return _size.height / divisionRatio;
 };
 
-export const formatNumberWithDelimiters = (value: string | number): string => {
-    if (typeof value === 'number' || (typeof value === 'string' && !isNaN(parseInt(value)))) {
-        let valueForRender: string;
-        if (typeof value === 'number') {
-            valueForRender = value.toString(10);
+export const formatNumberWithDelimiters = (value: string | number | undefined): string => {
+    try {
+        if (typeof value === 'number' || (typeof value === 'string' && !isNaN(parseInt(value)))) {
+            let valueForRender: string;
+            if (typeof value === 'number') {
+                valueForRender = value.toString(10);
+            } else {
+                valueForRender = value;
+            }
+            return valueForRender.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, '$1' + ' ');
         } else {
-            valueForRender = value;
+            return '0';
         }
-        return valueForRender.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, '$1' + ' ');
-    } else {
+    } catch (error) {
         return '0';
     }
 };
