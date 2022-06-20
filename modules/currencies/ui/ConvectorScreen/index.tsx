@@ -17,7 +17,7 @@ interface IProps {
 
 export const ConvectorScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors } = useUiContext();
-    const styles = useMemo(() => getStyle(colors), [colors]);
+    const styles = useMemo(() => getStyle(colors), [colors]); 
 
     useInitCurrency();
 
