@@ -14,7 +14,7 @@ export const useInitCurrency = () => {
                     }
                 })
         }, 6000);
-        return () => { clearInterval(interval) };
+        return () => { interval && clearInterval(interval) };
     }, [])
 
     useEffect(() => {
