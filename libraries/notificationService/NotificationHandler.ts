@@ -45,7 +45,7 @@ class NotificationHandler {
         this._onNotification = handler;
     }
 
-    createLocalNotification = (title: string, message: string, data: any): void => {
+    createLocalNotification = (title: string, message: string): void => {
         PushNotification.localNotification({
             channelId: "default-channel-id",
             title,
@@ -62,7 +62,7 @@ class NotificationHandler {
             allowWhileIdle: true, // (optional) set notification to work while on doze, default: false
             importance: 'max',
             priority: 'max',
-          });
+        });
     }
 
     removeAllDeliveredNotifications = (): void => {

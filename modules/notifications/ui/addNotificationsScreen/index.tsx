@@ -12,6 +12,7 @@ import { NotificationSaveButton } from '../components/notificationSaveButton';
 import { useAddNotification } from '../../presenter/useAddNotification';
 import { ChartPriceHeader } from '../../../chart/ui/components/chartPriceHeader';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScreenContainer } from '../../../shared/ui/screenContainer';
 
 export const AddNotificationsScreen: FC = observer(() => {
     const { colors, t } = useUiContext();
@@ -20,7 +21,7 @@ export const AddNotificationsScreen: FC = observer(() => {
         onChangeDownPrice, goToCurrencyList, onSaveNotification } = useAddNotification();
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScreenContainer scrollEnabled>
             <HeaderWithBackButton title={t('notifications')} />
             <View style={styles.contentWrapper} onStartShouldSetResponder={Keyboard.dismiss as any}>
                 <TouchableOpacity onPress={goToCurrencyList} >
@@ -31,6 +32,6 @@ export const AddNotificationsScreen: FC = observer(() => {
                 <NotificationActiveSwitch value={isEnabled} onChange={activateNotification} />
             </View>
             <NotificationSaveButton onPress={onSaveNotification} isDisable={(!!upNumber || !!downNumber)} />
-        </SafeAreaView >
+        </ScreenContainer >
     );
 });

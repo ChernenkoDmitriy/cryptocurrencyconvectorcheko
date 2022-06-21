@@ -5,7 +5,7 @@ import { scaleVertical } from '../../../../../src/utils';
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         container: {
-            height: scaleVertical(40),
+            height: 40,
             flexDirection: 'row',
             alignItems: 'center',
             marginTop: scaleVertical(12),
