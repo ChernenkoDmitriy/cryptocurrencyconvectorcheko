@@ -1,4 +1,4 @@
-package com.cryptoconvector.newarchitecture;
+package com.cryptocurrencyconvectorcheko.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.cryptoconvector.BuildConfig;
-import com.cryptoconvector.newarchitecture.components.MainComponentsRegistry;
-import com.cryptoconvector.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.cryptocurrencyconvectorcheko.BuildConfig;
+import com.cryptocurrencyconvectorcheko.newarchitecture.components.MainComponentsRegistry;
+import com.cryptocurrencyconvectorcheko.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
