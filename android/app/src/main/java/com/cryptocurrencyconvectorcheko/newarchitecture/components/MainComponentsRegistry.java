@@ -1,4 +1,4 @@
-package com.cryptoconvector.newarchitecture.components;
+package com.cryptocurrencyconvectorcheko.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

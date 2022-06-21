@@ -26,6 +26,14 @@ export const getStyle = (colors: IColors) => {
             fontWeight: '400',
             marginHorizontal: 2,
             color: colors.regularText
+        },
+        rateValueText: {
+            fontSize: scaleFontSize(16),
+            fontWeight: '400',
+            marginHorizontal: 2,
+            color: colors.regularText,
+            overflow: 'hidden',
+            maxWidth: '55%'
         }
     });
     return styles;

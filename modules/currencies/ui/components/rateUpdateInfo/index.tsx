@@ -18,7 +18,7 @@ export const RateUpdateInfo: FC = observer(() => {
             <Text style={styles.timeText}>{updateDate}</Text>
             <View style={styles.rowWrapper}>
                 <Text style={styles.rateText}>1</Text>
-                <Text style={styles.rateText}>{ratesModel.firstRate?.name}</Text>
+                <Text numberOfLines={1} style={styles.rateValueText}>{ratesModel.firstRate?.name}</Text>
                 <Text style={styles.rateText}>=</Text>
                 <Text style={styles.rateText}>{rate}</Text>
                 <Text style={styles.rateText}>{ratesModel.secondRate?.symbol?.toUpperCase()}</Text>
