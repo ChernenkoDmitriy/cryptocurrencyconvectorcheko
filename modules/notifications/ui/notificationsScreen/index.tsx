@@ -2,7 +2,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
 import { FlatList, SafeAreaView } from 'react-native'
-import { PlusIcon } from '../../../../assets/plusIcon';
 import { useUiContext } from '../../../../src/UIProvider';
 import { INotificationsListItem } from '../../../shared/entities/notifications/INotificationsListItem';
 import { notificationsModel } from '../../../shared/entities/notifications/Notifications';
@@ -11,7 +10,7 @@ import { CircleAbsoluteButton } from '../../../shared/ui/circleAbsoluteButton';
 import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { useNotification } from '../../presenter/useNotification';
 import { setEmptyNotification } from '../../useCases/getCoinsUseCase';
-import { AddNotificationButton } from '../components/addNotificationButton';
+import { pushNotificatonUseCase } from '../../useCases/pushNotificationsUseCase';
 import { NotificationsListItem } from '../components/notificationsListItem';
 import { getStyle } from './styles';
 
@@ -40,6 +39,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     };
 
     const onPress = () => {
+        pushNotificatonUseCase()
         setEmptyNotification()
         navigation.navigate('ADD_NOTIFICATIONS')
     }
