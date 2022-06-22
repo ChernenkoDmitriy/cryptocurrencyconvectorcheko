@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158425852322",
+    "project_id": "cryptocurrencyconvectorcheko",
+    "storage_bucket": "cryptocurrencyconvectorcheko.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158425852322:android:0c9339b85c5517a6c3eafb",
+        "android_client_info": {
+          "package_name": "com.cryptocurrencyconvectorcheko"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158425852322-l68jtvs6pknuauv876b14d68ib4no2bl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1HKo6_A0OCK25qoRriciBYVp9z_r7dQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158425852322-l68jtvs6pknuauv876b14d68ib4no2bl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

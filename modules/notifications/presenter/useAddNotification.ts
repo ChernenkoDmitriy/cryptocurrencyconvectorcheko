@@ -61,8 +61,8 @@ export const useAddNotification = () => {
                     ? {
                         ...notification,
                         coin: ratesModel.firstRate.id,
-                        priceUp: validateNumbers(upNumber),
-                        priceDown: validateNumbers(downNumber),
+                        priceUp: upNumber ? validateNumbers(upNumber) : '',
+                        priceDown: downNumber ? validateNumbers(downNumber) : '',
                         isActive: isActive
                     } : notification
             ))
@@ -71,8 +71,8 @@ export const useAddNotification = () => {
             const notificationsList = [{
                 id: notificationsModel.chosenNotification.id,
                 coin: ratesModel.firstRate.id,
-                priceUp: validateNumbers(upNumber),
-                priceDown: validateNumbers(downNumber),
+                priceUp: upNumber ? validateNumbers(upNumber) : '',
+                priceDown: downNumber ? validateNumbers(downNumber) : '',
                 isActive: isActive
             }, ...notificationsModel.notificationsList];
             notificationsModel.notificationsList = notificationsList;
