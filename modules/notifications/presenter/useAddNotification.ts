@@ -13,7 +13,7 @@ export const useAddNotification = () => {
     const [upNumber, setUpNumber] = useSafeState(chosenNotification?.priceUp || '');
     const [downNumber, setDownNumber] = useSafeState(chosenNotification.priceDown || '');
     const [isEnabled, setIsEnabled] = useSafeState(chosenNotification?.isActive || false);
-    const { validateCurrency } = useValidation();
+    const { validateCurrency, validateNumbers } = useValidation();
 
     useEffect(() => {
         getCoinUseCase(notificationsModel.chosenNotification.coin || ratesModel.firstRate.id)
@@ -24,10 +24,6 @@ export const useAddNotification = () => {
                 }
             });
     }, [])
-
-    useEffect(() => {
-        // validateButtonDisabled(upNumber, downNumber, setIsSaveDisabled)
-    }, [upNumber, downNumber]);
 
     const onChangeUpPrice = (value: string) => {
         const currency = validateCurrency(value);
@@ -65,8 +61,8 @@ export const useAddNotification = () => {
                     ? {
                         ...notification,
                         coin: ratesModel.firstRate.id,
-                        priceUp: upNumber,
-                        priceDown: downNumber,
+                        priceUp: upNumber ? validateNumbers(upNumber) : '',
+                        priceDown: downNumber ? validateNumbers(downNumber) : '',
                         isActive: isActive
                     } : notification
             ))
@@ -75,8 +71,8 @@ export const useAddNotification = () => {
             const notificationsList = [{
                 id: notificationsModel.chosenNotification.id,
                 coin: ratesModel.firstRate.id,
-                priceUp: upNumber,
-                priceDown: downNumber,
+                priceUp: upNumber ? validateNumbers(upNumber) : '',
+                priceDown: downNumber ? validateNumbers(downNumber) : '',
                 isActive: isActive
             }, ...notificationsModel.notificationsList];
             notificationsModel.notificationsList = notificationsList;

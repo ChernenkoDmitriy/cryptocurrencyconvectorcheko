@@ -10,7 +10,6 @@ import { CircleAbsoluteButton } from '../../../shared/ui/circleAbsoluteButton';
 import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { useNotification } from '../../presenter/useNotification';
 import { setEmptyNotification } from '../../useCases/getCoinsUseCase';
-import { pushNotificatonUseCase } from '../../useCases/pushNotificationsUseCase';
 import { NotificationsListItem } from '../components/notificationsListItem';
 import { getStyle } from './styles';
 
@@ -39,7 +38,6 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     };
 
     const onPress = () => {
-        pushNotificatonUseCase()
         setEmptyNotification()
         navigation.navigate('ADD_NOTIFICATIONS')
     }

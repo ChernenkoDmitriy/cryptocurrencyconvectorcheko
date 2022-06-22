@@ -12,12 +12,13 @@ export const InformationScreen: FC = ({ }) => {
     return (
         <ScreenContainer scrollEnabled>
             <HeaderWithBackButton title={t('information')} />
-            <InfoBlock question={t('infoQuestionLink')} answer={t('infoAnswerLink')} />
-            <InfoBlock question={t('infoQuestionAutonom')} answer={t('infoAnswerAutonom')} />
-            <InfoBlock question={t('infoQuestionUpdate')} answer={t('infoAnswerUpdate')} />
-            <InfoBlock question={t('infoQuestionOtherResources')} answer={t('infoAnswerOtherResources')} />
-            <InfoBlock question={t('infoQuestionOtherOtherSitesLink')} answer={t('infoAnswerOtherSitesLink')} />
-            <InfoBlock question={t('infoQuestionContactUs')} answer={t('infoAnswerContactUs')} />
+            <InfoBlock question={t('infoQuestion1')} answer={t('infoAnswer1')} />
+            <InfoBlock question={t('infoQuestion2')} answer={t('infoAnswer2')} />
+            <InfoBlock question={t('infoQuestion3')} answer={t('infoAnswer3')} />
+            <InfoBlock question={t('infoQuestion4')} answer={t('infoAnswer4')} />
+            <InfoBlock question={t('infoQuestion5')} answer={t('infoAnswer5')} />
+            <InfoBlock question={t('infoQuestion6')} answer={t('infoAnswer6')} />
+            <InfoBlock question={t('infoQuestion7')} answer={t('infoAnswer7')} />
         </ScreenContainer>
     );
 };

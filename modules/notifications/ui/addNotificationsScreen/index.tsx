@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
-import { Keyboard, KeyboardAvoidingView, SafeAreaView, View } from 'react-native'
+import { Keyboard, View } from 'react-native'
 import { useUiContext } from '../../../../src/UIProvider';
 import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { getStyle } from './styles';

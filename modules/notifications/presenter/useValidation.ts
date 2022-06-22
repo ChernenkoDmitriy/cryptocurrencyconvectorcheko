@@ -17,7 +17,7 @@ export const useValidation = () => {
     }
 
     const validateNumbers = (number: string) => {
-        return Number(number);
+        return String(Number(number));
     }
 
     return { validateButtonDisabled, validateCurrency, validateNumbers };
