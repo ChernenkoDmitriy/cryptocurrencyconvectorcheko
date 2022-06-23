@@ -2,22 +2,22 @@ import { useEffect } from "react"
 import { calculatorModel } from "../../shared/entities/calculator/Calculator";
 import { ratesModel } from "../../shared/entities/rates/Rates";
 import { getCoinUseCase } from "../useCases/getCoinUseCase";
-import messaging from '@react-native-firebase/messaging';
-import { getToken, requestUserPermission, subscribeToTopic } from "../../../libraries/notificationService/NotificationHelper";
-import { pushNotificatonUseCase } from "../../notifications/useCases/pushNotificationsUseCase";
+import { pushNotificationUseCase } from "../../notifications/useCases/pushNotificationsUseCase";
+import { firebaseMessaging } from "../../../libraries/notificationService/FirebaseMessaging";
+import { notificationHandler } from "../../../libraries/notificationService/NotificationHandler";
 
 export const useInitCurrency = () => {
     useEffect(() => {
-        getToken();
-        subscribeToTopic();
-        requestUserPermission();
+        firebaseMessaging.getFCMToken();
+        firebaseMessaging.requestUserPermission();
+        firebaseMessaging.subscribeToTopic('rateNotification');
+        notificationHandler.removeAllDeliveredNotifications();
     }, [])
 
     useEffect(() => {
-        console.log('foregroundMassaging')
-        const unsubscribe = messaging().onMessage(pushNotificatonUseCase);
-        return unsubscribe
-    }, [])
+        const unsubscribe = firebaseMessaging.subscribeAppWithFCM(pushNotificationUseCase);
+        return () => { unsubscribe() };
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
