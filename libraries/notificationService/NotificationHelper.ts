@@ -14,3 +14,9 @@ export const requestUserPermission = async () => {
 export const getToken = async () => {
     await messaging().getToken()
 }
+
+export const subscribeToTopic = () => {
+    messaging()
+        .subscribeToTopic('rateNotification')
+        .then(() => console.log('Subscribed to topic!'));
+}
