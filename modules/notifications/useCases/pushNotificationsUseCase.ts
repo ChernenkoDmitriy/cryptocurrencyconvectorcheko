@@ -63,7 +63,7 @@ const notifyClient = (notifications: INotificationsListItem[], coins: ICoin[]) =
             }
         })
     })
-    // disableNotifications(notificationsToDisable)
+    disableNotifications(notificationsToDisable)
 };
 
 export const pushNotificationUseCase = async () => {

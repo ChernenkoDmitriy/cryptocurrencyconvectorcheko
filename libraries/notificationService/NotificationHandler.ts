@@ -50,6 +50,9 @@ class NotificationHandler {
             channelId: "default-channel-id",
             title,
             message,
+            playSound: true,
+            importance: 'max',
+            priority: 'max',
         });
     }
 
