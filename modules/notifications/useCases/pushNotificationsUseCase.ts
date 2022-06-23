@@ -1,4 +1,5 @@
 import { notificationHandler } from "../../../libraries/notificationService/NotificationHandler"
+import { subscribeToTopic } from "../../../libraries/notificationService/NotificationHelper"
 import { requester } from "../../../libraries/requester"
 import { storage } from "../../../libraries/storage"
 import { INotificationsListItem } from "../../shared/entities/notifications/INotificationsListItem"
@@ -63,7 +64,7 @@ const notifyClient = (notifications: INotificationsListItem[], coins: ICoin[]) =
             }
         })
     })
-    disableNotifications(notificationsToDisable)
+    // disableNotifications(notificationsToDisable)
 };
 
 export const pushNotificatonUseCase = async () => {
