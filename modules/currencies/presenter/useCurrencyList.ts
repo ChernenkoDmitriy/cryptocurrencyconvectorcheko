@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { IRateListItem } from "../../shared/entities/rates/IRateListItem";
 import { useDebounce } from "../../shared/hooks/useDebounce";
 import { useSafeState } from "../../shared/hooks/useSafeState";
