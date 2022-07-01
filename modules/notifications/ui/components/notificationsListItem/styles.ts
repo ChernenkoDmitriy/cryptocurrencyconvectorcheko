@@ -11,6 +11,11 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
             paddingVertical: 10,
             borderRadius: 5,
             marginVertical: 5,
+            flexDirection: 'row'
+        },
+        wrapper: {
+            flexDirection: 'column',
+            width: '85%'
         },
         rowWrapper: {
             flexDirection: 'row',
@@ -77,6 +82,11 @@ export const getStyle = (colors: IColors, isActive: boolean) => {
         activeWrapper: {
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        deleteButtonWrapper: {
+            justifyContent: 'center',
+            alignItems: 'flex-end',
+            width: '15%'
         }
     });
     return styles;

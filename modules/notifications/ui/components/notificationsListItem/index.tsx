@@ -22,33 +22,35 @@ export const NotificationsListItem: FC<IProps> = observer(({ item, coin, onPress
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPressEdit}>
-            <View style={styles.rowWrapper}>
-                <Image source={{ uri: String(coin?.image) }} style={styles.logo} resizeMode='stretch' />
-                <View style={styles.rateWrapper}>
-                    <Text style={styles.rateCodeText}>{coin?.symbol.toUpperCase()}/USD</Text>
-                    <Text style={styles.ratePriceText}>${coin?.current_price}</Text>
+            <View style={styles.wrapper}>
+                <View style={styles.rowWrapper}>
+                    <Image source={{ uri: String(coin?.image) }} style={styles.logo} resizeMode='stretch' />
+                    <View style={styles.rateWrapper}>
+                        <Text style={styles.rateCodeText}>{coin?.symbol.toUpperCase()}/USD</Text>
+                        <Text style={styles.ratePriceText}>${coin?.current_price}</Text>
+                    </View>
+                    <Text style={styles.isActiveText}>{t('active')}</Text>
                 </View>
-                <Text style={styles.isActiveText}>{t('active')}</Text>
-                <TouchableOpacity onPress={onPressDelete}>
-                    <TrashIcon color={colors.icon} />
-                </TouchableOpacity>
+                <View style={styles.expectedPriceContainer}>
+                    {item.priceUp ?
+                        <View style={styles.expectedPriceWrapper}>
+                            <ArrowUp />
+                            <Text style={styles.expectedPriceText}>price: ${item.priceUp}</Text>
+                        </View>
+                        : null
+                    }
+                    {item.priceDown ?
+                        <View style={styles.expectedPriceWrapper}>
+                            <ArrowDown />
+                            <Text style={styles.expectedPriceText}>price: ${item.priceDown}</Text>
+                        </View>
+                        : null
+                    }
+                </View>
             </View>
-            <View style={styles.expectedPriceContainer}>
-                {item.priceUp ?
-                    <View style={styles.expectedPriceWrapper}>
-                        <ArrowUp />
-                        <Text style={styles.expectedPriceText}>price: ${item.priceUp}</Text>
-                    </View>
-                    : null
-                }
-                {item.priceDown ?
-                    <View style={styles.expectedPriceWrapper}>
-                        <ArrowDown />
-                        <Text style={styles.expectedPriceText}>price: ${item.priceDown}</Text>
-                    </View>
-                    : null
-                }
-            </View>
+            <TouchableOpacity style={styles.deleteButtonWrapper} onPress={onPressDelete}>
+                <TrashIcon color={colors.icon} />
+            </TouchableOpacity>
         </TouchableOpacity>
     );
 });

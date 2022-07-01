@@ -10,33 +10,32 @@ import { setEmptyNotification } from '../../../../notifications/useCases/getCoin
 import { notificationsModel } from '../../../../shared/entities/notifications/Notifications';
 import { RateUpdateInfo } from '../rateUpdateInfo';
 import { getStyle } from './styles';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { useShowToast } from '../../../../shared/hooks/useShowToast';
 
 export const HeaderMain: FC = memo(() => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
     const navigation = useNavigation<any>();
+    const { isConnected } = useNetInfo()
+    const { showToast } = useShowToast()
 
     const onPressSettings = useCallback(() => {
         navigation.navigate('SETTINGS');
     }, []);
 
-    const showToast = () => {
-        Toast.show({
-            type: 'netError',
-            text1: t('toastTitle'),
-            text2: t('toastSubTitle'),
-            props: { colors }
-        });
-    }
-
     const onPressNotifications = useCallback(() => {
-        setEmptyNotification()
-        if (notificationsModel.notificationsList.length === 0) {
-            navigation.navigate('ADD_NOTIFICATIONS');
+        if (isConnected) {
+            setEmptyNotification()
+            if (notificationsModel.notificationsList.length === 0) {
+                navigation.navigate('ADD_NOTIFICATIONS');
+            } else {
+                navigation.navigate('NOTIFICATIONS');
+            }
         } else {
-            navigation.navigate('NOTIFICATIONS');
+            showToast()
         }
-    }, []);
+    }, [isConnected]);
 
     return (
         <View style={styles.container}>

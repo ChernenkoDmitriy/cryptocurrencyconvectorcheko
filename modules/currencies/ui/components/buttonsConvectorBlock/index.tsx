@@ -16,11 +16,15 @@ import { useNavigation } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import { ratesModel } from '../../../../shared/entities/rates/Rates';
 import { observer } from 'mobx-react';
+import { useShowToast } from '../../../../shared/hooks/useShowToast';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 export const ButtonsConvectorBlock: FC = observer(() => {
     const { colors } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
     const navigation = useNavigation<any>();
+    const { isConnected } = useNetInfo()
+    const { showToast } = useShowToast()
 
     const onPressNumber = (value: string) => {
         if (calculatorModel.firstRateRow.length < 14) {
@@ -52,7 +56,7 @@ export const ButtonsConvectorBlock: FC = observer(() => {
     }
 
     const goToChart = () => {
-        ratesModel.firstRate && navigation.navigate('CHART');
+        isConnected ? ratesModel.firstRate && navigation.navigate('CHART') : showToast();
     }
 
     const BUTTONS = [

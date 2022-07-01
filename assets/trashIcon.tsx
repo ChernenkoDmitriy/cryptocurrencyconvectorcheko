@@ -9,8 +9,8 @@ interface IProps {
 
 export const TrashIcon: FC<IProps> = ({ width, height, color }) => (
 
-    <Svg width={width || 20}
-        height={height || 20}
+    <Svg width={width || 25}
+        height={height || 25}
         fill="none"
         viewBox="0 0 16 16">
         <Path
