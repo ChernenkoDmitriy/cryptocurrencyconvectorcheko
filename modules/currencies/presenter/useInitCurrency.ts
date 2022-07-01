@@ -27,7 +27,7 @@ export const useInitCurrency = () => {
                         ratesModel.firstRate = coin;
                     }
                 })
-        }, 6000);
+        }, 120000);
         return () => { interval && clearInterval(interval) };
     }, [])
 
