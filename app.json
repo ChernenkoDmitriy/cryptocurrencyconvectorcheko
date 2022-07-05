@@ -1,4 +1,7 @@
 {
   "name": "cryptocurrencyconvectorcheko",
-  "displayName": "cryptocurrencyconvectorcheko"
+  "displayName": "cryptocurrencyconvectorcheko",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9751652427589478~7934920402"
+  }
 }

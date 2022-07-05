@@ -13,6 +13,7 @@ import { useAddNotification } from '../../presenter/useAddNotification';
 import { ChartPriceHeader } from '../../../chart/ui/components/chartPriceHeader';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ScreenContainer } from '../../../shared/ui/screenContainer';
+import { AdBanner } from '../../../shared/ui/adBanner';
 
 export const AddNotificationsScreen: FC = observer(() => {
     const { colors, t } = useUiContext();
@@ -32,6 +33,7 @@ export const AddNotificationsScreen: FC = observer(() => {
                 <NotificationActiveSwitch value={isEnabled} onChange={activateNotification} />
             </View>
             <NotificationSaveButton onPress={onSaveNotification} isDisable={(!!upNumber || !!downNumber)} />
+            <AdBanner />
         </ScreenContainer >
     );
 });

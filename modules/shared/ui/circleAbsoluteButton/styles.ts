@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../src/UIProvider/colors/IColorsController';
- 
+import { scaleVertical } from '../../../../src/utils';
+
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         container: {
@@ -11,7 +12,7 @@ export const getStyle = (colors: IColors) => {
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            bottom: 20,
+            bottom: scaleVertical(80),
             right: 20,
             shadowOpacity: 1,
             shadowRadius: 3,

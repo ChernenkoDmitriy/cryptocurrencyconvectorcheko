@@ -10,6 +10,7 @@ import { getStyle } from './styles';
 import { IRateListItem } from '../../../shared/entities/rates/IRateListItem';
 import { useCurrencyList } from '../../presenter/useCurrencyList';
 import { ListBottomLoader } from '../components/listBottomLoader';
+import { AdBanner } from '../../../shared/ui/adBanner';
 
 export const CurrencyListScreen: FC = observer(() => {
     const { colors, t } = useUiContext();
@@ -35,6 +36,7 @@ export const CurrencyListScreen: FC = observer(() => {
                 onEndReached={onEndReached}
                 ListFooterComponent={loading ? <ListBottomLoader /> : null}
             />
+            <AdBanner />
         </SafeAreaView>
     );
 });

@@ -23,7 +23,7 @@ export const allColors = {
         accentColorLight1: '#C4AFF0',
         accentColorDark1: '#3F2150',
         accentColorLight: '#C9D3EA',
-        accentColorDark: '#6D5BE0',
+        accentColorDark: '#8b79fb',
     },
     dark: {
         buttonNumber: '#E68C01',
@@ -48,6 +48,6 @@ export const allColors = {
         accentColorLight1: '#C4AFF0',
         accentColorDark1: '#3F2150',
         accentColorLight: '#384F6A',
-        accentColorDark: '#C4AFF0',
+        accentColorDark: '#7f6df3',
     },
 };

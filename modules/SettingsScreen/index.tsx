@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react';
 import React, { FC, useMemo } from 'react';
-import { SafeAreaView, Share } from 'react-native';
+import { SafeAreaView, Share, View } from 'react-native';
 import { ColorThemeIcon } from '../../assets/colorThemeIcon';
 import { InformationIcon } from '../../assets/informationIcon';
 import { ShareIcon } from '../../assets/shareIcon';
@@ -13,6 +13,7 @@ import { ChoseLanguage } from './components/choseLanguage';
 import { SettingButton } from './components/settingButton';
 import { SettingButtonSwitch } from './components/settingButtonSwitch';
 import { getStyle } from './styles';
+import { AdBanner } from '../shared/ui/adBanner';
 
 interface IProps {
     navigation: StackNavigationProp<any>;
@@ -45,12 +46,15 @@ export const SettingsScreen: FC<IProps> = observer(({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <HeaderWithBackButton title={t('settings')} />
-            <SettingButtonSwitch icon={<ColorThemeIcon color={colors.icon} />} value={theme === 'dark'} title={t('colorTheme')} description={t(theme)} onPress={onChangeTheme} />
-            <SettingButtonSwitch icon={<VibrationIcon color={colors.icon} />} value={settingsModel.vibration} title={t('vibration')} onPress={onChangeVibration} />
-            <ChoseLanguage onChangeLanguage={onChangeLanguage} />
-            <SettingButton icon={<ShareIcon color={colors.icon} />} title={t('share')} onPress={onShare} />
-            <SettingButton icon={<InformationIcon color={colors.icon} />} title={t('information')} onPress={onPressInformation} />
+            <View style={styles.wrapper}>
+                <HeaderWithBackButton title={t('settings')} />
+                <SettingButtonSwitch icon={<ColorThemeIcon color={colors.icon} />} value={theme === 'dark'} title={t('colorTheme')} description={t(theme)} onPress={onChangeTheme} />
+                <SettingButtonSwitch icon={<VibrationIcon color={colors.icon} />} value={settingsModel.vibration} title={t('vibration')} onPress={onChangeVibration} />
+                <ChoseLanguage onChangeLanguage={onChangeLanguage} />
+                <SettingButton icon={<ShareIcon color={colors.icon} />} title={t('share')} onPress={onShare} />
+                <SettingButton icon={<InformationIcon color={colors.icon} />} title={t('information')} onPress={onPressInformation} />
+            </View>
+            <AdBanner />
         </SafeAreaView>
     );
 });

@@ -3,6 +3,7 @@ import React, { FC, useMemo } from 'react';
 import { ScrollView } from 'react-native';
 import { useUiContext } from '../../../src/UIProvider';
 import { ratesModel } from '../../shared/entities/rates/Rates';
+import { AdBanner } from '../../shared/ui/adBanner';
 import { HeaderWithBackButton } from '../../shared/ui/headerWithBackButton';
 import { ScreenContainer } from '../../shared/ui/screenContainer';
 import { useChart } from '../presenters/useChart';
@@ -31,6 +32,7 @@ export const ChartScreen: FC = observer(() => {
                 <ChartPeriod {...{ chartPeriod, onChangeChartPeriod, chartType, onChangeChartType, }} />
                 <CoinInfo />
             </ScrollView>
+            <AdBanner />
         </ScreenContainer>
     );
 });

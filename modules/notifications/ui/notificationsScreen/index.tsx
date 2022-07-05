@@ -6,10 +6,12 @@ import { useUiContext } from '../../../../src/UIProvider';
 import { INotificationsListItem } from '../../../shared/entities/notifications/INotificationsListItem';
 import { notificationsModel } from '../../../shared/entities/notifications/Notifications';
 import { ICoin } from '../../../shared/entities/rates/ICoin';
+import { AdBanner } from '../../../shared/ui/adBanner';
 import { CircleAbsoluteButton } from '../../../shared/ui/circleAbsoluteButton';
 import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { useNotification } from '../../presenter/useNotification';
 import { setEmptyNotification } from '../../useCases/getCoinsUseCase';
+import { pushNotificationUseCase } from '../../useCases/pushNotificationsUseCase';
 import { NotificationsListItem } from '../components/notificationsListItem';
 import { getStyle } from './styles';
 
@@ -39,6 +41,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
 
     const onPress = () => {
         setEmptyNotification()
+        pushNotificationUseCase()
         navigation.navigate('ADD_NOTIFICATIONS')
     }
 
@@ -55,6 +58,7 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
                 contentContainerStyle={styles.contentContainerStyle}
             />
             <CircleAbsoluteButton onPress={onPress} />
+            <AdBanner />
         </SafeAreaView>
     );
 });
