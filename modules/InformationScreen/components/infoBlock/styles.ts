@@ -13,13 +13,13 @@ export const getStyle = (colors: IColors) => {
         questionText: {
             fontSize: scaleFontSize(16),
             fontWeight: '500',
-            color: colors.regularText,
+            color: colors.titleText,
             marginBottom: 10,
             textAlign: 'justify'
         },
         answerText: {
             fontSize: scaleFontSize(14),
-            color: colors.subText,
+            color: colors.regularText,
             textAlign: 'justify'
         }
     });

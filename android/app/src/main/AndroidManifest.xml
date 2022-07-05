@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.cryptocurrencyconvectorcheko">
 
-        <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
@@ -40,6 +40,14 @@
         </receiver>
 
         <service
+            android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerServiceGcm"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <service
             android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
             android:exported="false" >
             <intent-filter>
@@ -47,6 +55,15 @@
             </intent-filter>
         </service>
 
+        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name"
+            android:value="Sound channel"/>
+        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_description"
+            android:value="A sound channel"/>
+
+        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name.CHANNEL_ID"
+            android:value="rn-push-notification-channel-id-ding-4-300"/>
+        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_description.CHANNEL_ID"
+                    android:value="A sound channel"/>
                             <!-- Change the value to true to enable pop-up for in foreground on receiving remote notifications (for prevent duplicating while showing local notifications set this to false) -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_foreground"
                     android:value="false"/>

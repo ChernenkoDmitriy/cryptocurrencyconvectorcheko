@@ -45,26 +45,33 @@ class NotificationHandler {
         this._onNotification = handler;
     }
 
-    createLocalNotification = (title: string, message: string): void => {
+    createLocalNotification = (title: string, message: string, link: string): void => {
         PushNotification.localNotification({
-            channelId: "default-channel-id",
+            channelId: "rn-push-notification-channel-id-ding-4-300",
             title,
             message,
             playSound: true,
-            importance: 'max',
-            priority: 'max',
+            soundName: 'default',
+            importance: "max",
+            priority: "max",
+            vibrate: true,
+            vibration: 300,
+            picture: link
         });
     }
 
-    createScheduledNotification = (title: string, message: string): void => {
+    createScheduledNotification = (title: string, message: string, link: string): void => {
         PushNotification.localNotificationSchedule({
-            channelId: "default-channel-id",
+            channelId: "rn-push-notification-channel-id-ding-4-300",
             title,
-            message, // (required)
-            date: new Date(Date.now() + 10 * 1000), // in 60 secs
-            allowWhileIdle: true, // (optional) set notification to work while on doze, default: false
+            message,
+            playSound: true,
+            soundName: 'default',
+            date: new Date(Date.now()),
+            allowWhileIdle: true,
             importance: 'max',
             priority: 'max',
+            picture: link
         });
     }
 
@@ -83,17 +90,18 @@ export const notificationHandler = new NotificationHandler();
 if (!isIOS) {
     PushNotification.createChannel(
         {
-            channelId: "default-channel-id", // (required)
-            channelName: "My channel", // (required)
-            channelDescription: "A channel to categorise your notifications", // (optional) default: undefined.
-            playSound: false, // (optional) default: true
-            soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
+            channelId: "rn-push-notification-channel-id-ding-4-300", // (required)
+            channelName: `Sound channel`,
+            channelDescription: 'A sound channel', // (optional) default: undefined.
+            playSound: true, // (optional) default: true
+            soundName: 'default',
             importance: Importance.HIGH, // (optional) default: Importance.HIGH. Int value of the Android notification importance
             vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
         },
         (created) => console.log(`createChannel returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
     );
 }
+
 
 PushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)

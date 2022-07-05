@@ -836,7 +836,7 @@
     "pirates" "^4.0.5"
     "source-map-support" "^0.5.16"
 
-"@babel/runtime@^7.8.4", "@babel/runtime@7.17.9":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.8.4", "@babel/runtime@7.17.9":
   "integrity" "sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg=="
   "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.17.9.tgz"
   "version" "7.17.9"
@@ -1003,6 +1003,11 @@
   "integrity" "sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA=="
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
+
+"@iabtcf/core@^1.4.0":
+  "integrity" "sha512-LfyscG/rNhw542MX4pNSBPzK3ddHDYB8cz7pNTOI6D664x7jJmVZjkRmw8X/h9yGQ2c0a/1AP9F8n5/UsxKjeA=="
+  "resolved" "https://registry.npmjs.org/@iabtcf/core/-/core-1.4.0.tgz"
+  "version" "1.4.0"
 
 "@isaacs/string-locale-compare@^1.1.0":
   "integrity" "sha512-SQ7Kzhh9+D+ZW9MA0zkYv3VXhIDNx+LzM6EJ+/65I3QY+enU6Itte7E5XX7EWrqLW2FN4n06GWzBnPoC3th2aQ=="
@@ -1667,26 +1672,31 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/netinfo/-/netinfo-8.3.0.tgz"
   "version" "8.3.0"
 
-"@react-native-community/push-notification-ios@^1.10.1":
+"@react-native-community/push-notification-ios@^1.10.1", "@react-native-community/push-notification-ios@1.10.1":
   "integrity" "sha512-k6bZWUKLif4GjenyTD3aQLwA2VT3bNmt22INO/34lexnpmqkPDZF7nreqbckTHG0Zso9wDTe4N/AZJUC/d8iRg=="
   "resolved" "https://registry.npmjs.org/@react-native-community/push-notification-ios/-/push-notification-ios-1.10.1.tgz"
   "version" "1.10.1"
   dependencies:
     "invariant" "^2.2.4"
 
-"@react-native-firebase/app@^15.0.0", "@react-native-firebase/app@15.0.0":
-  "integrity" "sha512-H4u50FaveRmKuzmKsbFUaq+9jFJrIcn2/auw441h24A0fcxAhKzlYQ6DK9IvoqCX/PKX1DZYrDo6UC/d4YjCGw=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/app/-/app-15.0.0.tgz"
-  "version" "15.0.0"
+"@react-native-firebase/analytics@^15.1.1":
+  "integrity" "sha512-9OikjfOYO2byOIbbISbOC6LbIJCLAyfJKrQBMDmRpx5XdbJS37xLj2KI0aniObYZXrlkdcZ8t2HxrslGYikY8A=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/analytics/-/analytics-15.1.1.tgz"
+  "version" "15.1.1"
+
+"@react-native-firebase/app@^15.0.0", "@react-native-firebase/app@15.1.1":
+  "integrity" "sha512-yLC+BZtXjHLzdwLyt5/ryrUcJhYK+F1mb3GAPUOB5yujM8Ndd0O2HXNoVvLPkhEjEdyvyxfRrvqcT21BKmuw3A=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/app/-/app-15.1.1.tgz"
+  "version" "15.1.1"
   dependencies:
     "@expo/config-plugins" "^4.1.5"
     "opencollective-postinstall" "^2.0.1"
     "superstruct" "^0.6.2"
 
-"@react-native-firebase/messaging@^15.0.0":
-  "integrity" "sha512-pVP1cFJo7/E8juH+gdvSzvJiSN5kmfuluP16gcScAEktlrj/SJTv49BUqO3ItkzaemxiBMS2f1EpY0EMvPnINg=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/messaging/-/messaging-15.0.0.tgz"
-  "version" "15.0.0"
+"@react-native-firebase/messaging@^15.1.1":
+  "integrity" "sha512-oWN4/919U44jJQDKVd5+OIviIZ6jTZkMOVVvCLwtMh9WXI0tCd/E+be8zOjH3jHi6M0Zkf0IOXOd0QuwyrmQZw=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/messaging/-/messaging-15.1.1.tgz"
+  "version" "15.1.1"
 
 "@react-native/assets@1.0.0":
   "integrity" "sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ=="
@@ -1875,7 +1885,7 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
   "version" "15.7.5"
 
-"@types/react-native-charts-wrapper@^0.5.2":
+"@types/react-native-charts-wrapper@0.5.2":
   "integrity" "sha512-ct8pmkh13s980Yj/cuxFdMJH3pi28/G5a+4DcZoPhIuHsmPadVOCDsfCh0E9PPFDfaZAK7sbK8zfjHCXNBygeQ=="
   "resolved" "https://registry.npmjs.org/@types/react-native-charts-wrapper/-/react-native-charts-wrapper-0.5.2.tgz"
   "version" "0.5.2"
@@ -1883,7 +1893,7 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native-push-notification@^8.1.0":
+"@types/react-native-push-notification@8.1.0":
   "integrity" "sha512-Pi6SuNa6p09h3603oWq74erIdVEqURC9AdNYcA3eawiDPC6C8neghISqNpJOhrQUu4RFcIa29LzdADbwvUQR8w=="
   "resolved" "https://registry.npmjs.org/@types/react-native-push-notification/-/react-native-push-notification-8.1.0.tgz"
   "version" "8.1.0"
@@ -3227,6 +3237,11 @@
     "@react-native/normalize-color" "*"
     "invariant" "*"
     "prop-types" "*"
+
+"dequal@^2.0.2":
+  "integrity" "sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug=="
+  "resolved" "https://registry.npmjs.org/dequal/-/dequal-2.0.2.tgz"
+  "version" "2.0.2"
 
 "destroy@1.2.0":
   "integrity" "sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg=="
@@ -7096,12 +7111,12 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
-"react-native-dropdown-picker@^5.4.2":
+"react-native-dropdown-picker@5.4.2":
   "integrity" "sha512-cZBPyN+k52jA9XguFnKoF5tLf31z6gjZ8GijO/pfVNSSEtPwZ14UTUrr87JiiOnMh5K/O2kRzZ/jZN8D0MmUMA=="
   "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.2.tgz"
   "version" "5.4.2"
 
-"react-native-fast-image@^8.5.11":
+"react-native-fast-image@8.5.11":
   "integrity" "sha512-cNW4bIJg3nvKaheG8vGMfqCt5LMWX9MS5+wMudgKIHbGO51spRr4sgnlhVgwHLcZ5aeNOVJ8CPRxDIWKRq/0QA=="
   "resolved" "https://registry.npmjs.org/react-native-fast-image/-/react-native-fast-image-8.5.11.tgz"
   "version" "8.5.11"
@@ -7116,6 +7131,14 @@
     "invariant" "^2.2.4"
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
+
+"react-native-google-mobile-ads@^7.0.1":
+  "integrity" "sha512-G7oP/ETRa58i1he/bQPvGXE3Vcs1KdtY3B8inmxLaMrjeSaWg69dZn4yVrSR9IK/MOA9fcLNmsEQgLBk15COMw=="
+  "resolved" "https://registry.npmjs.org/react-native-google-mobile-ads/-/react-native-google-mobile-ads-7.0.1.tgz"
+  "version" "7.0.1"
+  dependencies:
+    "@iabtcf/core" "^1.4.0"
+    "use-deep-compare-effect" "^1.8.1"
 
 "react-native-gradle-plugin@^0.0.6":
   "integrity" "sha512-eIlgtsmDp1jLC24dRn43hB3kEcZVqx6DUQbR0N1ABXGnMEafm9I3V3dUUeD1vh+Dy5WqijSoEwLNUPLgu5zDMg=="
@@ -7135,7 +7158,7 @@
     "prop-types" "^15.6.2"
     "react-native-animatable" "1.3.3"
 
-"react-native-push-notification@^8.1.1":
+"react-native-push-notification@8.1.1":
   "integrity" "sha512-XpBtG/w+a6WXTxu6l1dNYyTiHnbgnvjoc3KxPTxYkaIABRmvuJZkFxqruyGvfCw7ELAlZEAJO+dthdTabCe1XA=="
   "resolved" "https://registry.npmjs.org/react-native-push-notification/-/react-native-push-notification-8.1.1.tgz"
   "version" "8.1.1"
@@ -7227,7 +7250,7 @@
     "react-shallow-renderer" "^16.13.1"
     "scheduler" "^0.20.2"
 
-"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0", "react@^16.8.6 || ^17.0.0", "react@^17.0.0", "react@>=16.6.3", "react@17.0.2":
+"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0", "react@^16.8.6 || ^17.0.0", "react@^17.0.0", "react@>=16.13", "react@>=16.6.3", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -8350,12 +8373,12 @@
   "version" "0.1.2"
 
 "unpipe@~1.0.0":
-  "integrity" "sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw="
+  "integrity" "sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ=="
   "resolved" "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz"
   "version" "1.0.0"
 
 "unset-value@^1.0.0":
-  "integrity" "sha1-g3aHP30jNRef+x5vw6jtDfyKtVk="
+  "integrity" "sha512-PcA2tsuGSF9cnySLHTLSh2qrQiJ70mn+r+Glzxv2TWZblxsxCC52BDlZoPCsz7STd9pN7EZetkWZBAvk4cgZdQ=="
   "resolved" "https://registry.npmjs.org/unset-value/-/unset-value-1.0.0.tgz"
   "version" "1.0.0"
   dependencies:
@@ -8370,9 +8393,17 @@
     "punycode" "^2.1.0"
 
 "urix@^0.1.0":
-  "integrity" "sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI="
+  "integrity" "sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg=="
   "resolved" "https://registry.npmjs.org/urix/-/urix-0.1.0.tgz"
   "version" "0.1.0"
+
+"use-deep-compare-effect@^1.8.1":
+  "integrity" "sha512-kbeNVZ9Zkc0RFGpfMN3MNfaKNvcLNyxOAAd9O4CBZ+kCBXXscn9s/4I+8ytUER4RDpEYs5+O6Rs4PqiZ+rHr5Q=="
+  "resolved" "https://registry.npmjs.org/use-deep-compare-effect/-/use-deep-compare-effect-1.8.1.tgz"
+  "version" "1.8.1"
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "dequal" "^2.0.2"
 
 "use-subscription@>=1.0.0 <1.6.0":
   "integrity" "sha512-Xv2a1P/yReAjAbhylMfFplFKj9GssgTwN7RlcTxBujFQcloStWNDQdc4g4NRWH9xS4i/FDk04vQBptAXoF3VcA=="
@@ -8387,12 +8418,12 @@
   "version" "3.1.1"
 
 "util-deprecate@^1.0.1", "util-deprecate@~1.0.1":
-  "integrity" "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
+  "integrity" "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   "version" "1.0.2"
 
 "utils-merge@1.0.1":
-  "integrity" "sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM="
+  "integrity" "sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA=="
   "resolved" "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz"
   "version" "1.0.1"
 
@@ -8431,7 +8462,7 @@
     "builtins" "^5.0.0"
 
 "vary@~1.1.2":
-  "integrity" "sha1-IpnwLG3tMNSllhsLn3RSShj2NPw="
+  "integrity" "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
 
@@ -8465,7 +8496,7 @@
     "defaults" "^1.0.3"
 
 "wcwidth@^1.0.1":
-  "integrity" "sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g="
+  "integrity" "sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg=="
   "resolved" "https://registry.npmjs.org/wcwidth/-/wcwidth-1.0.1.tgz"
   "version" "1.0.1"
   dependencies:
@@ -8501,7 +8532,7 @@
     "is-symbol" "^1.0.3"
 
 "which-module@^2.0.0":
-  "integrity" "sha1-2e8H3Od7mQK4o6j6SzHD4/fm6Ho="
+  "integrity" "sha512-B+enWhmw6cjfVC7kS8Pj9pCrKSc5txArRyaYGe088shv/FGWH+0Rjx/xPgtsWfsUtS27FkP697E4DDhgrgoc0Q=="
   "resolved" "https://registry.npmjs.org/which-module/-/which-module-2.0.0.tgz"
   "version" "2.0.0"
 
@@ -8557,7 +8588,7 @@
     "strip-ansi" "^6.0.0"
 
 "wrappy@1":
-  "integrity" "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
+  "integrity" "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ=="
   "resolved" "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   "version" "1.0.2"
 

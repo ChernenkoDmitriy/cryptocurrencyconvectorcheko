@@ -7,6 +7,7 @@ import { Search } from '../components/search';
 import { getStyle } from './styles';
 import { SecondCurrencyListItem } from '../components/secondCurrencyListItem';
 import { useChoseSecondCurrency } from '../../presenter/useChoseSecondCurrency';
+import { AdBanner } from '../../../shared/ui/adBanner';
 
 export const SecondCurrencyListScreen: FC = observer(() => {
     const { colors, t } = useUiContext();
@@ -22,6 +23,7 @@ export const SecondCurrencyListScreen: FC = observer(() => {
             <HeaderWithBackButton title={t('currency')} />
             <Search value={searchText} onChangeText={setSearchText} />
             <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />
+            <AdBanner />
         </SafeAreaView>
     );
 });

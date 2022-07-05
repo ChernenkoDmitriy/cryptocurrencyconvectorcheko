@@ -7,6 +7,9 @@ export const getStyle = (colors: IColors) => {
             flex: 1,
             backgroundColor: colors.background,
         },
+        wrapper: {
+            flexGrow: 1
+        }
     });
     return styles;
 }

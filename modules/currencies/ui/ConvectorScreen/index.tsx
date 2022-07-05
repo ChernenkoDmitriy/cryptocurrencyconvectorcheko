@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native';
 import { useUiContext } from '../../../../src/UIProvider';
 import { calculatorModel } from '../../../shared/entities/calculator/Calculator';
 import { ratesModel } from '../../../shared/entities/rates/Rates';
+import { AdBanner } from '../../../shared/ui/adBanner';
 import { useInitCurrency } from '../../presenter/useInitCurrency';
 import { ButtonsConvectorBlock } from '../components/buttonsConvectorBlock';
 import { CurrencyRowMain } from '../components/currencyRowMain';
@@ -17,7 +18,7 @@ interface IProps {
 
 export const ConvectorScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors } = useUiContext();
-    const styles = useMemo(() => getStyle(colors), [colors]); 
+    const styles = useMemo(() => getStyle(colors), [colors]);
 
     useInitCurrency();
 
@@ -42,6 +43,7 @@ export const ConvectorScreen: FC<IProps> = observer(({ navigation }) => {
                 amount={calculatorModel.secondRateRow}
                 onPress={goToSecondCurrencyList} />
             <ButtonsConvectorBlock />
+            <AdBanner />
         </SafeAreaView>
     );
 });
