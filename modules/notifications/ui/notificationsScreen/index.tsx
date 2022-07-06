@@ -41,7 +41,6 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
 
     const onPress = () => {
         setEmptyNotification()
-        pushNotificationUseCase()
         navigation.navigate('ADD_NOTIFICATIONS')
     }
 
