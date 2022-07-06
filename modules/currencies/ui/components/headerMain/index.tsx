@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import React, { FC, memo, useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Toast from 'react-native-toast-message';
 import { BellIcon } from '../../../../../assets/bellIcon';
 import { SettingsIcon } from '../../../../../assets/settingsIcon';
 import { useUiContext } from '../../../../../src/UIProvider';
