@@ -11,7 +11,6 @@ import { CircleAbsoluteButton } from '../../../shared/ui/circleAbsoluteButton';
 import { HeaderWithBackButton } from '../../../shared/ui/headerWithBackButton';
 import { useNotification } from '../../presenter/useNotification';
 import { setEmptyNotification } from '../../useCases/getCoinsUseCase';
-import { pushNotificationUseCase } from '../../useCases/pushNotificationsUseCase';
 import { NotificationsListItem } from '../components/notificationsListItem';
 import { getStyle } from './styles';
 
