@@ -51,15 +51,13 @@ const notifyClient = (notifications: INotificationsListItem[], coins: ICoin[]) =
     notifications.forEach((notification: INotificationsListItem) => {
         coins.forEach((coin: ICoin) => {
             if (notification.coin === coin.id && notification.isActive) {
-                const messageUp = coin.symbol.toUpperCase() + ' ' + coin.current_price + '$'
-                const arrowUpLink = 'https://lh3.googleusercontent.com/pw/AM-JKLWnuWh_tUYurnfdtITTJfrSTU3HaDh7rmYOS27iTIRhaYopBDodIIVAcLaP-b_qvowgOZxN-bJLWPr7cS7i12scT5p6iRnrw3X_pMFk40UwRPmzvpNsspUlSBt3nch279NmCRd_cX_-oGpu_W1lmZFC=w340-h220-no?authuser=0'
-                const messageDown = coin.symbol.toUpperCase() + ' ' + coin.current_price + '$'
-                const arrowDownLink = 'https://lh3.googleusercontent.com/pw/AM-JKLXLlkGQ_ru_p6_hZ29bjmFGTjsiXy2p-cOO01MTGJUkHA6Hu0_mgTs5Y0JmGZ6kE7AyRljwFB2J-eDSxkH7sq3_WC897d3pfgxTiR7gFPIwtlzejKztZgG6TsOx5_09INH1HUSQMeG-jNae-mJTF1uj=w340-h220-no?authuser=0'
+                const messageUp = '▲' + coin.symbol.toUpperCase() + ' ' + coin.current_price + '$'
+                const messageDown = '▼' + coin.symbol.toUpperCase() + ' ' + coin.current_price + '$'
                 if (coin.current_price >= Number(notification.priceUp) && notification.priceUp) {
-                    notificationHandler.createLocalNotification(coin.name, messageUp, arrowUpLink)
+                    notificationHandler.createLocalNotification(coin.name, messageUp)
                     notificationsToDisable.push(notification)
                 } else if (coin.current_price <= Number(notification.priceDown) && notification.priceDown) {
-                    notificationHandler.createLocalNotification(coin.name, messageDown, arrowDownLink)
+                    notificationHandler.createLocalNotification(coin.name, messageDown)
                     notificationsToDisable.push(notification)
                 }
             }

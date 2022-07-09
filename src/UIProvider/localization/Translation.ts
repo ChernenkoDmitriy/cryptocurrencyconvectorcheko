@@ -1,5 +1,6 @@
 export const translations = {
   ru: {
+    comment: 'Комментарий',
     high24H: 'Макс. за 24 часа',
     low24H: 'Мин. за 24 часа',
     maxSupply: 'Максимальный запас',
@@ -215,6 +216,7 @@ export const translations = {
     IMP: "Мэнский фунт"
   },
   ua: {
+    comment: 'Коментар',
     high24H: 'Макс. за 24 години',
     low24H: 'Мін. за 24 години',
     maxSupply: 'Максимальний запас',
@@ -430,6 +432,7 @@ export const translations = {
     IMP: "Менський фунт"
   },
   en: {
+    comment: 'Comment',
     high24H: '24H high',
     low24H: '24H low',
     maxSupply: 'Max supply',

@@ -3,9 +3,14 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '11.0'
 install! 'cocoapods', :deterministic_uuids => false
+use_frameworks!
+$RNFirebaseAsStaticFramework = true
+$RNGoogleMobileAdsAsStaticFramework = true
 
 target 'cryptocurrencyconvectorcheko' do
+
   config = use_native_modules!
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
 
   # Flags change depending on the env values.
   flags = get_default_flags()
@@ -28,7 +33,7 @@ target 'cryptocurrencyconvectorcheko' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!()
+  # use_flipper!()
 
   post_install do |installer|
     react_native_post_install(installer)

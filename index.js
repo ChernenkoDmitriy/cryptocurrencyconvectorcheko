@@ -10,6 +10,8 @@ LogBox.ignoreLogs([
     "ViewPropTypes will be removed"
 ])
 
-messaging().setBackgroundMessageHandler(pushNotificationUseCase);
+messaging().setBackgroundMessageHandler(async () => {
+    pushNotificationUseCase()
+});
 
 AppRegistry.registerComponent(appName, () => App);

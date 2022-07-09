@@ -10,6 +10,7 @@ import { useValidation } from "./useValidation";
 export const useAddNotification = () => {
     const navigation = useNavigation<any>();
     const { chosenNotification } = notificationsModel;
+    const [comment, setComment] = useSafeState(chosenNotification?.comment || '');
     const [upNumber, setUpNumber] = useSafeState(chosenNotification?.priceUp || '');
     const [downNumber, setDownNumber] = useSafeState(chosenNotification.priceDown || '');
     const [isEnabled, setIsEnabled] = useSafeState(chosenNotification?.isActive || false);
@@ -44,14 +45,14 @@ export const useAddNotification = () => {
     }
 
     const onSaveNotification = () => {
-        saveNotification(upNumber, downNumber, isEnabled)
+        saveNotification(upNumber, downNumber, isEnabled, comment)
     }
 
     const activateNotification = () => {
         setIsEnabled(prev => !prev);
     }
 
-    const saveNotification = (upNumber: string, downNumber: string, isActive: boolean) => {
+    const saveNotification = (upNumber: string, downNumber: string, isActive: boolean, comment: string) => {
         const isInclude = notificationsModel.notificationsList.find(notification =>
             notification.id === notificationsModel.chosenNotification.id
         )
@@ -63,7 +64,8 @@ export const useAddNotification = () => {
                         coin: ratesModel.firstRate.id,
                         priceUp: upNumber ? validateNumbers(upNumber) : '',
                         priceDown: downNumber ? validateNumbers(downNumber) : '',
-                        isActive: isActive
+                        isActive: isActive,
+                        comment,
                     } : notification
             ))
             notificationsModel.notificationsList = notificationsList;
@@ -73,12 +75,16 @@ export const useAddNotification = () => {
                 coin: ratesModel.firstRate.id,
                 priceUp: upNumber ? validateNumbers(upNumber) : '',
                 priceDown: downNumber ? validateNumbers(downNumber) : '',
-                isActive: isActive
+                isActive: isActive,
+                comment
             }, ...notificationsModel.notificationsList];
             notificationsModel.notificationsList = notificationsList;
         }
         navigation.goBack();
     }
 
-    return { upNumber, downNumber, isEnabled, activateNotification, onChangeUpPrice, onChangeDownPrice, goToCurrencyList, onSaveNotification };
+    return {
+        upNumber, downNumber, isEnabled, comment, setComment,
+        activateNotification, onChangeUpPrice, onChangeDownPrice, goToCurrencyList, onSaveNotification
+    };
 }

@@ -10,7 +10,7 @@ export const getStyle = (colors: IColors, isDisable: boolean) => {
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 7,
-            backgroundColor: colors.accentColorDark,
+            backgroundColor: colors.buttonNumber,
             opacity: isDisable ? 1 : 0.6
         },
         title: {

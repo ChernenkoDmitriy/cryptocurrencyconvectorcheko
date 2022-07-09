@@ -14,11 +14,12 @@ import { ChartPriceHeader } from '../../../chart/ui/components/chartPriceHeader'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ScreenContainer } from '../../../shared/ui/screenContainer';
 import { AdBanner } from '../../../shared/ui/adBanner';
+import { CommentNotification } from '../components/comment';
 
 export const AddNotificationsScreen: FC = observer(() => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
-    const { upNumber, downNumber, isEnabled, activateNotification, onChangeUpPrice,
+    const { upNumber, downNumber, isEnabled, activateNotification, onChangeUpPrice, comment, setComment,
         onChangeDownPrice, goToCurrencyList, onSaveNotification } = useAddNotification();
 
     return (
@@ -31,6 +32,12 @@ export const AddNotificationsScreen: FC = observer(() => {
                 <CurrencyPriceInput placeholder={'maxNotificationAmount'} icon={<ArrowUp />} value={upNumber} onChangeText={onChangeUpPrice} />
                 <CurrencyPriceInput placeholder={'minNotificationAmount'} icon={<ArrowDown />} value={downNumber} onChangeText={onChangeDownPrice} />
                 <NotificationActiveSwitch value={isEnabled} onChange={activateNotification} />
+                <CommentNotification
+                    multiline
+                    placeholder={t('comment')}
+                    value={comment}
+                    onChangeText={setComment}
+                />
             </View>
             <NotificationSaveButton onPress={onSaveNotification} isDisable={(!!upNumber || !!downNumber)} />
             <AdBanner />

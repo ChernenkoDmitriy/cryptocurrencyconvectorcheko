@@ -1,5 +1,6 @@
 export const allColors = {
     light: {
+        notificationBell: '#00B200',
         buttonNumber: '#E68C01',
         positiveRate: '#099500',
         negativeRate: '#FF6D87',
@@ -26,6 +27,7 @@ export const allColors = {
         accentColorDark: '#8b79fb',
     },
     dark: {
+        notificationBell: '#00B200',
         buttonNumber: '#E68C01',
         positiveRate: '#099500',
         negativeRate: '#FF6D87',

@@ -45,7 +45,7 @@ class NotificationHandler {
         this._onNotification = handler;
     }
 
-    createLocalNotification = (title: string, message: string, link: string): void => {
+    createLocalNotification = (title: string, message: string): void => {
         PushNotification.localNotification({
             channelId: "rn-push-notification-channel-id-ding-4-300",
             title,
@@ -56,11 +56,10 @@ class NotificationHandler {
             priority: "max",
             vibrate: true,
             vibration: 300,
-            picture: link
         });
     }
 
-    createScheduledNotification = (title: string, message: string, link: string): void => {
+    createScheduledNotification = (title: string, message: string): void => {
         PushNotification.localNotificationSchedule({
             channelId: "rn-push-notification-channel-id-ding-4-300",
             title,
@@ -71,7 +70,6 @@ class NotificationHandler {
             allowWhileIdle: true,
             importance: 'max',
             priority: 'max',
-            picture: link
         });
     }
 

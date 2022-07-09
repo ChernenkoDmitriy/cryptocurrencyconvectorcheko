@@ -5,7 +5,7 @@ import { scaleVertical } from '../../../../src/utils';
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: colors.accentColorDark,
+            backgroundColor: colors.buttonNumber,
             width: 55,
             height: 55,
             borderRadius: 50,

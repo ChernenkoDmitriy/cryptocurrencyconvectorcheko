@@ -1,4 +1,5 @@
 export type IColors = {
+    notificationBell: string;
     positiveRate: string;
     negativeRate: string;
     buttonNumber: string;
