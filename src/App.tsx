@@ -5,6 +5,8 @@ import { notificationsModel } from '../modules/shared/entities/notifications/Not
 import { AppNavigator } from './navigation';
 import { UIProvider } from './UIProvider';
 import mobileAds from 'react-native-google-mobile-ads';
+import { withIAPContext } from 'react-native-iap';
+import { purchaseModel } from '../modules/shared/entities/purchase/purchaseModel';
 
 notificationsModel
 
@@ -12,7 +14,8 @@ mobileAds()
     .initialize()
     .then(adapterStatuses => { });
 
-export const App: FC = () => {
+export const App: FC = withIAPContext(() => {
+    purchaseModel;
 
     return (
         <UIProvider>
@@ -20,5 +23,4 @@ export const App: FC = () => {
             <Toast config={toastConfig} />
         </UIProvider>
     );
-};
-
+});

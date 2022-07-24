@@ -12,14 +12,18 @@ import { getStyle } from './styles';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useShowToast } from '../../../../shared/hooks/useShowToast';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
+import { useInAppPurchase } from '../../../../shared/hooks/useInAppPurchase';
+import { observer } from 'mobx-react';
+import { purchaseModel } from '../../../../shared/entities/purchase/purchaseModel';
 
-export const HeaderMain: FC = memo(() => {
+export const HeaderMain: FC = observer(() => {
     const { colors, t } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
     const navigation = useNavigation<any>();
     const { isConnected } = useNetInfo();
     const { showToast } = useShowToast();
     const rotate = useSharedValue(0);
+    const { purchaseNotifications } = useInAppPurchase();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -44,18 +48,22 @@ export const HeaderMain: FC = memo(() => {
         navigation.navigate('SETTINGS');
     }, []);
 
-    const onPressNotifications = useCallback(() => {
-        if (isConnected) {
-            setEmptyNotification()
-            if (notificationsModel.notificationsList.length === 0) {
-                navigation.navigate('ADD_NOTIFICATIONS');
-            } else {
-                navigation.navigate('NOTIFICATIONS');
-            }
+    const onPressNotifications = () => {
+        if (!purchaseModel.isFreePeriod || purchaseModel.purchaseHistory?.length) {
+            purchaseNotifications();
         } else {
-            showToast()
+            if (isConnected) {
+                setEmptyNotification()
+                if (notificationsModel.notificationsList.length === 0) {
+                    navigation.navigate('ADD_NOTIFICATIONS');
+                } else {
+                    navigation.navigate('NOTIFICATIONS');
+                }
+            } else {
+                showToast();
+            }
         }
-    }, [isConnected]);
+    };
 
     return (
         <View style={styles.container}>
