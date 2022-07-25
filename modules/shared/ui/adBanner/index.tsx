@@ -4,7 +4,7 @@ import { BannerAd, TestIds, BannerAdSize } from 'react-native-google-mobile-ads'
 import { useUiContext } from '../../../../src/UIProvider';
 import { getStyle } from './styles';
 
-// const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9751652427589478/2546862355';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9751652427589478/2546862355';
 
 export const AdBanner: FC = () => {
     const { colors } = useUiContext();
@@ -12,7 +12,7 @@ export const AdBanner: FC = () => {
 
     return (
         <View style={styles.container}>
-            <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
+            <BannerAd unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
         </View>
     );
 };

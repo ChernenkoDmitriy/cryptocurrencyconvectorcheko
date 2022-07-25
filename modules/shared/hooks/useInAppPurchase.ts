@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import RNIap, { requestPurchase, Purchase, useIAP } from 'react-native-iap';
 import { purchaseModel } from '../entities/purchase/purchaseModel';
 
-const productIds = ['test_product', 'notifications'];
+const productIds = ['notifications_working_version'];
 
 export const useInAppPurchase = () => {
     const {
@@ -29,8 +29,7 @@ export const useInAppPurchase = () => {
     }, [connected]);
 
     const purchaseNotifications = async () => {
-        // const notificationProduct = products?.find(item => item.productId === 'test_product');
-        const notificationProduct = products?.find(item => item.productId === 'notifications');
+        const notificationProduct = products?.find(item => item.productId === 'notifications_working_version');
         if (notificationProduct?.type === 'inapp') {
             const response = await requestPurchase(notificationProduct.productId);
         }
