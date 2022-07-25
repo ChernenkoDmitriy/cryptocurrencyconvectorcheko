@@ -49,9 +49,7 @@ export const HeaderMain: FC = observer(() => {
     }, []);
 
     const onPressNotifications = () => {
-        if (!purchaseModel.isFreePeriod || purchaseModel.purchaseHistory?.length) {
-            purchaseNotifications();
-        } else {
+        if (purchaseModel.isFreePeriod || purchaseModel.purchaseHistory?.length) {
             if (isConnected) {
                 setEmptyNotification()
                 if (notificationsModel.notificationsList.length === 0) {
@@ -62,6 +60,8 @@ export const HeaderMain: FC = observer(() => {
             } else {
                 showToast();
             }
+        } else {
+            purchaseNotifications();
         }
     };
 
