@@ -1,5 +1,8 @@
 export const translations = {
   ru: {
+    setCourseLimits: 'Устанавливаете граничные значения курсов для быстрого оповещения',
+    buyService: 'Купить услугу',
+    yseTrialPeriod: 'Использовать пробный период 3 дня',
     comment: 'Комментарий',
     high24H: 'Макс. за 24 часа',
     low24H: 'Мин. за 24 часа',
@@ -216,6 +219,9 @@ export const translations = {
     IMP: "Мэнский фунт"
   },
   ua: {
+    setCourseLimits: 'Встановлюєте граничні значення курсів для швидкого оповіщення',
+    buyService: 'Купити послугу',
+    yseTrialPeriod: 'Використовувати пробний період 3 дні',
     comment: 'Коментар',
     high24H: 'Макс. за 24 години',
     low24H: 'Мін. за 24 години',
@@ -432,6 +438,9 @@ export const translations = {
     IMP: "Менський фунт"
   },
   en: {
+    setCourseLimits: 'Set course limits for quick alerts',
+    buyService: 'Buy a service',
+    yseTrialPeriod: 'Use trial period 3 days',
     comment: 'Comment',
     high24H: '24H high',
     low24H: '24H low',

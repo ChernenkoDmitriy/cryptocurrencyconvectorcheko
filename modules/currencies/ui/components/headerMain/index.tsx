@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { FC, memo, useCallback, useEffect, useMemo } from 'react';
+import React, { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { BellIcon } from '../../../../../assets/bellIcon';
@@ -15,9 +15,11 @@ import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withSequence, w
 import { useInAppPurchase } from '../../../../shared/hooks/useInAppPurchase';
 import { observer } from 'mobx-react';
 import { purchaseModel } from '../../../../shared/entities/purchase/purchaseModel';
+import { CustomAlert } from '../../../../shared/ui/customAlert';
 
 export const HeaderMain: FC = observer(() => {
     const { colors, t } = useUiContext();
+    const [isPaymentVisible, setIsPaymentVisible] = useState(false);
     const styles = useMemo(() => getStyle(colors), [colors]);
     const navigation = useNavigation<any>();
     const { isConnected } = useNetInfo();
@@ -36,6 +38,14 @@ export const HeaderMain: FC = observer(() => {
         return () => { interval && clearInterval(interval) };
     }, [])
 
+    const onCloseModal = () => {
+        setIsPaymentVisible(false);
+    }
+
+    const onOpenModal = () => {
+        setIsPaymentVisible(true);
+    }
+
     const animatedStyles = useAnimatedStyle(() => {
         return {
             transform: [
@@ -49,7 +59,7 @@ export const HeaderMain: FC = observer(() => {
     }, []);
 
     const onPressNotifications = () => {
-        if (purchaseModel.isFreePeriod || purchaseModel.purchaseHistory?.length) {
+        if ((purchaseModel.isFreePeriod && purchaseModel.isHideTrialPeriod) || purchaseModel.purchaseHistory?.length) {
             if (isConnected) {
                 setEmptyNotification()
                 if (notificationsModel.notificationsList.length === 0) {
@@ -61,9 +71,20 @@ export const HeaderMain: FC = observer(() => {
                 showToast();
             }
         } else {
-            purchaseNotifications();
+            onOpenModal();
         }
     };
+
+    const useTrialPeriod = () => {
+        purchaseModel.isHideTrialPeriod = true;
+        setEmptyNotification()
+        if (notificationsModel.notificationsList.length === 0) {
+            navigation.navigate('ADD_NOTIFICATIONS');
+        } else {
+            navigation.navigate('NOTIFICATIONS');
+        }
+        onCloseModal();
+    }
 
     return (
         <View style={styles.container}>
@@ -76,6 +97,15 @@ export const HeaderMain: FC = observer(() => {
                     <BellIcon color={colors.icon} />
                 </TouchableOpacity>
             </Animated.View>
+            <CustomAlert
+                visible={isPaymentVisible}
+                onCancel={onCloseModal}
+                onPurchase={purchaseNotifications}
+                onConfirm={useTrialPeriod}
+                text={t('setCourseLimits')}
+                purchaseText={t('buyService')}
+                confirmText={purchaseModel.isFreePeriod ? t('yseTrialPeriod') : ''}
+            />
         </View >
     );
 });
