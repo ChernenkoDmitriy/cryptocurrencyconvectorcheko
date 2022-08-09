@@ -65,17 +65,20 @@ export const useAddNotification = () => {
                         priceUp: upNumber ? validateNumbers(upNumber) : '',
                         priceDown: downNumber ? validateNumbers(downNumber) : '',
                         isActive: isActive,
+                        symbol: ratesModel.firstRate.symbol,
                         comment,
                     } : notification
             ))
             notificationsModel.notificationsList = notificationsList;
         } else {
             const notificationsList = [{
+                numberId: Date.now(),
                 id: notificationsModel.chosenNotification.id,
                 coin: ratesModel.firstRate.id,
                 priceUp: upNumber ? validateNumbers(upNumber) : '',
                 priceDown: downNumber ? validateNumbers(downNumber) : '',
                 isActive: isActive,
+                symbol: ratesModel.firstRate.symbol,
                 comment
             }, ...notificationsModel.notificationsList];
             notificationsModel.notificationsList = notificationsList;

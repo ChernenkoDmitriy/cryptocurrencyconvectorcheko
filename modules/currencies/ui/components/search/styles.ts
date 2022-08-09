@@ -5,7 +5,7 @@ export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         container: {
             width: '100%',
-            paddingHorizontal: 20,
+            paddingHorizontal: 10,
             marginVertical: 10,
             height: 40,
             flexDirection: 'row',

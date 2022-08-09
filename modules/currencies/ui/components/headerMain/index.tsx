@@ -16,6 +16,7 @@ import { useInAppPurchase } from '../../../../shared/hooks/useInAppPurchase';
 import { observer } from 'mobx-react';
 import { purchaseModel } from '../../../../shared/entities/purchase/purchaseModel';
 import { CustomAlert } from '../../../../shared/ui/customAlert';
+import RNIap from 'react-native-iap';
 
 export const HeaderMain: FC = observer(() => {
     const { colors, t } = useUiContext();
@@ -25,7 +26,19 @@ export const HeaderMain: FC = observer(() => {
     const { isConnected } = useNetInfo();
     const { showToast } = useShowToast();
     const rotate = useSharedValue(0);
-    const { purchaseNotifications } = useInAppPurchase();
+    const { purchaseNotifications, connected } = useInAppPurchase();
+
+    useEffect(() => {
+        if (connected) {
+            RNIap.getPurchaseHistory().then((items) => {
+                if (!items?.length) {
+                    setTimeout(() => {
+                        onOpenModal();
+                    }, 10000);
+                }
+            })
+        }
+    }, [connected]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -94,7 +107,7 @@ export const HeaderMain: FC = observer(() => {
             <RateUpdateInfo />
             <Animated.View style={[styles.buttonsWrapper, animatedStyles]}>
                 <TouchableOpacity style={styles.button} onPress={onPressNotifications}>
-                    <BellIcon color={colors.icon} />
+                    <BellIcon color={colors.icon} width={26} height={26} />
                 </TouchableOpacity>
             </Animated.View>
             <CustomAlert
@@ -102,7 +115,7 @@ export const HeaderMain: FC = observer(() => {
                 onCancel={onCloseModal}
                 onPurchase={purchaseNotifications}
                 onConfirm={useTrialPeriod}
-                text={t('setCourseLimits')}
+                text={purchaseModel.isFreePeriod ? t('setCourseLimits') : t('freePeriodIsOver')}
                 purchaseText={t('buyService')}
                 confirmText={purchaseModel.isFreePeriod ? t('yseTrialPeriod') : ''}
             />

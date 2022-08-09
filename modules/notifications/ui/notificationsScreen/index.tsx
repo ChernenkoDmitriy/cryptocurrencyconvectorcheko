@@ -1,8 +1,10 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react';
-import React, { FC, useMemo } from 'react';
-import { FlatList, SafeAreaView } from 'react-native'
+import React, { FC, useMemo, useState } from 'react';
+import { FlatList, SafeAreaView, TouchableOpacity, View, Text } from 'react-native'
+import { SortingIcon } from '../../../../assets/SortingIcon';
 import { useUiContext } from '../../../../src/UIProvider';
+import { Search } from '../../../currencies/ui/components/search';
 import { INotificationsListItem } from '../../../shared/entities/notifications/INotificationsListItem';
 import { notificationsModel } from '../../../shared/entities/notifications/Notifications';
 import { ICoin } from '../../../shared/entities/rates/ICoin';
@@ -20,8 +22,18 @@ interface IProps {
 
 export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
     const { colors, t } = useUiContext();
+    const [sortBy, setSortBy] = useState('');
+    const [searchText, setSearchText] = useState('');
     const styles = useMemo(() => getStyle(colors), [colors]);
-    const { coinsList, deleteNotification } = useNotification()
+    const { coinsList, deleteNotification } = useNotification();
+
+    const onSortByActive = () => {
+        setSortBy(sortBy === 'active' ? '' : 'active');
+    }
+
+    const onSortByInactive = () => {
+        setSortBy(sortBy === 'inactive' ? '' : 'inactive');
+    }
 
     const renderItem = ({ item }: { item: INotificationsListItem }) => {
         const coin = coinsList.find((coin: ICoin) => coin?.id === item.coin)
@@ -43,12 +55,47 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
         navigation.navigate('ADD_NOTIFICATIONS')
     }
 
+    const data = useMemo(() => {
+        if (searchText) {
+            console.log(notificationsModel.notificationsList)
+            return notificationsModel.notificationsList.filter((item) => item?.symbol?.toLowerCase().includes(searchText.toLowerCase()));
+        }
+        return notificationsModel.notificationsList;
+    }, [searchText, notificationsModel.notificationsList]);
+
+    const sortedData = useMemo(() => {
+        if(!sortBy){
+            return data;
+        }
+        return [...data].sort((a, b) => {
+            if (sortBy === 'inactive') {
+                return Number(a.isActive) - Number(b.isActive);
+            } else if (sortBy === 'active') {
+                return Number(b.isActive) - Number(a.isActive);
+            }
+            return 0;
+        })
+    }, [data, sortBy])
+
     return (
         <SafeAreaView style={styles.container}>
             <HeaderWithBackButton title={t('notifications')} />
+            <View style={styles.searchContainer}>
+                <Search value={searchText} onChangeText={setSearchText} />
+            </View>
+            <View style={styles.filterContainer}>
+                <SortingIcon color={colors.icon} />
+                <TouchableOpacity style={[styles.filterButton, sortBy === 'active' ? styles.activeFilter : undefined]} onPress={onSortByActive}>
+                    <Text style={styles.text}>{t('active')}</Text>
+                </TouchableOpacity>
+                <View style={styles.separator} />
+                <TouchableOpacity style={[styles.filterButton, sortBy === 'inactive' ? styles.activeFilter : undefined]} onPress={onSortByInactive}>
+                    <Text style={styles.text}>{t('inactive')}</Text>
+                </TouchableOpacity>
+            </View>
             <FlatList
                 keyboardDismissMode='interactive'
-                data={notificationsModel.notificationsList}
+                data={sortedData}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 style={styles.list}

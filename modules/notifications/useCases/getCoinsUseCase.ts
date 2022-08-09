@@ -28,5 +28,5 @@ export const fetchNotificationsCoins = async () => {
 
 export const setEmptyNotification = () => {
     const randomId = String(Date.now())
-    notificationsModel.chosenNotification = { id: randomId, coin: ratesModel.firstRate.id, priceUp: '', priceDown: '', isActive: false }
+    notificationsModel.chosenNotification = {numberId: Date.now(), comment: '', symbol: '', id: randomId, coin: ratesModel.firstRate.id, priceUp: '', priceDown: '', isActive: false }
 } 

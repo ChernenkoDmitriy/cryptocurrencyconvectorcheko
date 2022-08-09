@@ -12,7 +12,7 @@ class NotificationHandler {
         if (typeof this._onNotification === 'function') {
             this._onNotification(notification);
         }
-        notification?.finish(PushNotificationIOS.FetchResult.NoData);
+        notification?.finish?.(PushNotificationIOS.FetchResult.NoData);
     }
 
     onRegister = (token: { os: string; token: string; }) => {
@@ -23,10 +23,6 @@ class NotificationHandler {
     }
 
     onAction = (notification: any) => {
-        console.log('Notification action received:');
-        console.log(notification.action);
-        console.log(notification);
-
         if (notification.action === 'Yes') {
             PushNotification.invokeApp(notification);
         }
@@ -45,8 +41,9 @@ class NotificationHandler {
         this._onNotification = handler;
     }
 
-    createLocalNotification = (title: string, message: string): void => {
+    createLocalNotification = (title: string, message: string, id: number): void => {
         PushNotification.localNotification({
+            userInfo: { id },
             channelId: "rn-push-notification-channel-id-ding-4-300",
             title,
             message,

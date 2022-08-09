@@ -54,10 +54,10 @@ const notifyClient = (notifications: INotificationsListItem[], coins: ICoin[]) =
                 const messageUp = '▲' + coin.symbol.toUpperCase() + ' ' + coin.current_price + '$'
                 const messageDown = '▼' + coin.symbol.toUpperCase() + ' ' + coin.current_price + '$'
                 if (coin.current_price >= Number(notification.priceUp) && notification.priceUp) {
-                    notificationHandler.createLocalNotification(coin.name, messageUp)
+                    notificationHandler.createLocalNotification(coin.name, messageUp, notification.numberId)
                     notificationsToDisable.push(notification)
                 } else if (coin.current_price <= Number(notification.priceDown) && notification.priceDown) {
-                    notificationHandler.createLocalNotification(coin.name, messageDown)
+                    notificationHandler.createLocalNotification(coin.name, messageDown, notification.numberId)
                     notificationsToDisable.push(notification)
                 }
             }

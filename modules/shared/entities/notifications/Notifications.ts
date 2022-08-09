@@ -34,7 +34,7 @@ class NotificationsModel implements INotificationsModel {
     }
 
     get chosenNotification() {
-        return this.chosenNotificationStore.data ?? { id: 'emptyid', coin: 'bitcoin', priceUp: '', priceDown: '', isActive: false };
+        return this.chosenNotificationStore.data ?? { numberId: Date.now(), comment: '', symbol: '', id: 'emptyid', coin: 'bitcoin', priceUp: '', priceDown: '', isActive: false };
     }
 
 }
