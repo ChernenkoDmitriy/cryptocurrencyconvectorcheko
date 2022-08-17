@@ -33,7 +33,7 @@ export const SettingsScreen: FC<IProps> = observer(({ navigation }) => {
     }
 
     const onShare = () => {
-        Share.share({ message: 'https://play.google.com/store/apps/details?id=com.bestcarruncyconvectorpokupka' });
+        Share.share({ message: 'https://play.google.com/store/apps/details?id=com.cryptocurrencyconvectorcheko' });
     }
 
     const onChangeLanguage = (value: string) => {
