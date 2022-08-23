@@ -2,7 +2,7 @@ export const translations = {
   ru: {
     freePeriodIsOver: 'Бесплатный период закончился',
     inactive: 'Не активные',
-    setCourseLimits: 'Сервис быстрых сообщений выбранной вами криптовалюты и ее курса',
+    setCourseLimits: 'Сигналы уведомления о цене криптовалюты',
     buyService: 'Купить услугу $10',
     yseTrialPeriod: '$10 Использовать пробный период 3 дня',
     comment: 'Комментарий',
@@ -223,7 +223,7 @@ export const translations = {
   ua: {
     freePeriodIsOver: 'Безкоштовний період закінчився',
     inactive: 'Не активні',
-    setCourseLimits: 'Служба швидкого обміну повідомленнями про обрану вами криптовалюту та її курс',
+    setCourseLimits: 'Сигнали сповіщення про ціну криптовалюти',
     buyService: 'Купити послугу $10',
     yseTrialPeriod: '$10 Використовувати пробний період 3 дні',
     comment: 'Коментар',
@@ -444,7 +444,7 @@ export const translations = {
   en: {
     freePeriodIsOver: 'The free period is over',
     inactive: 'Inactive',
-    setCourseLimits: 'Quick messaging service of your chosen cryptocurrency and its rate',
+    setCourseLimits: 'Cryptocurrency Price Notification Signals',
     buyService: 'Buy a service $10',
     yseTrialPeriod: '$10 Try 3 days for free',
     comment: 'Comment',

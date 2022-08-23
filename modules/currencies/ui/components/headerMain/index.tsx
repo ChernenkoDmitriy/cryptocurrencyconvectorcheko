@@ -117,7 +117,7 @@ export const HeaderMain: FC = observer(() => {
                 onConfirm={useTrialPeriod}
                 text={purchaseModel.isFreePeriod ? t('setCourseLimits') : t('freePeriodIsOver')}
                 purchaseText={t('buyService')}
-                confirmText={purchaseModel.isFreePeriod ? t('yseTrialPeriod') : ''}
+                confirmText={purchaseModel.isHideTrialPeriod ? '' : t('yseTrialPeriod')}
             />
         </View >
     );
