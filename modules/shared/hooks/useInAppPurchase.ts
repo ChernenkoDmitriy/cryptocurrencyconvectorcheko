@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
-import RNIap, { Purchase, useIAP } from 'react-native-iap';
+import { EmitterSubscription, Platform } from 'react-native';
+import IAP, { Purchase, useIAP } from 'react-native-iap';
 import { purchaseModel } from '../entities/purchase/purchaseModel';
+import { validateReceipt } from '../useCases/receiptValidation';
 
-const productIds = ['information_service_product', 'test_subscription'];
+const productIds = Platform.select({
+    ios: [],
+    android: ['information_service_product', 'test_subscription']
+});
+
+let purchaseUpdate: EmitterSubscription
 
 export const useInAppPurchase = () => {
     const {
@@ -17,20 +24,41 @@ export const useInAppPurchase = () => {
     } = useIAP();
 
     useEffect(() => {
-        if (purchaseHistories) {
-            purchaseModel.purchaseHistory = purchaseHistories;
-        }
-    }, [purchaseHistories]);
-
-    useEffect(() => {
         if (connected) {
-            getSubscriptions(productIds);
+            getSubscriptions(productIds as string[]);
             getPurchaseHistories();
         }
     }, [connected]);
 
+    useEffect(() => {
+        const notificationProduct = purchaseHistories?.find((item: { productId: string; }) => item.productId === 'information_service_product')
+        const receipt = notificationProduct?.transactionReceipt
+        if (receipt) {
+            validateReceipt(JSON.parse(receipt))
+        }
+    }, [purchaseHistories]);
+
+    useEffect(() => {
+        purchaseUpdate = IAP.purchaseUpdatedListener((purchase) => {
+            validateReceipt(purchase)
+        })
+
+        return () => {
+            purchaseUpdate.remove();
+        }
+    }, []);
+
+    useEffect(() => {
+        const notificationProduct = subscriptions?.find((item: { productId: string; }) => item.productId === 'information_service_product');
+        if (notificationProduct?.freeTrialPeriodAndroid && purchaseHistories?.length === 0) {
+            purchaseModel.isFreePeriod = true
+        } else {
+            purchaseModel.isFreePeriod = false
+        }
+    }, [purchaseHistories, subscriptions]);
+
     const purchaseNotifications = async () => {
-        const notificationProduct = subscriptions?.find(item => item.productId === 'information_service_product');
+        const notificationProduct = subscriptions?.find((item: { productId: string; }) => item.productId === 'information_service_product');
         if (notificationProduct) {
             const response = await requestSubscription(notificationProduct.productId);
         }
@@ -42,6 +70,7 @@ export const useInAppPurchase = () => {
                 const receipt = purchase.transactionReceipt;
                 if (receipt)
                     try {
+                        validateReceipt(JSON.parse(receipt))
                         const ackResult = await finishTransaction(purchase, false);
                     } catch (ackErr) {
                     }
@@ -52,17 +81,3 @@ export const useInAppPurchase = () => {
 
     return { connected, purchaseNotifications, getPurchaseHistories };
 };
-
-const tes = {
-    developerPayload: '',
-    signatureAndroid:
-        'as2p7T8IB0BQd17RVe8Nk5vgtqCVlKFzKQMz9OBJ0kt5QhT3nSTc4TAo+P9WWCUt95zABLGOO8a90unNus8aSW1Cka415pabUG6/mDTLB4paIeo/YTX5nFXN4IS0gUoNBsBB8K3BWv5tDVO6reAFUUkqplilXj9Z2jUzMtBFwlBQpPN5FicbSWHZSucjSnb5oKo5HIadkEc45h9949aAmCi2I3UIdiXOZnrHsjME6Mh2r5sNNKnD32axgzwc2e/CChtfYXb/kGDFO3ePSCRr4j25FJrjWKXt/a0OJ7F9jCDbGU1+JIY3zlqPVF1WnNFUYYjqZLUwNsnheURucT/33g==',
-    purchaseToken:
-        'jemgecmmllpebgjioobejkdg.AO-J1OzzEKT9yu-0A7EGlyCXvo5kNpoKCctjerlmo2iAifa2T-K9gy6R2ov-yaiSt7vKyFfAo3-O1uN256lzQonz6MTiMcbdY7kctQFyeMPeidYrjapp5lw',
-    transactionReceipt:
-        '{"productId":"test_subscription","purchaseTime":1659888748115,"purchaseToken":"jemgecmmllpebgjioobejkdg.AO-J1OzzEKT9yu-0A7EGlyCXvo5kNpoKCctjerlmo2iAifa2T-K9gy6R2ov-yaiSt7vKyFfAo3-O1uN256lzQonz6MTiMcbdY7kctQFyeMPeidYrjapp5lw","quantity":1}',
-    dataAndroid:
-        '{"productId":"test_subscription","purchaseTime":1659888748115,"purchaseToken":"jemgecmmllpebgjioobejkdg.AO-J1OzzEKT9yu-0A7EGlyCXvo5kNpoKCctjerlmo2iAifa2T-K9gy6R2ov-yaiSt7vKyFfAo3-O1uN256lzQonz6MTiMcbdY7kctQFyeMPeidYrjapp5lw","quantity":1}',
-    transactionDate: 1659888748115,
-    productId: 'test_subscription',
-}

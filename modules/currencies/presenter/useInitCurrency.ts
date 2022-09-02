@@ -8,6 +8,7 @@ import { notificationHandler } from "../../../libraries/notificationService/Noti
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { notificationsModel } from "../../shared/entities/notifications/Notifications";
+import { purchaseModel } from "../../shared/entities/purchase/purchaseModel";
 
 export const useInitCurrency = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
@@ -30,7 +31,9 @@ export const useInitCurrency = () => {
             const currentNotification = notificationsModel.notificationsList.find(item => item.numberId === notification?.data?.id)
             if (currentNotification) {
                 notificationsModel.chosenNotification = currentNotification;
-                navigation.navigate('ADD_NOTIFICATIONS')
+                if (purchaseModel.isFreePeriod || purchaseModel.purchaseHistory?.length) {
+                    navigation.navigate('ADD_NOTIFICATIONS')
+                }
             };
         } catch (error) {
             console.warn('NotificationService -> onReceiveNotification: ', error);

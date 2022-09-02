@@ -1,5 +1,9 @@
 export const translations = {
   ru: {
+    applicationIsOutdated: 'Ваша версия приложения устарела!',
+    updateToLatest: 'Пожалуйста, обновите до последней версии',
+    later: 'Позже',
+    update: 'Обновить',
     freePeriodIsOver: 'Бесплатный период закончился',
     inactive: 'Не активные',
     setCourseLimits: 'Сигналы уведомления о цене криптовалюты',
@@ -221,6 +225,10 @@ export const translations = {
     IMP: "Мэнский фунт"
   },
   ua: {
+    applicationIsOutdated: 'Ваша версія програми застаріла!',
+    updateToLatest: 'Будь ласка, оновіть до останньої версії',
+    later: 'Пізніше',
+    update: 'Оновити',
     freePeriodIsOver: 'Безкоштовний період закінчився',
     inactive: 'Не активні',
     setCourseLimits: 'Сигнали сповіщення про ціну криптовалюти',
@@ -442,6 +450,10 @@ export const translations = {
     IMP: "Менський фунт"
   },
   en: {
+    applicationIsOutdated: 'Your version of the application is outdated!',
+    updateToLatest: 'Please update to the latest version',
+    later: 'Later',
+    update: 'Update',
     freePeriodIsOver: 'The free period is over',
     inactive: 'Inactive',
     setCourseLimits: 'Cryptocurrency Price Notification Signals',
