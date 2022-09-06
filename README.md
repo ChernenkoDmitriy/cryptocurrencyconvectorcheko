@@ -2,15 +2,18 @@
 
 https://reactnative.dev/docs/environment-setup
 
-2) Сборка приложения делается через gradle
+2) Сборка приложения делается через gradle, перед сборкой приложения нужно установить зависимости, 
+это делается с помошью пакетного менеджера  ###npm###
 
 Сделать апк
 
+```npm i```
 ```cd android```
 ```./gradlew assembleRelease```
 
 Сделать aab
 
+```npm i```
 ```cd android```
 ```./gradlew bundleRelease```
 
