@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { KeyboardAvoidingView, StatusBar, View } from 'react-native';
+import { KeyboardAvoidingView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CurrencyListScreen } from '../../modules/currencies/ui/CurrencyListScreen';
@@ -12,11 +12,14 @@ import { AddNotificationsScreen } from '../../modules/notifications/ui/addNotifi
 import { ChartScreen } from '../../modules/chart/ui';
 import { NotificationsScreen } from '../../modules/notifications/ui/notificationsScreen';
 import { isIOS } from '../utils';
+import { VersionControlScreen } from '../../modules/versionControl/ui/versionControlScreen';
+import { useInAppPurchase } from '../../modules/shared/hooks/useInAppPurchase';
 
 const Stack = createStackNavigator();
 
 export const AppNavigator: FC = () => {
     const { colors } = useUiContext();
+    useInAppPurchase()
 
     return (
         <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.background }} behavior={isIOS ? 'padding' : undefined}>
@@ -31,6 +34,7 @@ export const AppNavigator: FC = () => {
                     <Stack.Screen name="ADD_NOTIFICATIONS" component={AddNotificationsScreen} />
                     <Stack.Screen name="SETTINGS" component={SettingsScreen} />
                     <Stack.Screen name="INFORMATION" component={InformationScreen} />
+                    <Stack.Screen name="VERSION_CONTROL_SCREEN" component={VersionControlScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </KeyboardAvoidingView>

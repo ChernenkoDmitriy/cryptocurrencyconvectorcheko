@@ -8,10 +8,9 @@ import { getStyle } from './styles';
 interface IProps {
     onCancel: () => void;
     onPurchase: () => void;
-    onConfirm: () => void;
     visible: boolean;
     text: string;
-    confirmText: string;
+    // confirmText: string;
     purchaseText: string;
     confirmColor?: string;
     confirmIcon?: React.ReactNode;
@@ -19,7 +18,7 @@ interface IProps {
     cancelIcon?: React.ReactNode;
 }
 
-export const CustomAlert: FC<IProps> = observer(({ onPurchase, purchaseText, visible, text, cancelIcon, confirmText, cancelText, confirmColor, confirmIcon, onCancel, onConfirm }) => {
+export const CustomAlert: FC<IProps> = observer(({ onPurchase, purchaseText, visible, text, cancelIcon, cancelText, confirmColor, confirmIcon, onCancel }) => {
     const { colors } = useUiContext();
     const styles = useMemo(() => getStyle(colors), [colors]);
 
@@ -31,10 +30,10 @@ export const CustomAlert: FC<IProps> = observer(({ onPurchase, purchaseText, vis
                         <Text style={styles.text}>{text}</Text>
                     </View>
                     <View style={styles.separator} />
-                    {!!confirmText && <TouchableOpacity style={styles.rowContainer} onPress={onConfirm}>
+                    {/* {!!confirmText && <TouchableOpacity style={styles.rowContainer} onPress={onPurchase}>
                         <Text style={[styles.text, { color: confirmColor || colors.titleText }]}>{confirmText}</Text>
                         {confirmIcon}
-                    </TouchableOpacity>}
+                    </TouchableOpacity>} */}
                     <View style={styles.separator} />
                     <TouchableOpacity style={styles.rowContainer} onPress={onPurchase}>
                         <Text style={[styles.text, { color: confirmColor || colors.titleText }]}>{purchaseText}</Text>

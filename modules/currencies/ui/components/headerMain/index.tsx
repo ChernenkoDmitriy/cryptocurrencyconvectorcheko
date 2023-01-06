@@ -41,6 +41,12 @@ export const HeaderMain: FC = observer(() => {
     }, [connected]);
 
     useEffect(() => {
+        if (purchaseModel.isPurchased) {
+            setIsPaymentVisible(false);
+        }
+    }, [purchaseModel.isPurchased]);
+
+    useEffect(() => {
         const interval = setInterval(() => {
             rotate.value = withSequence(
                 withTiming(-15, { duration: 50 }),
@@ -72,8 +78,8 @@ export const HeaderMain: FC = observer(() => {
     }, []);
 
     const onPressNotifications = () => {
-        if ((purchaseModel.isFreePeriod && purchaseModel.isHideTrialPeriod) || purchaseModel.purchaseHistory?.length) {
-            if (isConnected) {
+        if (isConnected) {
+            if (purchaseModel.isPurchased) {
                 setEmptyNotification()
                 if (notificationsModel.notificationsList.length === 0) {
                     navigation.navigate('ADD_NOTIFICATIONS');
@@ -81,23 +87,23 @@ export const HeaderMain: FC = observer(() => {
                     navigation.navigate('NOTIFICATIONS');
                 }
             } else {
-                showToast();
+                onOpenModal();
             }
         } else {
-            onOpenModal();
+            showToast();
         }
     };
 
-    const useTrialPeriod = () => {
-        purchaseModel.isHideTrialPeriod = true;
-        setEmptyNotification()
-        if (notificationsModel.notificationsList.length === 0) {
-            navigation.navigate('ADD_NOTIFICATIONS');
-        } else {
-            navigation.navigate('NOTIFICATIONS');
-        }
-        onCloseModal();
-    }
+    // const useTrialPeriod = () => {
+    //     purchaseModel.isHideTrialPeriod = true;
+    //     setEmptyNotification()
+    //     if (notificationsModel.notificationsList.length === 0) {
+    //         navigation.navigate('ADD_NOTIFICATIONS');
+    //     } else {
+    //         navigation.navigate('NOTIFICATIONS');
+    //     }
+    //     onCloseModal();
+    // }
 
     return (
         <View style={styles.container}>
@@ -114,10 +120,8 @@ export const HeaderMain: FC = observer(() => {
                 visible={isPaymentVisible}
                 onCancel={onCloseModal}
                 onPurchase={purchaseNotifications}
-                onConfirm={useTrialPeriod}
                 text={purchaseModel.isFreePeriod ? t('setCourseLimits') : t('freePeriodIsOver')}
-                purchaseText={t('buyService')}
-                confirmText={purchaseModel.isHideTrialPeriod ? '' : t('yseTrialPeriod')}
+                purchaseText={purchaseModel.isFreePeriod ? t('yseTrialPeriod') : t('buyService')}
             />
         </View >
     );
