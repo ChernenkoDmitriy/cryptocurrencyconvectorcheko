@@ -13,12 +13,18 @@ export const getStyle = (colors: IColors) => {
         container: {
             backgroundColor: colors.card,
             borderRadius: 16,
-            width: scaleHorizontal(260),
+            width: scaleHorizontal(310),
         },
         rowContainer: {
             paddingVertical: scaleVertical(16),
             paddingHorizontal: scaleHorizontal(16),
             flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        titleWrapper: {
+            paddingVertical: scaleVertical(16),
+            paddingHorizontal: scaleHorizontal(16),
             justifyContent: 'center',
             alignItems: 'center',
         },

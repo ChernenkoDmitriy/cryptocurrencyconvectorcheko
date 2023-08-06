@@ -16,7 +16,7 @@ import { useInAppPurchase } from '../../../../shared/hooks/useInAppPurchase';
 import { observer } from 'mobx-react';
 import { purchaseModel } from '../../../../shared/entities/purchase/purchaseModel';
 import { CustomAlert } from '../../../../shared/ui/customAlert';
-import RNIap from 'react-native-iap';
+import { useDebounce } from '../../../../shared/hooks/useDebounce';
 
 export const HeaderMain: FC = observer(() => {
     const { colors, t } = useUiContext();
@@ -26,19 +26,21 @@ export const HeaderMain: FC = observer(() => {
     const { isConnected } = useNetInfo();
     const { showToast } = useShowToast();
     const rotate = useSharedValue(0);
-    const { purchaseNotifications, connected } = useInAppPurchase();
+    const { purchaseNotifications, connected, purchaseHistory } = useInAppPurchase();
+
+    const onStartOpen = () => {
+        onOpenModal();
+    }
+
+    const { debouncedWrapper: onOpenModalDebounced, cancelDebounce } = useDebounce(onStartOpen, 3000);
 
     useEffect(() => {
-        if (connected) {
-            RNIap.getPurchaseHistory().then((items) => {
-                if (!items?.length) {
-                    setTimeout(() => {
-                        onOpenModal();
-                    }, 10000);
-                }
-            })
+        if (connected && !purchaseHistory.length) {
+            onOpenModalDebounced();
+        } else {
+            cancelDebounce();
         }
-    }, [connected]);
+    }, [connected, purchaseHistory]);
 
     useEffect(() => {
         const interval = setInterval(() => {

@@ -12,5 +12,11 @@ export const useDebounce = (callback: Function, delay: number) => {
         }, delay);
     }, [callback, delay]);
 
-    return { debouncedWrapper };
+    const cancelDebounce = useCallback(() => {
+        if (timer.current) {
+            clearTimeout(timer.current);
+        }
+    }, []);
+
+    return { debouncedWrapper, cancelDebounce };
 };

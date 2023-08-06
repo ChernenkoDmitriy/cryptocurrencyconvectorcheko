@@ -57,14 +57,13 @@ export const NotificationsScreen: FC<IProps> = observer(({ navigation }) => {
 
     const data = useMemo(() => {
         if (searchText) {
-            console.log(notificationsModel.notificationsList)
             return notificationsModel.notificationsList.filter((item) => item?.symbol?.toLowerCase().includes(searchText.toLowerCase()));
         }
         return notificationsModel.notificationsList;
     }, [searchText, notificationsModel.notificationsList]);
 
     const sortedData = useMemo(() => {
-        if(!sortBy){
+        if (!sortBy) {
             return data;
         }
         return [...data].sort((a, b) => {

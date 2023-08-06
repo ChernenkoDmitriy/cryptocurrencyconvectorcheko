@@ -4,6 +4,8 @@ import React, { FC, useMemo } from 'react';
 import { View, Text, Modal, TouchableOpacity } from 'react-native';
 import { useUiContext } from '../../../../src/UIProvider';
 import { getStyle } from './styles';
+import { BellIcon } from '../../../../assets/bellIcon';
+import { scaleVertical } from '../../../../src/utils';
 
 interface IProps {
     onCancel: () => void;
@@ -27,8 +29,9 @@ export const CustomAlert: FC<IProps> = observer(({ onPurchase, purchaseText, vis
         <Modal visible={visible} transparent={true}>
             <View style={styles.background}>
                 <View style={styles.container}>
-                    <View style={styles.rowContainer}>
-                        <Text style={styles.text}>{text}</Text>
+                    <View style={styles.titleWrapper}>
+                        <BellIcon height={30} width={30} />
+                        <Text style={[styles.text, { marginTop: scaleVertical(10) }]}>{text}</Text>
                     </View>
                     <View style={styles.separator} />
                     {!!confirmText && <TouchableOpacity style={styles.rowContainer} onPress={onConfirm}>

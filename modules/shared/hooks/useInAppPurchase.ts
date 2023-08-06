@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import RNIap, { Purchase, useIAP } from 'react-native-iap';
+import { Purchase, useIAP } from 'react-native-iap';
 import { purchaseModel } from '../entities/purchase/purchaseModel';
 
 const productIds = ['information_service_product', 'test_subscription'];
@@ -10,29 +10,29 @@ export const useInAppPurchase = () => {
         subscriptions,
         getSubscriptions,
         requestSubscription,
-        getPurchaseHistories,
+        getPurchaseHistory,
         finishTransaction,
         currentPurchase,
-        purchaseHistories,
+        purchaseHistory,
     } = useIAP();
 
     useEffect(() => {
-        if (purchaseHistories) {
-            purchaseModel.purchaseHistory = purchaseHistories;
+        if (purchaseHistory) {
+            purchaseModel.purchaseHistory = purchaseHistory;
         }
-    }, [purchaseHistories]);
+    }, [purchaseHistory]);
 
     useEffect(() => {
         if (connected) {
-            getSubscriptions(productIds);
-            getPurchaseHistories();
+            getSubscriptions({ skus: productIds });
+            getPurchaseHistory();
         }
     }, [connected]);
 
     const purchaseNotifications = async () => {
         const notificationProduct = subscriptions?.find(item => item.productId === 'information_service_product');
         if (notificationProduct) {
-            const response = await requestSubscription(notificationProduct.productId);
+            const response = await requestSubscription({ sku: notificationProduct.productId, ...(notificationProduct?.subscriptionOfferDetails[0]?.offerToken && { subscriptionOffers: [{ sku: notificationProduct.productId, offerToken: notificationProduct?.subscriptionOfferDetails[0]?.offerToken }] }), });
         }
     };
 
@@ -42,7 +42,7 @@ export const useInAppPurchase = () => {
                 const receipt = purchase.transactionReceipt;
                 if (receipt)
                     try {
-                        const ackResult = await finishTransaction(purchase, false);
+                        const ackResult = await finishTransaction({ purchase, isConsumable: false });
                     } catch (ackErr) {
                     }
             }
@@ -50,7 +50,7 @@ export const useInAppPurchase = () => {
         checkCurrentPurchase(currentPurchase);
     }, [currentPurchase, finishTransaction]);
 
-    return { connected, purchaseNotifications, getPurchaseHistories };
+    return { connected, purchaseNotifications, getPurchaseHistory, purchaseHistory };
 };
 
 const tes = {
