@@ -43,11 +43,11 @@ export const CustomAlert: FC<IProps> = observer(({ onPurchase, purchaseText, vis
                         <Text style={[styles.text, { color: confirmColor || colors.titleText }]}>{purchaseText}</Text>
                         {confirmIcon}
                     </TouchableOpacity>
-                    <View style={styles.separator} />
+                    {/* <View style={styles.separator} />
                     <TouchableOpacity style={styles.rowContainer} onPress={onCancel}>
                         <Text style={styles.text}>{cancelText || t('cancel')}</Text>
                         {cancelIcon}
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
             </View>
         </Modal>
